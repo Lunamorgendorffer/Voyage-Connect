@@ -9,7 +9,7 @@
 
 header{
     z-index:999;
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -21,7 +21,7 @@ header{
 }
 
 header .brand{
-    color: #fff;
+    color: #000;
     font-size: 1.5em;
     font-weight: 700;
     text-transform: uppercase;
@@ -34,7 +34,7 @@ header .navigation{
 
 header .navigation .navigation-items a{
     position: relative;
-    color: #fff;
+    color: #000;
     font-size: 1em;
     font-weight: 500;
     text-decoration: none;
