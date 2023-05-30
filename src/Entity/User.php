@@ -43,9 +43,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
+    #[ORM\ManyToMany(targetEntity: Comment::class, inversedBy: 'usersLike')]
+    private Collection $Likes;
+
+    #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'usersFavorite')]
+    private Collection $Favorite;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->Likes = new ArrayCollection();
+        $this->Favorite = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -185,6 +193,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $comment->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->Likes;
+    }
+
+    public function addLike(Comment $like): self
+    {
+        if (!$this->Likes->contains($like)) {
+            $this->Likes->add($like);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Comment $like): self
+    {
+        $this->Likes->removeElement($like);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Post>
+     */
+    public function getFavorite(): Collection
+    {
+        return $this->Favorite;
+    }
+
+    public function addFavorite(Post $favorite): self
+    {
+        if (!$this->Favorite->contains($favorite)) {
+            $this->Favorite->add($favorite);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Post $favorite): self
+    {
+        $this->Favorite->removeElement($favorite);
 
         return $this;
     }

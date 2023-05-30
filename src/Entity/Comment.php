@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -27,6 +29,14 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Likes')]
+    private Collection $usersLike;
+
+    public function __construct()
+    {
+        $this->usersLike = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -77,6 +87,33 @@ class Comment
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsersLike(): Collection
+    {
+        return $this->usersLike;
+    }
+
+    public function addUsersLike(User $usersLike): self
+    {
+        if (!$this->usersLike->contains($usersLike)) {
+            $this->usersLike->add($usersLike);
+            $usersLike->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUsersLike(User $usersLike): self
+    {
+        if ($this->usersLike->removeElement($usersLike)) {
+            $usersLike->removeLike($this);
+        }
 
         return $this;
     }
