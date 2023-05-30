@@ -4,38 +4,42 @@
 
 {% block body %}
 
-    <div class="longin-box">
-        <div class="login-header">
-            <header>Login</header>
+    <main>
+        <div class="login-box">
+            <div class="card"> 
+                <div class="login-header">
+                    <h1>Register</h1>
+                    <p>Get more features and priviliges by joining to the most helpful community</p>
+                </div>
+                <div class="input-box">
+                    <input type="text" class= "input-field" placeholder="Pseudo" autocomplete="off" required>
+                </div>
+                <div class="input-box">
+                    <input type="text" class= "input-field" placeholder="Email" autocomplete="off" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" class= "input-field" placeholder="Password" autocomplete="off" required>
+                </div>
+                <div class="input-box">
+                    <input type="password" class= "input-field" placeholder="Repeat Password" autocomplete="off" required>
+                </div>
+                <div class="input-submit">
+                    <button class="submit-btn">
+                        <label for="submit">Register</label>
+                    </button>
+                </div>
+                <div class="sign-up-link">
+                    <p> Don't have account? <a href="#">Sign up</a></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="home-image"></div> 
+            </div>
         </div>
-        <div class="input-box">
-            <input type="text" class= "input-field" placeholder="Email" autocomplete="off" required>
-        </div>
-        <div class="input-box">
-            <input type="password" class= "input-field" placeholder="Email" autocomplete="off" required>
-        </div>
-        <div class="forgot">
-            <section>
-                <input type="checkbox"  id="check">
-                <label for="check">Remember me</label>
-            </section>
-            <section>
-                <a href="#">Forgot password</a>
-            </section>
-        </div>
-        <div class="input-submit">
-            <button class="submit-btn">
-                <label for="submit">Sign In</label>
-            </button>
-        </div>
-        <div class="sign-up-link">
-            <p> Don't have account? <a href="#">Sign up</a></p>
-        </div>
+    </main>
 
-    </div>
 
-
-    {% for flash_error in app.flashes('verify_email_error') %}
+    {# {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
@@ -52,5 +56,5 @@
         {{ form_row(registrationForm.agreeTerms) }}
 
         <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+    {{ form_end(registrationForm) }} #}
 {% endblock %}
