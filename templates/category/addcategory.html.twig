@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AddCategory{% endblock %}
+
+{% block body %}
+{% if edit %}
+    <h1>Edit une category</h1>
+{% else %}
+    <h1> ajouter une category</h1>
+{% endif %}
+
+{# {{form(formAddstagiaire)}} #}
+
+{{ form_start(formAddcategory) }}
+
+    
+        {{ form_row(formAddcategory.title) }}
+        {{ form_row(formAddcategory.description) }}
+        {{ form_row(formAddcategory.creationDate) }}
+        {{ form_row(formAddcategory.image) }}
+        {{ form_row(formAddcategory.user) }}
+    
+        <button class="btn btn-lg btn-primary" type="submit">
+            Send
+        </button>
+    
+{{ form_end(formAddcategory) }}
+
+
+{% endblock %}

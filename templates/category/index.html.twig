@@ -1,20 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CategoryController!{% endblock %}
+{% block title %}CategoryController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/nourabdou/appVoyage/src/Controller/CategoryController.php'|file_link(0) }}">src/Controller/CategoryController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/nourabdou/appVoyage/templates/category/index.html.twig'|file_link(0) }}">templates/category/index.html.twig</a></code></li>
-    </ul>
+<div class="container" style="display: flex;flex-wrap: wrap; justify-content:center; flex-direction: column; align-items: center">
+    
+    {% for category in categories %}
+        <div class="card rounded" style=" width: 30%; margin: 25px; ">
+            <a style="text-align:center;" href="{{ path('show_category', {'id': category.id})}}">{{category}}</a> <br>
+            {# {% if is_granted('ROLE_ADMIN') %} #}
+            <div id="button" style="text-align:center;">
+                <a class="btn btn-warning" href="{{ path('edit_category', {'id':category.id}) }}">Edit</a> 
+                <a class="btn btn-danger" href="{{ path('delete_category', {'id':category.id}) }}">Delete</a><br>
+            </div>
+            {# {% endif %} #}
+        </div>
+    {% endfor %}
+    <div class="adtbtn">
+        <a class="btn btn-primary" href="{{ path('add_category')}}">Add post </a><br>
+    </div>
+    
 </div>
 {% endblock %}
