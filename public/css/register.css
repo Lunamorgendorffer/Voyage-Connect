@@ -33,6 +33,7 @@ main{
     background: #dfdfdf;
     width: 70%;
     margin: 0 auto;
+    border: none;
 
 }
 
@@ -134,8 +135,8 @@ section a{
 .home-image{
     background-image: url("../img/6.jpg");
     background-repeat: no-repeat;
-    background-size:auto;
-    width: 100%;
+    background-size:cover;
+    width: 80%;
     height: 100%;
     border-radius: 10px;
 }
