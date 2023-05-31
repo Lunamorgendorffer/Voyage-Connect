@@ -4,6 +4,11 @@
 
 {% block body %}
 <section class="home">
+    {% if app.user %}
+    <h3 style="text-align: center; margin:4vh;">Bienvenue {{app.user.pseudo}}</h3>
+    {% else %}
+    <h3 style="text-align: center; margin:4vh;" >Bienvenue Vous !</h3>
+    {% endif %}
 
     <video class="video-slide active" src="./video/1.mp4" autoplay muted loop></video>
     <video class="video-slide" src="./video/2.mp4" autoplay muted loop></video>
