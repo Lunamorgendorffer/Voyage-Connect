@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailComment{% endblock %}
+
+{% block body %}
+<div class="constainerSta">
+    <div class="card p-3 bg-light" style="display: flex; flex-direction: column; align-items: center; width: 25rem;">
+        <h1> {{ comment }}</h1>
+        <p>
+            title: {{comment.text}} <br>
+        </p>
+    </div>
+</div>
+{% endblock %}

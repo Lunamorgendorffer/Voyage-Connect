@@ -3,18 +3,22 @@
 {% block title %}Hello CommentController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/nourabdou/appVoyage/src/Controller/CommentController.php'|file_link(0) }}">src/Controller/CommentController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/nourabdou/appVoyage/templates/comment/index.html.twig'|file_link(0) }}">templates/comment/index.html.twig</a></code></li>
-    </ul>
+<div class="container" style="display: flex;flex-wrap: wrap; justify-content:center; flex-direction: column; align-items: center">
+    
+    {% for comment in comments %}
+        <div class="card rounded" style=" width: 30%; margin: 25px; ">
+            <a style="text-align:center;" href="{{ path('show_comment', {'id': comment.id})}}">{{comment}}</a> <br>
+            {# {% if is_granted('ROLE_ADMIN') %} #}
+            <div id="button" style="text-align:center;">
+                <a class="btn btn-warning" href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a> 
+                <a class="btn btn-danger" href="{{ path('delete_comment', {'id':comment.id}) }}">Delete</a><br>
+            </div>
+            {# {% endif %} #}
+        </div>
+    {% endfor %}
+    <div class="adtbtn">
+        <a class="btn btn-primary" href="{{ path('add_comment')}}">Add post </a><br>
+    </div>
+    
 </div>
 {% endblock %}
