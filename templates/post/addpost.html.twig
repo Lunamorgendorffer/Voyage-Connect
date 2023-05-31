@@ -1,0 +1,31 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}AddPost{% endblock %}
+
+{% block body %}
+{% if edit %}
+    <h1>Edit un stagiaire</h1>
+{% else %}
+    <h1> ajouter un stagiaire</h1>
+{% endif %}
+
+{# {{form(formAddstagiaire)}} #}
+
+{{ form_start(formAddpost) }}
+
+    
+        {{ form_row(formAddpost.title) }}
+        {{ form_row(formAddpost.description) }}
+        {{ form_row(formAddpost.creationDate) }}
+        {{ form_row(formAddpost.image) }}
+        {{ form_row(formAddpost.user) }}
+    
+        <button class="btn btn-lg btn-primary" type="submit">
+            Send
+        </button>
+    
+{{ form_end(formAddpost) }}
+
+
+{% endblock %}
