@@ -3,14 +3,54 @@
 {% block title %}DetailPost{% endblock %}
 
 {% block body %}
-<div class="constainerSta">
-    <div class="card p-3 bg-light" style="display: flex; flex-direction: column; align-items: center; width: 25rem;">
-        <h1> {{ post }}</h1>
-        <p>
-            User: {{post.user}} <br>
-            creation date: {{post.creationDate | date ('d/m/Y') }} <br>
-            description: {{post.description}} <br>
-        </p>
+
+<div class="post-container">
+    <div class="post-row">
+        <div class="user-profile">
+            <img src="{{asset('img/images/profile-pic.png')}}" alt="">
+            <div>
+                <p>{{post.user}}</p>
+                <span>{{post.creationDate | date ('d/m/Y') }}</span>
+            </div>
+        </div>
+        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+    </div>
+    <h1>{{post}}</h1>
+    <p class="post-text">
+        {{post.description}}
+    </p>
+
+    <img src="./images/feed-image-1.png" class="post-img" alt="">
+
+    <div class="post-row">
+        <div class="activity-icons">
+            <div><img src="{{asset('img/images/like.png')}}" alt="">120</div>
+            <div><img src="{{asset('img/images/comments.png')}}" alt="">15</div>
+            <div><img src="{{asset('img/images/share.png')}}" alt="">20</div>
+
+        </div>
+        <div class="post-profile-icon">
+            <img src="./images/profile-pic.png" alt=""><i class="fas fa-caret-down"></i>
+
+        </div>
     </div>
 </div>
+
+{% for comment in post.comments %}
+<div class="comment-container">
+    <div class="comment-row">
+        <div class="user-profile">
+            <img src="{{asset('img/images/profile-pic.png')}}" alt="">
+            <div>
+                <p>{{comment.user}}</p>
+                <span>{{comment.creationDate | date ('d/m/Y') }}</span>
+            </div>
+        </div>
+    </div>
+    <p class="comment-text">
+     {{comment}} <br>
+    </p>
+</div>
+{% endfor %}
+
 {% endblock %}
