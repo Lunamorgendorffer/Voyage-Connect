@@ -36,6 +36,7 @@ class PostController extends AbstractController
 
         //quand on sousmet le formulaire 
         if($form->isSubmitted() && $form->isValid()){
+            $images = $form->get('image')->getData();
 
             $post = $form->getData();
             $entityManager->persist($post);// = prepare
