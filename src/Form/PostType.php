@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostType extends AbstractType
 {
@@ -15,8 +17,15 @@ class PostType extends AbstractType
             ->add('title')
             ->add('description')
             ->add('creationDate')
-            ->add('image')
+            ->add('imageFile',VichImageType::class, [
+                'label' => 'image of post',
+                'label_attr' => [
+                    'class' => 'form-label mt4',
+                ],
+            ])
+            ->add('image' )
             ->add('user')
+            ->add('submit', SubmitType::class)
         ;
     }
 
