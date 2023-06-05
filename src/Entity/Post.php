@@ -12,12 +12,13 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[Vich\Uploadable]
 class Post
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Vich\Uploadable]
+    
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
