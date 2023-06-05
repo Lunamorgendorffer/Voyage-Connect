@@ -42,7 +42,7 @@
         <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a>
     </p>
 
-    <img src="./images/feed-image-1.png" class="post-img" alt="">
+    <img style="max-width:50%" src="{{ vich_uploader_asset(post, 'imageFile') }}" class="post-img" alt="">
 
     <div class="post-row">
         <div class="activity-icons">
