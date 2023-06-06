@@ -29,10 +29,6 @@
             <div><img src="{{asset('img/images/share.png')}}" alt="">20</div>
 
         </div>
-        <div class="post-btn">
-            <button class="btn-edit"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
-            <button class="btn-delete" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
-        </div>
     </div>
 </div>
 
@@ -48,13 +44,17 @@
         </div>
     </div>
     <p class="comment-text">
-     {{comment}} <br>
+        {{comment}} <br>
     </p>
+    <div class="post-btn">
+        <button class="btn-edit"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
+        <button class="btn-delete" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
+    </div>
 </div>
 {% endfor %}
 
 <div class="addbtn">
-    <a class="add-post-btn" href="{{ path('add_comment')}}">Add comment </a><br>
+    <button class="btn-add"><a href="{{ path('add_comment', {'postId': post.id} ) }}">Add</a></button><br>
 </div>
 
 {% endblock %}
