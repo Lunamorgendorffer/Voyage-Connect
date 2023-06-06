@@ -20,7 +20,7 @@ class CommentController extends AbstractController
     {
         $comments = $entityManager->getRepository(Comment::class)->findAll();
 
-        return $this->render('comment/index.html.twig', [
+        return $this->render('post/index.html.twig', [
             'comments' => $comments,
         ]);
     }
@@ -72,7 +72,7 @@ class CommentController extends AbstractController
         $entityManager->remove($comment);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_comment');
+        return $this->redirectToRoute('show_post', ['id'=> $comment->getPost()->getId()]);
 
     }
 
@@ -80,11 +80,9 @@ class CommentController extends AbstractController
     #[Route('/comment/{id}', name: 'show_comment')]
     public function show(Comment $comment): Response
     {
-       
-
         // Retourne sur la vue 'comment/detailcomment.html.twig' avec les données suivantes
         return $this->render('comment/detailcomment.html.twig', [
-        'comment' => $comment,             // La comment à afficher
+        'comment' => $comment, // La comment à afficher
         ]);
     }
 }
