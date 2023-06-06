@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Post;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommentController extends AbstractController
@@ -23,25 +26,33 @@ class CommentController extends AbstractController
     }
 
     // fonction ajout + edit une comment
-    #[Route('/comment/add', name: 'add_comment')]
+    #[Route('/comment/add/{postId}', name: 'add_comment')]
     #[Route('/comment/{id}/edit', name: 'edit_comment')]
-    public function add(EntityManagerInterface $entityManager, Comment $comment = null, Request $request): Response 
+    public function add(EntityManagerInterface $entityManager, Comment $comment = null, $postId = null, Request $request): Response 
     {
+        
+        $user= $this->getUser(); 
+        // dd($this->getUser());
         if (!$comment){ // si la comment n'existe pas 
             $comment = new comment();  // alors crée un nouvel objet comment 
         }
+        
+        $post=$entityManager->getRepository(Post::class)->find($postId);
+        
         // on crée le formulaire 
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-
+        
         //quand on sousmet le formulaire 
         if($form->isSubmitted() && $form->isValid()){
-
+            $comment->setUser($user);
+            $comment->setPost($post);
+            $comment->setCreationDate(new \DateTime());
             $comment = $form->getData();
             $entityManager->persist($comment);// = prepare
             $entityManager->flush();// execute, on envoie les données dans la db 
 
-            return $this->redirectToRoute('app_comment');
+            return $this->redirectToRoute('show_post', ['id'=> $postId]);
 
         }
 
