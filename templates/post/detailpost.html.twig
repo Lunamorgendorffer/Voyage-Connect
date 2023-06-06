@@ -13,14 +13,14 @@
                 <span>{{post.creationDate | date ('d/m/Y') }}</span>
             </div>
         </div>
-        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+        <a href="{{ path('app_post') }}">Back</a>
     </div>
     <h1>{{post}}</h1>
     <p class="post-text">
         {{post.description}}
     </p>
 
-    <img src="./images/feed-image-1.png" class="post-img" alt="">
+    <img style="max-width:50%" src="{{ vich_uploader_asset(post, 'imageFile') }}" class="post-img" alt="">
 
     <div class="post-row">
         <div class="activity-icons">
@@ -29,9 +29,9 @@
             <div><img src="{{asset('img/images/share.png')}}" alt="">20</div>
 
         </div>
-        <div class="post-profile-icon">
-            <img src="./images/profile-pic.png" alt=""><i class="fas fa-caret-down"></i>
-
+        <div class="post-btn">
+            <button class="btn-edit"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
+            <button class="btn-delete" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
         </div>
     </div>
 </div>
