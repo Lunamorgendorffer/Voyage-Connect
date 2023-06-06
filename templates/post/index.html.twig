@@ -16,12 +16,14 @@
     <div class="post-input-container">
         <textarea rows="3" placeholder="What's on your mind, John?"></textarea>
         <div class="add-post-links">
-            <a href="#"><img src="{{asset('img/images/live-video.png')}}" alt="">Live video</a>
-            <a href="#"><img src="{{asset('img/images/photo.png')}}" alt="">Photo/video</a>
-            <a href="#"><img src="{{asset('img/images/feeling.png')}}" alt="">Feeling/Activity</a>
-        </div>
-        <div class="addbtn">
-            <a class="add-post-btn" href="{{ path('add_post')}}">Add post </a><br>
+            <div class="post-links">
+                <a href="#"><img src="{{asset('img/images/live-video.png')}}" alt="">Live video</a>
+                <a href="#"><img src="{{asset('img/images/photo.png')}}" alt="">Photo/video</a>
+                <a href="#"><img src="{{asset('img/images/feeling.png')}}" alt="">Feeling/Activity</a>
+            </div>
+            <div class="addbtn">
+                <button class="btn-add"><a href="{{ path('add_post')}}">Add</a></button><br>
+            </div>
         </div>
     </div>
 </div>
@@ -39,7 +41,8 @@
         <a href="#"><i class="fas fa-ellipsis-v"></i></a>
     </div>
     <p class="post-text">
-        <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a>
+        <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+        {{post.description}}
     </p>
 
     <img style="max-width:50%" src="{{ vich_uploader_asset(post, 'imageFile') }}" class="post-img" alt="">
@@ -51,9 +54,9 @@
             <div><img src="{{asset('img/images/share.png')}}" alt="">20</div>
 
         </div>
-        <div class="post-profile-icon">
-            <img src="./images/profile-pic.png" alt=""><i class="fas fa-caret-down"></i>
-
+        <div class="post-btn">
+            <button class="btn-edit"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
+            <button class="btn-delete" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
         </div>
     </div>
 </div>
