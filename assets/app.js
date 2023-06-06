@@ -10,7 +10,7 @@ import './styles/app.css';
 import './styles/register.css';
 import './styles/home.css';
 
-console.log('Welcome to ju')
+
 
 const menuBtn = document.querySelector('.menu-btn');
 const navigation = document.querySelector('.nav');
