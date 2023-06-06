@@ -47,8 +47,8 @@
         {{comment}} <br>
     </p>
     <div class="post-btn">
-        <button class="btn-edit"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
-        <button class="btn-delete" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
+        <button class="btn-edit"><a href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a></button> 
+        <button class="btn-delete" ><a href="{{ path('delete_comment', {'id':comment.id}) }}">Delete</a></button><br>
     </div>
 </div>
 {% endfor %}
