@@ -34,7 +34,7 @@
         <div class="user-profile">
             <img src="{{asset('img/images/profile-pic.png')}}" alt="">
             <div>
-                <p>John Doe</p>
+                <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
                 <span>{{post.creationDate| format_datetime(locale='fr') }}</span>
             </div>
         </div>
