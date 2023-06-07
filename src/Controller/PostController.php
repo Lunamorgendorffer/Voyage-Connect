@@ -27,6 +27,7 @@ class PostController extends AbstractController
     #[Route('/post/{id}/edit', name: 'edit_post')]
     public function add(EntityManagerInterface $entityManager, Post $post = null, Request $request): Response 
     {
+        $user= $this->getUser(); 
         if (!$post){ // si la post n'existe pas 
             $post = new post();  // alors crée un nouvel objet post 
         }
@@ -36,7 +37,9 @@ class PostController extends AbstractController
 
         //quand on sousmet le formulaire 
         if($form->isSubmitted() && $form->isValid()){
-            $images = $form->get('image')->getData();
+            // $images = $form->get('image')->getData();
+            $post->setUser($user);
+            $post->setCreationDate(new \DateTime());
 
             $post = $form->getData();
             $entityManager->persist($post);// = prepare
