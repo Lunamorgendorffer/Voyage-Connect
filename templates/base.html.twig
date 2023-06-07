@@ -27,7 +27,11 @@
                     <input type="text" placeholder="search">
                 </div>
                 <div class="nav-user-icon online">
-                    <img src="{{asset('img/images/profile-pic.png')}}"alt="">
+                    {% if (app.user) and (app.user.avatar != null) %}
+                        <img src="{{ app.user.avatar}}" alt="avatar">
+                    {% else %}
+                    <img src="{{asset('img/avatars/user.png')}}"alt="">
+                    {% endif %}
                 </div>
             </div>
         </nav>

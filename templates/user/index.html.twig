@@ -11,6 +11,14 @@
         {% endfor %}
         <div class="col-xs4">
             <h1>Profil of {{app.user.pseudo}}</h1>
+                {% if app.user.avatar == null %}
+                  
+                    <img src="{{asset('img/avatars/user.png')}}">
+                {% else %}
+                
+                    <img src="{{asset('img/avatars/' ~ app.user.avatar)}}" > 
+                {% endif %}
+
         </div>
         
         <div class="col-xs1">Pseudo</div>
