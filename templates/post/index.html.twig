@@ -35,7 +35,7 @@
             <img src="{{asset('img/images/profile-pic.png')}}" alt="">
             <div>
                 <p>John Doe</p>
-                <span>June 24 2023, 13:40pm</span>
+                <span>{{post.creationDate| format_datetime(locale='fr') }}</span>
             </div>
         </div>
         <a href="#"><i class="fas fa-ellipsis-v"></i></a>
