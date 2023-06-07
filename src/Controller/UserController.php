@@ -32,7 +32,7 @@ class UserController extends AbstractController
 
         //quand on sousmet le formulaire 
         if($form->isSubmitted() && $form->isValid()){
-        
+            $user->setAvatar();
             $user = $form->getData();
             $entityManager->persist($user);// = prepare
             $entityManager->flush();// execute, on envoie les données dans la db 
