@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <!-- Axentix CSS minified version -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.3.0/dist/axentix.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        
+        {% block stylesheets %}
+          
+        {% endblock %}
+    </head>
+    <body class="layout-sidenav">
+        <header>
+            <nav class="navbar primary">
+              <a href="{{ path('app_home') }}" class="navbar-brand">Home</a>
+              <div class="navbar-menu ml-auto">
+                <a class="navbar-link" href="#">Link 1</a>
+                <a class="navbar-link" href="#">Link 2</a>
+                <a class="navbar-link" href="#">Link 3</a>
+                <a class="navbar-link" href="#">Link 4</a>
+              </div>
+            </nav>
+        </header>
+      
+        <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 sidenav-fixed white">
+            <div class="sidenav-header">
+              <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+            </div>
+            <a href="#" class="sidenav-link active">Profil</a>
+            <a href="#" class="sidenav-link">My Post</a>
+        </div>
+
+        <main>
+            <button data-target="example-sidenav" class="btn rounded-1 press amaranth dark-1 hide-md-up">
+                Open sidenav
+            </button>
+              
+            {% block body %}{% endblock %}
+        </main>
+          
+        <footer class="footer primary">
+            Copyright © 2023 - Example
+        </footer>
+    
+        {% block javascripts %} {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/axentix@2.3.0/dist/axentix.min.js"></script>
+    </body>
+</html>
