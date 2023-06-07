@@ -155,12 +155,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @return Collection<int, Post>
      */
 
-    public function getPost(): ?Post
+    public function getPosts(): Collection
     {
-        return $this->post;
+        return $this->posts;
     }
 
-    public function setPost(Post $post): self
+    public function setPost(Post $posts): self
     {
         // set the owning side of the relation if necessary
         if ($post->getUser() !== $this) {
