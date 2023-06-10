@@ -7,14 +7,18 @@
 
 <div class="write-post-container">
     <div class="user-profile">
-        <img src="{{asset('img/images/profile-pic.png')}}" alt="">
+        {% if app.user.avatar == null %}
+                  <img src="{{asset('img/user.png')}}">
+            {% else %}
+                    <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="">
+            {% endif %}
         <div>
-            <p>John Doe</p>
+            <p>{{app.user.pseudo}}</p>
             <small>Public <i class="fas fa-caret-down"></i></small>
         </div>
     </div>
     <div class="post-input-container">
-        <textarea rows="3" placeholder="What's on your mind, John?"></textarea>
+        <textarea rows="3" placeholder="What's on your mind, {{app.user.pseudo}} ?"></textarea>
         <div class="add-post-links">
             <div class="post-links">
                 <a href="#"><img src="{{asset('img/images/live-video.png')}}" alt="">Live video</a>
@@ -32,7 +36,11 @@
 <div class="post-container">
     <div class="post-row">
         <div class="user-profile">
-            <img src="{{asset('img/images/profile-pic.png')}}" alt="">
+            {% if app.user.avatar == null %}
+                  <img src="{{asset('img/user.png')}}">
+            {% else %}
+                    <img src="{{ vich_uploader_asset(post.user, 'imageFile') }}" alt="">
+            {% endif %}
             <div>
                 <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
                 <span>{{post.creationDate| format_datetime(locale='fr') }}</span>
