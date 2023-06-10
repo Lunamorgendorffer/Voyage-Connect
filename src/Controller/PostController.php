@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Form\SearchType;
+use App\Model\SearchData;
+use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,11 +16,29 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
     #[Route('/post', name: 'app_post')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface $entityManager,  PostRepository $postRepository, Request $request): Response
     {
         $posts = $entityManager->getRepository(Post::class)->findAll();
+        
+        $searchData = new SearchData();
+        $form = $this->createForm(SearchType::class, $searchData);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $posts2 = $postRepository->findBySearch($searchData);
+
+            dd($posts2);
+            
+            return $this->render('post/index.html.twig', [
+                'form' => $form->createView(),
+                'posts2' => $posts2
+            ]);
+
+        }
+
 
         return $this->render('post/index.html.twig', [
+            'form' => $form->createView(),
             'posts' => $posts,
         ]);
     }
