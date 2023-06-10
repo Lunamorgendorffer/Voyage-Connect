@@ -39,5 +39,17 @@
             <div class="col-xs3">{{post.title}}</div>
         {% endfor %}
         
+        <div class="col-xs4">
+            <h1>Comment of {{app.user.pseudo}} ({{app.user.posts|length}})</h1>
+        </div>
+        {% for comment in app.user.comments %}
+            <div class="col-xs1">comments</div>
+            <div class="col-xs3">{{comment.text}}</div>
+        {% endfor %}
+
+        <div class="col-xs4">
+            <a href="{{path('delete_user',{'id':app.user.id})}}" class="btn error">Delete Profile</a>
+        </div>
+
     </div>
 {% endblock %}
