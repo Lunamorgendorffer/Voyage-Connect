@@ -27,11 +27,11 @@
                     <input type="text" placeholder="search">
                 </div>
                 <div class="nav-user-icon online">
-                    {% if (app.user) and (app.user.avatar != null) %}
-                        <img src="{{ app.user.avatar}}" alt="avatar">
-                    {% else %}
-                    <img src="{{asset('img/avatars/user.png')}}"alt="">
-                    {% endif %}
+                    
+                        <img src="{{asset('img/user.png')}}">
+                   
+                        {# <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt=""> #}
+                    
                 </div>
             </div>
         </nav>
