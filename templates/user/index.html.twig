@@ -16,7 +16,7 @@
                     <img src="{{asset('img/avatars/user.png')}}">
                 {% else %}
                 
-                    <img src="{{asset('img/avatars/' ~ app.user.avatar)}}" > 
+                    <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" > 
                 {% endif %}
 
         </div>
