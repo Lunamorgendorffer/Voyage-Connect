@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Post;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Model\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Post>
@@ -38,6 +39,25 @@ class PostRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findBySearch(SearchData $searchData)
+    {
+        $data = $this->createQueryBuilder('p')
+            ->where('p.creationDate LIKE :creationDate')
+            ->setParameter('creationDate', '%creationDate%');
+
+        if (!empty($searchData->q)) {
+            $data = $data
+                ->andWhere('p.title LIKE :q')
+                ->setParameter('q', "%{$searchData->q}%");
+        }
+
+        $data = $data
+            ->getQuery()
+            ->getResult();
+        return $data;
+    }
+
 
 //    /**
 //     * @return Post[] Returns an array of Post objects

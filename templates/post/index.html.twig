@@ -6,12 +6,15 @@
 {% block body %}
 
 <div class="write-post-container">
+    {% include "components/_search_data.html.twig" with {
+        form: form ?? null
+    } only %}
     <div class="user-profile">
-        {% if app.user.avatar == null %}
+        
                   <img src="{{asset('img/user.png')}}">
-            {% else %}
-                    <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="">
-            {% endif %}
+          
+                    {# <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt=""> #}
+          
         <div>
             <p>{{app.user.pseudo}}</p>
             <small>Public <i class="fas fa-caret-down"></i></small>
