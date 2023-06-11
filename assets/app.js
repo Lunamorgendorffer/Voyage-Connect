@@ -9,6 +9,7 @@
 import './styles/app.css';
 import './styles/register.css';
 import './styles/home.css';
+import './scripts/menu-nav.js';
 
 
 
@@ -17,7 +18,7 @@ const navigation = document.querySelector('.nav');
 console.log('nav')
 
 menuBtn.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
+    menuBtn.classList.toggle('active');
     navigation.classList.toggle('active');
 })
 
