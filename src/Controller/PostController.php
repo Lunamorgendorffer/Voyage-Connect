@@ -8,7 +8,6 @@ use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,24 +16,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
     #[Route('/post', name: 'app_post')]
-    public function index(EntityManagerInterface $entityManager,  PostRepository $postRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(EntityManagerInterface $entityManager,  PostRepository $postRepository, Request $request): Response
     {
-        $data = $entityManager->getRepository(Post::class)->findAll();
-        $posts = $paginator->paginate($data, $request->query->getInt('page',1),3);
+        // $data = $entityManager->getRepository(Post::class)->findAll();
+        // $search->page= $request->query->getInt('page',1);
         
         $searchData = new SearchData();
         $form = $this->createForm(SearchType::class, $searchData);
 
         $form->handleRequest($request);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $searchData->page = $request->query->getInt('page', 1);
-            $posts2 = $postRepository->findBySearch($searchData);
 
-            dd($posts2);
+            $posts = $postRepository->findBySearch($searchData);
+
+            // dd($posts);
             
             return $this->render('post/index.html.twig', [
                 'form' => $form->createView(),
-                'posts2' => $posts2
+                'posts' => $posts
             ]);
 
         }
@@ -42,7 +43,8 @@ class PostController extends AbstractController
 
         return $this->render('post/index.html.twig', [
             'form' => $form->createView(),
-            'posts' => $posts,
+            'posts' => $entityManager->getRepository(Post::class)->findAll(),
+            
         ]);
     }
 
