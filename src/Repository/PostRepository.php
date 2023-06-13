@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Entity\Post;
 use App\Model\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
-use Knp\Component\Pager\Pagination\PaginationInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
@@ -18,7 +17,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
  */
 class PostRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Post::class);
     }
@@ -41,20 +40,15 @@ class PostRepository extends ServiceEntityRepository
         }
     }
 
-    public function findBySearch(SearchData $searchData): PaginationInterface
+    public function findBySearch(SearchData $searchData)
     {
-        $data = $this->createQueryBuilder('p')
+        return $data = $this->createQueryBuilder('p')
             ->select('p')
             ->andWhere('p.title LIKE :q')
             ->setParameter('q', "%{$searchData->q}%")
             ->getQuery()
             ->getResult();
         ;
-
-        $posts2 = $this->paginator->paginate($data, $searchData->page, 3);
-
-        return $posts2;
-
     }
 
 
