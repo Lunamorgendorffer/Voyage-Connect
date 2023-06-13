@@ -24,6 +24,10 @@
                         {{ form_row(registrationForm.email) }}
                     </div>
                     <div class="input-box">
+                        {# <input type="text" class= "input-field" placeholder="Email" autocomplete="off" required> #}
+                        {{ form_row(registrationForm.imageFile) }}
+                    </div>
+                    <div class="input-box">
                         {# <input type="password" class= "input-field" placeholder="Password" autocomplete="off" required> #}
                         {{ form_row(registrationForm.plainPassword, {
                             label: 'Password'
@@ -33,11 +37,7 @@
                         {{ form_row(registrationForm.agreeTerms) }}
                         {# <input type="password" class= "input-field" placeholder="Repeat Password" autocomplete="off" required> #}
                     </div>
-                    <div class="input-submit">
-                        <button class="submit-btn">
-                            <label for="submit">Register</label>
-                        </button>
-                    </div>
+                
                 {{ form_end(registrationForm) }}
             </div>
             <div class="card">
