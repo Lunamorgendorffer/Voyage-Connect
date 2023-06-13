@@ -110,7 +110,7 @@ nav{
     right:0;
 }
 /****************************************************MAIN*******************************************/
-.container{
+.cont{
     display:flex;
     justify-content: space-between;
     padding: 13px 5%;
