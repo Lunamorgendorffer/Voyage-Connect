@@ -5,14 +5,14 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
@@ -24,21 +24,10 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email',EmailType::class,['attr'=>['class'=>'input-field']] )
             ->add('pseudo', TextType::class,['attr'=>['class'=>'input-field']])
-            ->add('avatar', FileType::class, [
-                'label' => 'image',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024K',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/png',
-                            'image/jpeg',
-                            'image/gif',
-                        ],
-                        'mimeTypesMessage' => 'Please upload an image',
-                    ])
+            ->add('imageFile',VichImageType::class, [
+                'label' => 'avatar',
+                'label_attr' => [
+                    'class' => 'form-label mt4'
                 ],
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -60,6 +49,7 @@ class RegistrationFormType extends AbstractType
                 // 'attr'=>['class'=>'form-control']
                 
             ])
+            ->add('submit', SubmitType::class)
         ;
     }
 
