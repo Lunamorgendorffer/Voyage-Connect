@@ -112,7 +112,7 @@ class UserController extends AbstractController
     public function show(User $user): Response {
         
         // Retourne sur la vue 'user/detailuser.html.twig' avec les données suivantes
-        return $this->render('user/detailuser.html.twig', [
+        return $this->render('user/index.html.twig', [
         'user' => $user,             // La user à afficher
         ]);
     }
