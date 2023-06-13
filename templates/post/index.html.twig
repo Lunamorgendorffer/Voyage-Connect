@@ -19,17 +19,16 @@
         </div>
     </div>
     <div class="post-input-container">
-        <textarea rows="3" placeholder="What's on your mind, {{app.user.pseudo}} ?"></textarea>
-        <div class="add-post-links">
+        <div class="addbtn">
+            <button class="btn-add"><a href="{{ path('add_post')}}">Add Post </a></button><br>
+        </div>
+        {# <div class="add-post-links">
             <div class="post-links">
                 <a href="#"><img src="{{asset('img/images/live-video.png')}}" alt="">Live video</a>
                 <a href="#"><img src="{{asset('img/images/photo.png')}}" alt="">Photo/video</a>
                 <a href="#"><img src="{{asset('img/images/feeling.png')}}" alt="">Feeling/Activity</a>
             </div>
-            <div class="addbtn">
-                <button class="btn-add"><a href="{{ path('add_post')}}">Add</a></button><br>
-            </div>
-        </div>
+        </div> #}
     </div>
 </div>
 
@@ -71,25 +70,5 @@
 </div>
 {% endfor %}
 
-
-
-{# <div class="container" style="display: flex;flex-wrap: wrap; justify-content:center; flex-direction: column; align-items: center">
-    
-    {% for post in posts %}
-        <div class="card rounded" style=" width: 30%; margin: 25px; ">
-            <a style="text-align:center;" href="{{ path('show_post', {'id': post.id})}}">{{post}}</a> <br>
-            {# {% if is_granted('ROLE_ADMIN') %} #}
-            {# <div id="button" style="text-align:center;">
-                <a class="btn btn-warning" href="{{ path('edit_post', {'id':post.id}) }}">Edit</a> 
-                <a class="btn btn-danger" href="{{ path('delete_post', {'id':post.id}) }}">Delete</a><br>
-            </div> #}
-            {# {% endif %} #}
-        {# </div> #}
-    {# {% endfor %} #}
-    {# <div class="adtbtn">
-        <a class="btn btn-primary" href="{{ path('add_post')}}">Add post </a><br>
-    </div> #}
-    
-{# </div> #} 
 
 {% endblock %}
