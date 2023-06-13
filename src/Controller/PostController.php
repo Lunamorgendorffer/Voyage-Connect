@@ -8,6 +8,7 @@ use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,15 +17,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PostController extends AbstractController
 {
     #[Route('/post', name: 'app_post')]
-    public function index(EntityManagerInterface $entityManager,  PostRepository $postRepository, Request $request): Response
+    public function index(EntityManagerInterface $entityManager,  PostRepository $postRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $posts = $entityManager->getRepository(Post::class)->findAll();
+        $data = $entityManager->getRepository(Post::class)->findAll();
+        $posts = $paginator->paginate($data, $request->query->getInt('page',1),3);
         
         $searchData = new SearchData();
         $form = $this->createForm(SearchType::class, $searchData);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $searchData->page = $request->query->getInt('page', 1);
             $posts2 = $postRepository->findBySearch($searchData);
 
             dd($posts2);
