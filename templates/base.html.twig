@@ -14,7 +14,7 @@
         <nav>
             <div class="nav-left">
                 <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo">
-                <p>My Project</p>
+                <a href="{{ path('app_home') }}">My Project</a>
             </div>
             
             <div class="nav-center">
@@ -35,10 +35,13 @@
                 </ul>
 
                 <div class="nav-user-icon online">
-                    {% if app.user.avatar == null %}
-                        <img src="{{asset('img/user.png')}}">
-                    {% else %}
-                        <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="">
+                    {% if app.user %}
+                        {% if app.user.avatar == null %}
+                            <img src="{{asset('img/user.png')}}">
+                        {% else %}
+                            <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="">
+                        {% endif %}
+
                     {% endif %}
                 </div>
 
