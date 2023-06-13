@@ -47,7 +47,7 @@ nav{
     align-items: center;
 }
 
-.nav-left p{
+.nav-left a{
     color: #fff;
     font-weight: 600;
     font-size: 20px;
@@ -319,8 +319,8 @@ nav{
 }
 
 .post-input-container{
-    padding-left: 50px;
-    padding-top: 20px;
+    position: relative;
+    left: 80%;
 }
 
 .post-input-container textarea{
@@ -487,7 +487,7 @@ nav{
     border-radius: 8px;
     border: none;
     padding: 5px;
-    width: 40px;
+    width: 70px;
     margin-left: 2rem;
 }
 
