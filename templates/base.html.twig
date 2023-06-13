@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -14,11 +15,11 @@
         <nav>
             <div class="nav-left">
                 <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo">
-                <a href="{{ path('app_home') }}">My Project</a>
+                <a href="{{ path('app_home') }}">Voyage Connect</a>
             </div>
             
             <div class="nav-center">
-                <div class="search-box">
+                <div class="search-box w-100">
                     {# <img src="{{asset('img/images/search.png')}}" alt="">
                     <input type="text" placeholder="search"> #}
                     {% include "components/_search_data.html.twig" with {
@@ -41,7 +42,6 @@
                         {% else %}
                             <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="">
                         {% endif %}
-
                     {% endif %}
                 </div>
 
@@ -52,10 +52,16 @@
                     </div>
                     <div class="settings-menu-inner">
                         <div class="user-profile">
-                            <img src="{{asset('img/images/profile-pic.png')}}" alt="">
+                            {% if app.user %}
+                            {% if app.user.avatar == null %}
+                                <img src="{{asset('img/user.png')}}">
+                            {% else %}
+                                <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="">
+                            {% endif %}
+                        {% endif %}
                             <div>
-                                <p>John Doe</p>
-                                <a href="#">See your profil</a>
+                                <p>{{app.user.pseudo}}</p>
+                                <a href="{{ path('show_user', {'id': app.user.id})}}">See your profil</a>
                             </div>
                         </div>
                         <hr>
