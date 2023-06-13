@@ -1,9 +1,17 @@
-var settingsmenu = document.querySelector('.settings-menu'); // Sélectionne l'élément avec la classe 'settings-menu' dans le document
+// var settingsmenu = document.querySelector('.settings-menu'); // Sélectionne l'élément avec la classe 'settings-menu' dans le document
+var settingsmenu = document.querySelector('.nav-user-icon'); // Sélectionne l'élément avec la classe 'settings-menu' dans le document
 var darkBtn = document.getElementById('dark-btn');  // Sélectionne l'élément avec l'ID 'dark-btn' dans le document
+var settingsmenuOpen = document.querySelector('.settings-menu')
 
-function settingsMenuToggle(){ // Fonction pour basculer la hauteur du menu des paramètres
-    settingsmenu.classList.toggle('settings-menu-height'); // Ajoute ou supprime la classe 'settings-menu-height' pour afficher ou masquer le menu des paramètres
-}
+// function settingsMenuToggle(){
+//     console.log('hello') // Fonction pour basculer la hauteur du menu des paramètres
+//     settingsmenu.classList.toggle('settings-menu-height'); // Ajoute ou supprime la classe 'settings-menu-height' pour afficher ou masquer le menu des paramètres
+// }
+
+settingsmenu.addEventListener('click', () =>{
+    settingsmenuOpen.classList.toggle('settings-menu-height')
+   
+})
 
 darkBtn.onclick=function(){ // Fonction de gestionnaire d'événements pour le clic sur le bouton sombre (darkBtn)
     darkBtn.classList.toggle('dark-btn-on'); // Ajoute ou supprime la classe 'dark-btn-on' pour activer ou désactiver l'apparence du bouton sombre
@@ -25,3 +33,5 @@ if (localStorage.getItem("theme") == "light"){ // Vérifie si le thème stocké 
 } else{
     localStorage.setItem("theme", "light"); // Si aucune valeur de thème n'est stockée dans le localStorage, définir le thème sur "light"
 }
+
+// settingsMenuToggle()

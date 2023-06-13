@@ -15,12 +15,12 @@ import './scripts/menu-nav.js';
 
 const menuBtn = document.querySelector('.menu-btn');
 const navigation = document.querySelector('.nav');
-console.log('nav')
+// console.log('nav')
 
-menuBtn.addEventListener('click', () => {
-    menuBtn.classList.toggle('active');
-    navigation.classList.toggle('active');
-})
+// menuBtn.addEventListener('click', () => {
+//     menuBtn.classList.toggle('active');
+//     navigation.classList.toggle('active');
+// })
 
 // script for video slider 
 
