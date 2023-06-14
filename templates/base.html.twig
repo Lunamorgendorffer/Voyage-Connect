@@ -60,8 +60,10 @@
                             {% endif %}
                         {% endif %}
                             <div>
+                                {% if app.user %}
                                 <p>{{app.user.pseudo}}</p>
                                 <a href="{{ path('show_user', {'id': app.user.id})}}">See your profil</a>
+                                {% endif %}
                             </div>
                         </div>
                         <hr>
@@ -87,7 +89,7 @@
                         </div>
                         <div class="settings-links">
                             <img src="{{asset('img/images/logout.png')}}" alt="" class="settings-icon">
-                            <a href="#"> logout <img src="{{asset('img/images/arrow.png')}}" width="10px" alt=""></a>
+                            <a href="{{ path('app_logout')}}"> logout <img src="{{asset('img/images/arrow.png')}}" width="10px" alt=""></a>
                         </div>
                     </div>
         
