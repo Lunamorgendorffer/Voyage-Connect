@@ -57,7 +57,8 @@
 
     <div class="post-row">
         <div class="activity-icons">
-            <div><img src="{{asset('img/images/like.png')}}" alt="">120</div>
+            <div><button class="like"><i class="fa-regular fa-heart"></i></button>
+                {% include "components/_like.html.twig" %}</div>
             <div><img src="{{asset('img/images/comments.png')}}" alt="">15</div>
             <div><img src="{{asset('img/images/share.png')}}" alt="">20</div>
 

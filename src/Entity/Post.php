@@ -55,11 +55,16 @@ class Post
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Favorite')]
     private Collection $usersFavorite;
 
+    #[ORM\ManyToMany(targetEntity: User::class)]
+    #[ORM\Jointable('user_post_like')]
+    private Collection $Likes;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->usersFavorite = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -232,6 +237,37 @@ class Post
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(User $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): self
+    {
+        $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    public function getLikeByUser(User $user): bool
+    {
+
+        return $this->likes->contains($user);
+
     }
 
     public function __toString(){
