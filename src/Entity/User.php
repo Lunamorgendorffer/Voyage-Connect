@@ -63,7 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $comments;
 
     #[ORM\ManyToMany(targetEntity: Comment::class, inversedBy: 'usersLike')]
-    private Collection $Likes;
+    private Collection $likes;
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'usersFavorite')]
     private Collection $Favorite;
@@ -71,7 +71,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->comments = new ArrayCollection();
-        $this->Likes = new ArrayCollection();
+        $this->likes = new ArrayCollection();
         $this->Favorite = new ArrayCollection();
         $this->posts = new ArrayCollection();
     }
@@ -316,25 +316,49 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Comment>
+     * @return Collection<int, Post>
      */
     public function getLikes(): Collection
     {
-        return $this->Likes;
+        return $this->likes;
     }
 
-    public function addLike(Comment $like): self
+    public function addLike(Post $like): self
     {
-        if (!$this->Likes->contains($like)) {
-            $this->Likes->add($like);
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
         }
 
         return $this;
     }
 
-    public function removeLike(Comment $like): self
+    public function removeLike(Post $like): self
     {
-        $this->Likes->removeElement($like);
+        $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getLikesComment(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLikeComment(Comment $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+        }
+
+        return $this;
+    }
+
+    public function removeLikeComment(Comment $like): self
+    {
+        $this->likes->removeElement($like);
 
         return $this;
     }
