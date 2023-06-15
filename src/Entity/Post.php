@@ -269,6 +269,13 @@ class Post
 
     }
 
+    public function howManyLikes(): int 
+    {
+        return count ($this->likes); 
+    }
+
+
+
     public function __toString(){
         return $this->title;
     }
