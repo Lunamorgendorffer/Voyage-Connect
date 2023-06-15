@@ -18,16 +18,22 @@ class LikeController extends AbstractController
         if ($post->isLikedByUser($user)) {
 
             $post->removeLike($user);
-            $$entityManager->flush();
+            $entityManager->flush();
 
-            return $this->json(['message' => 'Like has been deleted']);
+            return $this->json([
+                'message' => 'Like has been deleted',
+                'nbLike' => $post->howManyLikes()
+            ]);
         }
 
         $post->addLike($user);
         
         $entityManager->flush();
         
-        return $this->json(['message' => 'Like has been added']);
+        return $this->json([
+            'message' => 'Like has been added',
+            'nbLike' => $post->howManyLikes()
+        ]);
     }
 
     
