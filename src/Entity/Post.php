@@ -56,8 +56,7 @@ class Post
     private Collection $usersFavorite;
 
     #[ORM\ManyToMany(targetEntity: User::class)]
-    #[ORM\Jointable('user_post_like')]
-    private Collection $Likes;
+    private Collection $likes;
 
     public function __construct()
     {
@@ -263,7 +262,7 @@ class Post
         return $this;
     }
 
-    public function getLikeByUser(User $user): bool
+    public function isLikedByUser(User $user): bool
     {
 
         return $this->likes->contains($user);

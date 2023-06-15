@@ -11,7 +11,17 @@ import './styles/register.css';
 import './styles/home.css';
 import './scripts/menu-nav.js';
 
+import Like from './scripts/like.js';
 
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Like's system
+    const likeElements = [].slice.call(document.querySelectorAll('a[data-action="like"]'));
+    if (likeElements) {
+      new Like(likeElements);
+    }
+})
+  
 
 const menuBtn = document.querySelector('.menu-btn');
 const navigation = document.querySelector('.nav');
