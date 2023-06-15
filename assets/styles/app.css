@@ -368,8 +368,9 @@ nav{
 }
 
 .user-profile span {
-    font-size: 13px;
+    font-size: 11px;
     color: #9a9a9a;
+    margin-top: 6px;
 }
 
 .post-text{
@@ -457,6 +458,20 @@ nav{
     color: #000;
     margin: 15px 0;
     font-size: 15px;
+}
+
+.user-profile-info {
+    display:flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dot {
+    height: 5px;
+    width: 5px;
+    background-color: #9a9a9a;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .post-btn {

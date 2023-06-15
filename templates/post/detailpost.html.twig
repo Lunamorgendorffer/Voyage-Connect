@@ -37,8 +37,9 @@
     <div class="comment-row">
         <div class="user-profile">
             <img src="{{asset('img/images/profile-pic.png')}}" alt="">
-            <div>
+            <div class="user-profile-info">
                 <p>{{comment.user}}</p>
+                <span class="dot"></span>
                 <span>{{comment.creationDate | date ('d/m/Y') }}</span>
             </div>
         </div>
