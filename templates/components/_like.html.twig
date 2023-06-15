@@ -1,9 +1,13 @@
 {% if app.user %}
-    <a  href="{{ path('app_like', {id: post.id}) }}" data-action="like">
+    <a  href="{{ path('app_like', {id: post.id}) }}" data-action="like" data-nb={{ post.likes|length }}>
     {# <p>{{post.likes}}</p> #}
     {% endif %}
 
-    <button><i class="fa-regular fa-heart"></i></button>
+    <button>
+        <i class="fa-regular fa-heart unfilled {{ app.user in post.likes ? 'd-none' : '' }}"></i>
+        <i class="fa-solid fa-heart filled {{ app.user in post.likes ? '' : 'd-none' }}"></i>
+    </button>
+    
 
     {% if app.user %}
         </a>

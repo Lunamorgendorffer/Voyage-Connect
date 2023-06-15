@@ -27,7 +27,6 @@ export default class Like {
       const heartFilled = this.querySelector('.filled');
       const emptyHeart = this.querySelector('.unfilled');
   
-      // toggle the display of the filled and empty buttons
       heartFilled.classList.toggle('d-none');
       emptyHeart.classList.toggle('d-none');
          
