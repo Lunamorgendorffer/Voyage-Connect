@@ -12,6 +12,7 @@ import './styles/home.css';
 import './scripts/menu-nav.js';
 
 import Like from './scripts/like.js';
+import Favorite from './scripts/favorite.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -19,6 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const likeElements = [].slice.call(document.querySelectorAll('a[data-action="like"]'));
     if (likeElements) {
       new Like(likeElements);
+    }
+
+    const favoriteElements = [].slice.call(document.querySelectorAll('a[data-action="favorite"]'));
+    if (favoriteElements) {
+        new Favorite(favoriteElements);
     }
 })
   

@@ -53,7 +53,7 @@ class Post
     private Collection $comments;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Favorite')]
-    private Collection $usersFavorite;
+    private Collection $userFavorites;
 
     #[ORM\ManyToMany(targetEntity: User::class)]
     private Collection $likes;
@@ -62,7 +62,7 @@ class Post
     {
         $this->categories = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->usersFavorite = new ArrayCollection();
+        $this->userFavorites = new ArrayCollection();
         $this->likes = new ArrayCollection();
     }
 
@@ -214,28 +214,32 @@ class Post
     /**
      * @return Collection<int, User>
      */
-    public function getUsersFavorite(): Collection
+    public function getUserFavorites(): Collection
     {
-        return $this->usersFavorite;
+        return $this->userFavorites;
     }
 
-    public function addUsersFavorite(User $usersFavorite): self
+    public function addUserFavorite(User $userFavorite): self
     {
-        if (!$this->usersFavorite->contains($usersFavorite)) {
-            $this->usersFavorite->add($usersFavorite);
-            $usersFavorite->addFavorite($this);
+        if (!$this->userFavorites->contains($userFavorite)) {
+            $this->userFavorites->add($userFavorite);
         }
 
         return $this;
     }
 
-    public function removeUsersFavorite(User $usersFavorite): self
+    public function removeUserFavorite(User $userFavorite): self
     {
-        if ($this->usersFavorite->removeElement($usersFavorite)) {
-            $usersFavorite->removeFavorite($this);
-        }
+        $this->userFavorites->removeElement($userFavorite);
 
         return $this;
+    }
+
+    public function isFavoriteByUser(User $user): bool
+    {
+
+        return $this->userFavorites->contains($user);
+
     }
 
     /**

@@ -63,6 +63,32 @@ class LikeController extends AbstractController
         ]);
     }
 
+    #[Route('/favorite/post/{id}', name: 'favorite_post')]
+    public function favorite(EntityManagerInterface $entityManager,  Post $post)
+    {
+        $user = $this->getUser(); // get user in session
+
+        // if the user has like the song the remove the like
+        if ($post->isFavoriteByUser($user)) {
+
+            $post->removeUserFavorite($user);
+            $entityManager->flush();
+
+            // return a json response
+            return $this->json(['message' => 'the favorites has been removed']);
+        }
+        // else add the like
+        $post->addUserFavorite($user);
+        // dd($post);
+        $entityManager->flush();
+
+        // return a json response
+        return $this->json(['message' => 'the favorites has been added']);
+        
+    }
+
+    
+
     
 
 

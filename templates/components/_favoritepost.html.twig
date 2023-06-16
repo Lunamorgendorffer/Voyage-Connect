@@ -1,0 +1,14 @@
+{% if app.user %}
+    <a  href="{{ path('favorite_post', {id: post.id}) }}" data-action="favorite">
+    {# <p>{{post.likes}}</p> #}
+    {% endif %}
+
+    <button>
+        <i class="fa-regular fa-star unfilled {{ app.user in post.userFavorites ? 'd-none' : '' }}"></i>
+        <i class="fa-solid fa-star filled {{ app.user in post.userFavorites ? '' : 'd-none' }}"></i>
+    </button>
+    
+
+    {% if app.user %}
+        </a>
+{% endif %}
