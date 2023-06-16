@@ -63,7 +63,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $comments;
 
     #[ORM\ManyToMany(targetEntity: Comment::class, inversedBy: 'usersLike')]
-    private Collection $likes;
+    private Collection $LikesComment;
+
+    #[ORM\ManyToMany(targetEntity: Post::class)]
+    private Collection $Likes;
+
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'usersFavorite')]
     private Collection $Favorite;
@@ -74,6 +78,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->likes = new ArrayCollection();
         $this->Favorite = new ArrayCollection();
         $this->posts = new ArrayCollection();
+        $this->likesComment = new ArrayCollection();
     }
 
     public function getId(): ?int

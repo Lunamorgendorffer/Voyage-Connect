@@ -1,0 +1,13 @@
+{% if app.user %}
+    <a  href="{{ path('comment_like', {id: comment.id}) }}" data-action="like">
+        {{ dump(comment) }}
+    {% endif %}
+
+    <button>
+        <i class="fa-regular fa-heart unfilled {{ app.user in comment.usersLike ? 'd-none' : '' }}"></i>
+        <i class="fa-solid fa-heart filled {{ app.user in comment.usersLike ? '' : 'd-none' }}"></i>
+    </button>
+    
+    {% if app.user %}
+        </a>
+{% endif %}

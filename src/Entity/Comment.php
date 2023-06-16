@@ -118,6 +118,18 @@ class Comment
         return $this;
     }
 
+    public function isLikedByUser(User $user): bool
+    {
+
+        return $this->likes->contains($user);
+
+    }
+
+    public function howManyLikes(): int 
+    {
+        return count ($this->likes); 
+    }
+
     public function __toString(){
         return $this->text;
     

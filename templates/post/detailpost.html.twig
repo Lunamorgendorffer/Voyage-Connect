@@ -48,6 +48,7 @@
         {{comment}} <br>
     </p>
     <div class="post-btn">
+        {% include "components/_likeComment.html.twig" %}
         <button class="btn-edit"><a href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a></button> 
         <button class="btn-delete" ><a href="{{ path('delete_comment', {'id':comment.id}) }}">Delete</a></button><br>
     </div>
