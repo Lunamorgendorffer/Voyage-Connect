@@ -7,7 +7,11 @@
 <div class="post-container">
     <div class="post-row">
         <div class="user-profile">
-            <img src="{{asset('img/images/profile-pic.png')}}" alt="">
+            {% if app.user.avatar == null %}
+                <img src="{{asset('img/user.png')}}">
+            {% else %}
+                <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+            {% endif %}
             <div>
                 <p>{{post.user}}</p>
                 <span>{{post.creationDate | date ('d/m/Y') }}</span>
@@ -20,14 +24,13 @@
         {{post.description}}
     </p>
 
-    <img style="max-width:50%" src="{{ vich_uploader_asset(post, 'imageFile') }}" class="post-img" alt="">
+    <img style="max-width:50%" src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
 
     <div class="post-row">
         <div class="activity-icons">
-            <div><img src="{{asset('img/images/like.png')}}" alt="">120</div>
-            <div><img src="{{asset('img/images/comments.png')}}" alt="">15</div>
-            <div><img src="{{asset('img/images/share.png')}}" alt="">20</div>
-
+            <div>{% include "components/_like.html.twig" %}</div>
+            <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
+            <div>{% include "components/_favoritepost.html.twig" %}</div>
         </div>
     </div>
 </div>
@@ -36,7 +39,11 @@
 <div class="comment-container">
     <div class="comment-row">
         <div class="user-profile">
-            <img src="{{asset('img/images/profile-pic.png')}}" alt="">
+            {% if app.user.avatar == null %}
+                <img src="{{asset('img/user.png')}}">
+            {% else %}
+                <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+            {% endif %}
             <div class="user-profile-info">
                 <p>{{comment.user}}</p>
                 <span class="dot"></span>
