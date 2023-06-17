@@ -10,7 +10,7 @@
         {% if app.user.avatar == null %}
             <img src="{{asset('img/user.png')}}">
         {% else %}
-          <img src="{{ vich_uploader_asset(app.user, 'imageFile') }}" alt="">
+            <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
         {% endif %}
           
         <div>
@@ -40,7 +40,7 @@
             {% if app.user.avatar == null %}
                   <img src="{{asset('img/user.png')}}">
             {% else %}
-                    <img src="{{ vich_uploader_asset(post.user, 'imageFile') }}" alt="">
+                <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
             {% endif %}
             <div>
                 <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
@@ -54,7 +54,7 @@
         {{post.description}}
     </p>
 
-    <img style="max-width:50%" src="{{ vich_uploader_asset(post, 'imageFile') }}" class="post-img" alt="">
+    <img style="max-width:50%" src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
 
     <div class="post-row">
         <div class="activity-icons">
