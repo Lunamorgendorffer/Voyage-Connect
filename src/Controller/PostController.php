@@ -6,6 +6,7 @@ use App\Entity\Post;
 use App\Form\PostType;
 use App\Form\SearchType;
 use App\Model\SearchData;
+use App\Service\FileUploader;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +52,7 @@ class PostController extends AbstractController
     // fonction ajout + edit une post
     #[Route('/post/add', name: 'add_post')]
     #[Route('/post/{id}/edit', name: 'edit_post')]
-    public function add(EntityManagerInterface $entityManager, Post $post = null, Request $request): Response 
+    public function add(EntityManagerInterface $entityManager, Post $post = null, FileUploader $fileUploader, Request $request): Response 
     {
         $user= $this->getUser(); 
         if (!$post){ // si la post n'existe pas 
@@ -64,6 +65,12 @@ class PostController extends AbstractController
         //quand on sousmet le formulaire 
         if($form->isSubmitted() && $form->isValid()){
             // $images = $form->get('image')->getData();
+           
+            $image = $form->get('image')->getData(); 
+            if ($image) { 
+                $imageFileName = $fileUploader->upload($image); 
+                $user->setAvatar($imageFileName); 
+            }
             $post->setUser($user);
             $post->setCreationDate(new \DateTime());
 

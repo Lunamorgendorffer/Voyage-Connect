@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\EditProfileType;
+use App\Service\FileUploader;
 use App\Form\EditPasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +25,7 @@ class UserController extends AbstractController
 
     // fonction ajout + edit une post
     #[Route('/user/edit', name: 'edit_user')]
-    public function editUser(EntityManagerInterface $entityManager, Request $request): Response 
+    public function editUser(EntityManagerInterface $entityManager, FileUploader $fileUploader, Request $request): Response 
     {
         $user = $this->getUser();
         // on crée le formulaire 
@@ -33,7 +34,13 @@ class UserController extends AbstractController
 
         //quand on sousmet le formulaire 
         if($form->isSubmitted() && $form->isValid()){
-            // $user->setAvatar();
+            
+            $image = $form->get('avatar')->getData(); 
+            if ($image) { 
+                $imageFileName = $fileUploader->upload($image); 
+                $user->setAvatar($imageFileName); 
+            }
+
             $user = $form->getData();
             $entityManager->persist($user);// = prepare
             $entityManager->flush();// execute, on envoie les données dans la db 
