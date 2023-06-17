@@ -64,7 +64,7 @@ class LikeController extends AbstractController
     }
 
     #[Route('/favorite/post/{id}', name: 'favorite_post')]
-    public function favorite(EntityManagerInterface $entityManager,  Post $post)
+    public function favoritePost(EntityManagerInterface $entityManager,  Post $post)
     {
         $user = $this->getUser(); // get user in session
 

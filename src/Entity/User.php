@@ -69,7 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $Likes;
 
 
-    #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'usersFavorite')]
+    #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'userFavorites')]
     private Collection $Favorite;
 
     public function __construct()
