@@ -1,6 +1,5 @@
 {% if app.user %}
     <a  href="{{ path('comment_like', {id: comment.id}) }}" data-action="like">
-        {{ dump(comment) }}
     {% endif %}
 
     <button>
