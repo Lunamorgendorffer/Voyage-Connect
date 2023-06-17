@@ -69,7 +69,7 @@ class PostController extends AbstractController
             $image = $form->get('image')->getData(); 
             if ($image) { 
                 $imageFileName = $fileUploader->upload($image); 
-                $user->setAvatar($imageFileName); 
+                $post->setImage($imageFileName);
             }
             $post->setUser($user);
             $post->setCreationDate(new \DateTime());
