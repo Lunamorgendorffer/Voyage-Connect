@@ -6,7 +6,9 @@ use App\Entity\Post;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostType extends AbstractType
@@ -17,10 +19,21 @@ class PostType extends AbstractType
             ->add('title')
             ->add('description')
             // ->add('creationDate')
-            ->add('imageFile',VichImageType::class, [
-                'label' => 'image of post',
-                'label_attr' => [
-                    'class' => 'form-label mt4',
+            ->add('image', FileType::class,[
+                'label' => 'profile Picture',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024K',
+                        'mimeTypes' => [
+                            'image/jpg',
+                            'image/png',
+                            'image/jpeg',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Please upload an image',
+                    ])
                 ],
             ])
             // ->add('image' )
