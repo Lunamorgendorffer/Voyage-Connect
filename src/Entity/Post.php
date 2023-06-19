@@ -46,7 +46,7 @@ class Post
     #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Favorite')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritePost')]
     private Collection $userFavorites;
 
     #[ORM\ManyToMany(targetEntity: User::class)]

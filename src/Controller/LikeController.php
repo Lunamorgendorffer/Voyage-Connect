@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Post;
+use App\Entity\User;
 use App\Entity\Comment;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,21 +65,22 @@ class LikeController extends AbstractController
     }
 
     #[Route('/favorite/post/{id}', name: 'favorite_post')]
-    public function favoritePost(EntityManagerInterface $entityManager,  Post $post)
+    public function favoritePost(EntityManagerInterface $entityManager,  Post $post, User $user)
     {
         $user = $this->getUser(); // get user in session
 
         // if the user has like the song the remove the like
-        if ($post->isFavoriteByUser($user)) {
+        // if ($post->isFavoriteByUser($user)) {
 
-            $post->removeUserFavorite($user);
-            $entityManager->flush();
+        //     $post->removeUserFavorite($user);
+        //     $entityManager->flush();
 
-            // return a json response
-            return $this->json(['message' => 'the favorites has been removed']);
-        }
+        //     // return a json response
+        //     return $this->json(['message' => 'the favorites has been removed']);
+        // }
         // else add the like
-        $post->addUserFavorite($user);
+        $user->addfavoritePost($post);
+        $entityManager->persist($user);
         // dd($post);
         $entityManager->flush();
 

@@ -70,13 +70,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'userFavorites')]
-    private Collection $Favorite;
+    private Collection $favoritePost;
 
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
-        $this->Favorite = new ArrayCollection();
+        $this->favoritePost = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->likesComment = new ArrayCollection();
     }
@@ -371,25 +371,32 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Post>
      */
-    public function getFavorite(): Collection
+    public function getFavoritePost(): Collection
     {
-        return $this->Favorite;
+        return $this->favoritePost;
     }
 
-    public function addFavorite(Post $favorite): self
+    public function addfavoritePost(Post $favoritePost): self
     {
-        if (!$this->Favorite->contains($favorite)) {
-            $this->Favorite->add($favorite);
+        if (!$this->favoritePost->contains($favoritePost)) {
+            $this->favoritePost->add($favoritePost);
         }
 
         return $this;
     }
 
-    public function removeFavorite(Post $favorite): self
+    public function removefavoritePost(Post $favoritePost): self
     {
-        $this->Favorite->removeElement($favorite);
+        $this->favoritePost->removeElement($favoritePost);
 
         return $this;
+    }
+
+    public function isFavoriteByUser(Post $post): bool
+    {
+
+        return $this->favoritePost->contains($post);
+
     }
 
     public function __toString()
