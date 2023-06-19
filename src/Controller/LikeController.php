@@ -65,19 +65,19 @@ class LikeController extends AbstractController
     }
 
     #[Route('/favorite/post/{id}', name: 'favorite_post')]
-    public function favoritePost(EntityManagerInterface $entityManager,  Post $post, User $user)
+    public function favoritePost(EntityManagerInterface $entityManager,  Post $post)
     {
         $user = $this->getUser(); // get user in session
 
         // if the user has like the song the remove the like
-        // if ($post->isFavoriteByUser($user)) {
+        if ($user->isFavoriteByUser($post)) {
 
-        //     $post->removeUserFavorite($user);
-        //     $entityManager->flush();
+            $user->removefavoritePost($post);
+            $entityManager->flush();
 
-        //     // return a json response
-        //     return $this->json(['message' => 'the favorites has been removed']);
-        // }
+            // return a json response
+            return $this->json(['message' => 'the favorites has been removed']);
+        }
         // else add the like
         $user->addfavoritePost($post);
         $entityManager->persist($user);
