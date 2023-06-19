@@ -15,7 +15,8 @@ class ApiController extends AbstractController
     #[Route('/api', name: 'app_api')]
     public function index(CallApiService $callApiService): Response
     {
-        // dd($callApiService->getRestData());
+        $data = $callApiService->getRestData();
+        // dd($data[0]['capital']);
 
         return $this->render('api/index.html.twig', [
             'data' => $callApiService->getRestData()

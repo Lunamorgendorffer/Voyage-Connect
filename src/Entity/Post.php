@@ -52,6 +52,8 @@ class Post
     #[ORM\ManyToMany(targetEntity: User::class)]
     private Collection $likes;
 
+    private $name;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -121,6 +123,18 @@ class Post
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName($name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
@@ -245,6 +259,8 @@ class Post
     {
         return count ($this->likes); 
     }
+
+
 
 
 

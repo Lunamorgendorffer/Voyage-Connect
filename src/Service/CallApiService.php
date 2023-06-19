@@ -32,5 +32,10 @@ class CallApiService
 
         return $response->toArray();
     }
+
+    // public function __toString(){
+    //     return $this->name->common;
+
+    // }
     
 }
