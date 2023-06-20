@@ -15,13 +15,14 @@ class ApiController extends AbstractController
     #[Route('/api', name: 'app_api')]
     public function index(CallApiService $callApiService): Response
     {
-        $data = $callApiService->getRestData();
-        $capital = $data[0]['capital'][0];
-        // dd($data[0]['capital']);
+        // $data = $callApiService->getRestData();
+        // $capital = $data[0]['capital'][0];
+        // // dd($data[0]['capital']);
+        // dd($callApiService->getCountries());
 
         return $this->render('api/index.html.twig', [
-            'data' => $callApiService->getRestData(),
-            'capital' => $capital
+            'data' => $callApiService->getCountries(),
+            // 'capital' => $capital
         ]);
     }
 }

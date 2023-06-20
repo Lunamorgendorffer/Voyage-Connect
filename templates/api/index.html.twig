@@ -21,14 +21,11 @@
             <th>Flag</th>
         </thead>
         <tbody>
-            <tr>
-                <td>{{capital}}</td>
-            </tr>
             {% for pays in data %}
             <tr>
                 <td>{{ loop.index0 }}</td>
                 <td>{{ pays.name.common }}</td>
-                <td>{{ pays.region}}</td>
+                <td>{{ pays.capital[0]}}</td>
 
             </tr>
 
