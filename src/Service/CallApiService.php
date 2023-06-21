@@ -2,45 +2,50 @@
 
 namespace App\Service;
 
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class CallApiService
 {
-    // private $client;
+    private $httpClient;
+    private $serializer;
 
-    // public function __construct(HttpClientInterface $client)
-    // {
-    //     $this->client = $client;
-    // }
+ 
+    public function __construct(SerializerInterface $serializer)
+    {
+        $this->httpClient = HttpClient::create();
+        $this->serializer = $serializer;
+    }
 
-    // public function getRestData(): array
-    // {
-    //     return $this->getApi('all');
-    // }
+ 
 
-    // public function getAllData(): array
-    // {
-    //     return $this->getApi('All');
-    // }
+    public function getAllCountries()
+    {
+        $response = $this->httpClient->request('GET', 'https://restcountries.com/v3.1/all');
+        $content = $response->getContent();
 
-    // private function getApi(string $var)
-    // {
-    //     $response = $this->client->request(
-    //         'GET',
-    //         'https://restcountries.com/v3.1/' . $var
-    //     );
+ 
 
-    //     return $response->toArray();
-    // }
+        return $this->serializer->decode($content, 'json');
+    }
 
-    public function getCountries(){
-        $url = "https://restcountries.com/v3.1/all";
-        $data = file_get_contents($url);
+ 
 
-        $arr =json_decode($data,true);
+    public function getCountryCapital(string $countryCode)
+    {
+        $response = $this->httpClient->request('GET', "https://restcountries.com/v3.1/alpha/{$countryCode}");
+        $content = $response->getContent();
 
-        return $arr;
+ 
 
+        $countryData = $this->serializer->decode($content, 'json');
+        if (isset($countryData[0]['capital'][0])) {
+            return $countryData[0]['capital'][0];
+        }
+
+ 
+
+        return null;
     }
     
 }
