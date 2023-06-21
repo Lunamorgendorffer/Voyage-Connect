@@ -21,15 +21,23 @@
             <th>Flag</th>
         </thead>
         <tbody>
-            {% for pays in data %}
-            <tr>
-                <td>{{ loop.index0 }}</td>
-                <td>{{ pays.name.common }}</td>
-                <td>{{ pays.capital[0]}}</td>
+             {# {% for key , pays in data %} #}
+            {# {{ dump(pays[key]['capital']) }} #}
 
+            {# <tr>
+                <td>{{ loop.index0 }}</td>
+                <td>{{ pays.name.common }}</td> #}
+                
+                {# <td>{{ pays.capital[0]}}</td> #}
+
+                {# {% endfor %}  #}
+                {% for row in countries %}
+                    {{ dump(row.name.common) }}
+                  
+                    {% endfor %}
+                {% endfor %}
             </tr>
 
-            {% endfor %}
         </tbody>
     </table>
 </body>
