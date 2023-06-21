@@ -9,6 +9,7 @@
 import './styles/app.css';
 import './styles/register.css';
 import './styles/home.css';
+import './styles/userProfile.css';
 import './scripts/menu-nav.js';
 
 import Like from './scripts/like.js';

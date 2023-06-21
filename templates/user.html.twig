@@ -5,35 +5,48 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         <!-- Axentix CSS minified version -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.3.0/dist/axentix.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
         {% block stylesheets %}
-          
+        {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
-    <body class="layout-sidenav">
-        <header>
-            <nav class="navbar primary">
-                <a href="{{ path('app_home') }}" class="navbar-brand">Home</a>
-                <div class="navbar-menu ml-auto">
-                <a class="navbar-link" href="{{ path('app_post')}}">Posts</a>
-              </div>
-            </nav>
-        </header>
-      
-        <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 sidenav-fixed white">
-            <div class="sidenav-header">
-              <img class="sidenav-logo dropshadow-1" src="your_img_path" alt="Logo" />
+    <body>
+        <nav class="nav-user">
+            <div class="logo">
+                <a href="{{ path('app_home') }}" class="linklogo">
+                    <img src="{{ asset('img/logo.png') }}" alt="">
+                    <span class="nav-item">Voyage Connect</span>
+                </a>
             </div>
-            <a href="#" class="sidenav-link active">Profil</a>
-            <a href="#" class="sidenav-link">My Post</a>
-        </div>
+            <ul class="sidebar">
+                <li><a href="{{ path('app_home') }}">
+                    <i class="fas fa-home"></i>
+                    <span class="nav-item">Home</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Posts</span>
+                </a></li>
+                <li><a href="#"><i class="fas fa-tasks"></i>
+                    <span class="nav-item">Explore</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span class="nav-item">Setting</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="fas fa-question-circle"></i>
+                    <span class="nav-item">Help</span>
+                </a></li>
+                <li><a href="#"class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="nav-item">log out</span>
+                </a></li>
+            </ul>
+        </nav>
 
         <main>
-            <button data-target="example-sidenav" class="btn rounded-1 press amaranth dark-1 hide-md-up">
-                Open sidenav
-            </button>
               
             {% block body %}{% endblock %}
         </main>

@@ -17,27 +17,23 @@
             <th>Name</th>
             <th>Capital</th>
             <th>Population</th>
-            <th>Borders</th>
+            <th>Region</th>
             <th>Flag</th>
         </thead>
         <tbody>
+            {% for country in countries %}
              {# {% for key , pays in data %} #}
             {# {{ dump(pays[key]['capital']) }} #}
 
-            {# <tr>
+             <tr>
                 <td>{{ loop.index0 }}</td>
-                <td>{{ pays.name.common }}</td> #}
-                
-                {# <td>{{ pays.capital[0]}}</td> #}
-
-                {# {% endfor %}  #}
-                {% for row in countries %}
-                    {{ dump(row.name.common) }}
-                  
-                    {% endfor %}
-                {% endfor %}
+                <td>{{ country.name.common }}</td> 
+                <td>{{ country.capital }}</td> 
+                <td>{{ country.population }}</td>
+                <td>{{ country.region }}</td>
+                <td><img src="{{country.flags.png }}" alt=""></td>
             </tr>
-
+            {% endfor %}  
         </tbody>
     </table>
 </body>

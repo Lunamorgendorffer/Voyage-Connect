@@ -11,39 +11,41 @@
             </div>
         {% endfor %}
         <div class="col-xs4">
-            <h1>Profil of {{app.user.pseudo}}</h1>
+            <h1>Profil of {{user.pseudo}}</h1>
+            {% if user.avatar == null %}  
+                <img src="{{asset('img/avatars/user.png')}}">
+            {% else %}
+                <img src="{{asset('uploads/' ~ user.avatar)}}" > 
+            {% endif %}
+
 
         </div>
         
         <div class="col-xs1">Pseudo</div>
-        <div class="col-xs3">{{app.user.pseudo}}</div>
+        <div class="col-xs3">{{user.pseudo}}</div>
         <div class="col-xs1">Email</div>
-        <div class="col-xs3">{{app.user.email}}</div>
+        <div class="col-xs3">{{user.email}}</div>
         
         <div class="col-xs4">
             <a href="{{path('edit_user')}}" class="btn blue">Edit Profile</a>
-            <a href="{{path('edit_password', {'id': app.user.id})}}" class="btn blue">Edit MDP</a>
+            <a href="{{path('edit_password', {'id': user.id})}}" class="btn blue">Edit MDP</a>
         </div>
 
         <div class="col-xs4">
-            <h1>Post of {{app.user.pseudo}} ({{app.user.posts|length}})</h1>
+            <h1>Post of {{user.pseudo}} ({{user.posts|length}})</h1>
         </div>
-        {% for post in app.user.posts %}
+        {% for post in user.posts %}
             <div class="col-xs1">title</div>
             <div class="col-xs3">{{post.title}}</div>
         {% endfor %}
         
         <div class="col-xs4">
-            <h1>Comment of {{app.user.pseudo}} ({{app.user.posts|length}})</h1>
+            <h1>Comment of {{user.pseudo}} ({{user.posts|length}})</h1>
         </div>
-        {% for comment in app.user.comments %}
+        {% for comment in user.comments %}
             <div class="col-xs1">comments</div>
             <div class="col-xs3">{{comment.text}}</div>
         {% endfor %}
-
-        <div class="col-xs4">
-            <a href="{{path('delete_user',{'id':app.user.id})}}" class="btn error">Delete Profile</a>
-        </div>
 
     </div>
 {% endblock %}
