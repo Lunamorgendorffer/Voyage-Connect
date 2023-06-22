@@ -12,44 +12,46 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="nav-user">
-            <div class="logo">
-                <a href="{{ path('app_home') }}" class="linklogo">
+        <header id="header-user">
+            <nav class="nav-user">
+                <div class="logo">
                     <img src="{{ asset('img/logo.png') }}" alt="">
-                    <span class="nav-item">Voyage Connect</span>
-                </a>
-            </div>
-            <ul class="sidebar">
-                <li><a href="{{ path('app_home') }}">
-                    <i class="fas fa-home"></i>
-                    <span class="nav-item">Home</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="fas fa-user"></i>
-                    <span class="nav-item">Posts</span>
-                </a></li>
-                <li><a href="#"><i class="fas fa-tasks"></i>
-                    <span class="nav-item">Explore</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="fas fa-cog"></i>
-                    <span class="nav-item">Setting</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="fas fa-question-circle"></i>
-                    <span class="nav-item">Help</span>
-                </a></li>
-                <li><a href="#"class="logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span class="nav-item">log out</span>
-                </a></li>
-            </ul>
-        </nav>
+                    <a href="{{ path('app_home') }}" class="linklogo">
+                        <span class="nav-item">Voyage Connect</span>
+                    </a>
+                </div>
+                <ul class="sidebar">
+                    <li><a href="{{ path('app_home') }}">
+                        <i class="fas fa-home"></i>
+                        <span class="nav-item">Home</span>
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-user"></i>
+                        <span class="nav-item">Posts</span>
+                    </a></li>
+                    <li><a href="#"><i class="fas fa-tasks"></i>
+                        <span class="nav-item">Explore</span>
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span class="nav-item">Setting</span>
+                    </a></li>
+                    <li><a href="#">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="nav-item">Help</span>
+                    </a></li>
+                    <li><a href="#"class="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span class="nav-item">log out</span>
+                    </a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <main>
-              
-            {% block body %}{% endblock %}
+        <main id="main-user">
+        {% block body %}{% endblock %}
         </main>
+      
           
         <footer class="footer primary">
             Copyright © 2023 - Example
