@@ -7,7 +7,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-header{
+#header-home{
     z-index:999;
     position: absolute;
     top: 0;
@@ -20,7 +20,7 @@ header{
     transition: 0.5s ease; 
 }
 
-header .logo{
+#header-home .logo{
     color: #fff;
     font-size: 1.5em;
     font-weight: 700;
@@ -28,11 +28,11 @@ header .logo{
     text-decoration: none;
 }
 
-header .nav{
+#header-home .nav{
     position: relative;
 }
 
-header .nav .nav-items a{
+#header-home .nav .nav-items a{
     position: relative;
     color: #fff;
     font-size: 1em;
@@ -42,7 +42,7 @@ header .nav .nav-items a{
     transition: 0.3s ease;
 }
 
-header .nav .nav-items a::before {
+#header-home .nav .nav-items a::before {
     content: ''; 
     position: absolute;
     background: #000;
@@ -53,7 +53,7 @@ header .nav .nav-items a::before {
     transition: 0.3s ease;
 }
 
-header .nav .nav-items a:hover::before {
+#header-home .nav .nav-items a:hover::before {
     width: 100%;
 
 }
