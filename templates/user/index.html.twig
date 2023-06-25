@@ -53,87 +53,93 @@
         </div>
     </div>
 
-    <div class="v31_210">
-        <div class="v31_211">
-            <div class="titre">
+    <div class="main-contenaire">
+        <div class="post-user">
+            <div class="title">
                 <span class="v31_264"> About        Posts        Comments </span>
             </div>
             
             {% for post in app.user.posts %}
-            <div class="v31_212">
-                <div class="v31_213">
-                    
-                    {% if post.user.avatar == null %}
-                        <img src="{{asset('img/avatars/user.png')}}">
-                    {% else %}
-                        <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
-                    {% endif %}
-                
+            <div class="post-profile">
+                <div class="post-profile-info">
+                    <div class="detail">
+                        {% if post.user.avatar == null %}
+                            <img src="{{asset('img/avatars/user.png')}}">
+                        {% else %}
+                            <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                        {% endif %}
+                        <div class="name-date">
+                            <p class="v31_217">{{post.user.pseudo}}</p>
+                            <span class="v31_218">{{post.creationDate |format_datetime(locale='fr') }}</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fas fa-ellipsis-h"></i></a>
                 </div>
-                <div class="v31_216">
-                    <span class="v31_217">{{post.user.pseudo}}</span>
-                    <span class="v31_218">{{post.creationDate | date ('d/m/Y') }}</span>
-                </div>
-                <div class="v31_219">
+                <div class="post-content ">
                     <h3>{{post}}</h3>
                     <p class="post-text">
                         {{post.description}}
                     </p>
                     <img src="{{asset('uploads/' ~ post.image)}}"  alt="">
                 </div>
-                <div class="v31_221">
+                <div class="post-profile-info">
                     <div>{% include "components/_like.html.twig" %}</div>
                     <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
                     <div>{% include "components/_favoritepost.html.twig" %}</div>
                 </div>
-                
             </div>
             {% endfor %}
         </div>
 
-    </div>
+        <div class="right-side">
+            <div class="top-section">
+                <div class="side-title">
+                    <h4>Your might know</h4>
+                    
+                </div>
+                <div class="suggestion-list">
+                    <div class="online">
+                        <img src="{{asset('img/images/member-1.png')}}" alt="">
+                    </div>
+                    <p>Alison Brie</p>
+                </div>
+                <div class="suggestion-list">
+                    <div class="online">
+                        <img src="{{asset('img/images/member-2.png')}}" alt="">
+                    </div>
+                    <p>Jackson Wang</p>
+                </div>
+                <div class="suggestion-list">
+                    <div class="online">
+                        <img src="{{asset('img/images/member-3.png')}}" alt="">
+                    </div>
+                    <p>Rose Acer</p>
+                </div>
+            </div>
 
-    <div class="grix xs4 container">
-        <div class="col-xs4">
-            <h1>Profil of {{app.user.pseudo}}</h1>
-                {% if app.user.avatar == null %}
-                  
-                    <img src="{{asset('img/avatars/user.png')}}">
-                {% else %}
-                
-                    <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
-                {% endif %}
-
-        </div>
-        
-        <div class="col-xs1">Pseudo</div>
-        <div class="col-xs3">{{app.user.pseudo}}</div>
-        <div class="col-xs1">Email</div>
-        <div class="col-xs3">{{app.user.email}}</div>
-        
-        <div class="col-xs4">
-            <a href="{{path('edit_user')}}" class="btn blue">Edit Profile</a>
-            <a href="{{path('edit_password', {'id': app.user.id})}}" class="btn blue">Edit MDP</a>
-        </div>
-
-        <div class="col-xs4">
-            <h1>Post of {{app.user.pseudo}} ({{app.user.posts|length}})</h1>
-        </div>
-        {# {% for post in app.user.posts %} #}
-            <div class="col-xs1">title</div>
-            {# <div class="col-xs3">{{post.title}}</div> #}
-        {# {% endfor %} #}
-        
-        <div class="col-xs4">
-            <h1>Comment of {{app.user.pseudo}} ({{app.user.posts|length}})</h1>
-        </div>
-        {% for comment in app.user.comments %}
-            <div class="col-xs1">comments</div>
-            <div class="col-xs3">{{comment.text}}</div>
-        {% endfor %}
-
-        <div class="col-xs4">
-            <a href="{{path('delete_user',{'id':app.user.id})}}" class="btn error">Delete Profile</a>
+            <div class="down-section">
+                <div class="side-title">
+                    <h4>Your Messages</h4>
+                </div>
+                <div class="box">
+                    <div class="div">
+                        <i class="fa-solid fa-envelope fa-xl"></i>
+                    </div>
+                    <p>Inbox</p>
+                </div>
+                <div class="box">
+                    <div class="div">
+                        <i class="fa-solid fa-message fa-xl"></i>
+                    </div>
+                    <p>Send a message</p>
+                </div>
+                <div class="box">
+                    <div class="div">
+                        <i class="fa-solid fa-inbox fa-xl"></i>
+                    </div>
+                    <p>draft</p>
+                </div>
+            </div>
         </div>
 
     </div>

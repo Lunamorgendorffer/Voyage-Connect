@@ -420,113 +420,83 @@
     text-align: left;
 }
 
-.v31_210 {
-    width: 737px;
-    height: 979px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    opacity: 1;
+.main-contenaire {
+    border: 5px solid #870fcd;
     position: relative;
     top: 20vh;
     left: 21%;
-    overflow: hidden;
-    border: 5px solid #870fcd;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    gap: 5%;
 
 }
 
-.v31_211 {
-    width: 100%;
-    height: 664px;
+.post-user {
+    border: 5px solid #29cd17;
+    width:65%;
     background: rgba(255,255,255,1);
-    opacity: 1;
-    position: absolute;
+    position: sticky;
     top: 0px;
     left: 0px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border: 5px solid #29cd17;
-
-    /* position: relative;
-    top: 5vh;
-    left: 21%; */
 }
 
-.v31_211 .titre{
+.post-user .title{
     border-bottom: 1px solid #b9b7b7;
 }
 
-.v31_212 {
-    width: 631px;
-    height: 524px;
-    position: absolute;
-    top: 5vh;
-    left: 5%;
+.post-profile{
+    width: 75%;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
     border: 2px solid #143bc9;
 }
 
-.v31_213 {
-    width: 100px;
-    height: 100px;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    overflow: hidden;
-    border: 2px solid #143bc9;
+.post-profile-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 3px solid #143bc9;
+
+}
+.post-profile-info .detail{
+    display: flex;
+    align-items: center;
+    border: 2.5px solid #c94a14;
+    gap: 10px;
 }
 
-.v31_213 img {
-    width: 100%;
+.post-profile-info .detail img {
+    width: 65px;
     border-radius: 50%;
    
 }
 
-
-
-
-.v31_216 {
-    width: 103px;
-    height: 42px;
-    position: absolute;
-    top: 0;
-    left: 19%;
-    border: 2px solid #143bc9;
+.post-profile-info .detail .name-date {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
-.v31_217 {
-    width: 103px;
-    color: rgba(4,4,4,1);
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    font-family: Nunito;
-    font-weight: Bold;
-    font-size: 16px;
-    opacity: 1;
-    text-align: left;
+.post-profile-info .detail .name-date p {
+    margin-bottom: -5px;
+    font-weight: 500;
+    color: #626262;
 }
-.v31_218 {
-    width: 55px;
-    color: rgba(0,0,0,1);
-    position: absolute;
-    top: 22px;
-    left: 0px;
-    font-family: Nunito;
-    font-size: 10px;
-    opacity: 1;
-    text-align: left;
+.post-profile-info .detail .name-date span {
+    font-size: 11px;
+    color: #000000;
+    margin-top: 6px;
 }
 
-.v31_219 {
-    width: 100%;
-    height: 39px;
-    position: absolute;
-    top: 15vh;
+.post-content {
+    color: #000000;
+    margin: 15px 0;
+    font-size: 15px;
 }
 
-.v31_219 img{
+.post-content  img{
     max-width:50%;
     position: absolute;
     top: 10vh;
@@ -534,6 +504,66 @@
     border-radius: 10px;
 }
 
+.right-side{
+    flex-basis: 35%;
+    display: flex;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+    padding: 20px;
+    border-radius: 4px;
+    color: #626262;
+    flex-direction: column;
+    border: 2px solid #0cbdca;
+}
+
+.top-section, .down-section {
+    border: 1px solid #000;
+    background: #fff;
+    margin-bottom: 25px;
+    border-radius: 50px 5px;
+}
+
+.side-title h4{
+    text-align: center;
+    margin: 5px 0;
+
+}
+
+.suggestion-list{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+.suggestion-list .online {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+
+.suggestion-list .online img {
+    width: 40px;
+    border-radius: 50%;
+}
+.box{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.box div{
+    width: 40px;
+    border-radius: 50%;
+    margin-left:10px;
+}
+
+/* .box div .fa-sharp {
+    width: 40px;
+    height: 40px;
+} */
 .v31_220 {
     width: 622px;
     color: rgba(0,0,0,1);
@@ -557,6 +587,7 @@
     align-items: center;
     justify-content: space-between;
 }
+
 
 
 .post-bottom {
