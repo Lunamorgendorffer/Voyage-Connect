@@ -446,6 +446,8 @@
 }
 
 .post-profile{
+    display: flex;
+    flex-direction: column;
     width: 75%;
     border-radius: 10px;
     padding: 20px;
@@ -495,12 +497,14 @@
     margin: 15px 0;
     font-size: 15px;
 }
+.post-content figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .post-content  img{
     max-width:50%;
-    position: absolute;
-    top: 10vh;
-    left: 20%;
     border-radius: 10px;
 }
 

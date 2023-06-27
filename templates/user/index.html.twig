@@ -80,7 +80,9 @@
                     <p class="post-text">
                         {{post.description}}
                     </p>
-                    <img src="{{asset('uploads/' ~ post.image)}}"  alt="">
+                    <figure>
+                        <img src="{{asset('uploads/' ~ post.image)}}"  alt="">
+                    </figure>
                 </div>
                 <div class="post-profile-info">
                     <div>{% include "components/_like.html.twig" %}</div>
