@@ -37,7 +37,7 @@
 <div class="post-container">
     <div class="post-row">
         <div class="user-profile">
-            {% if app.user.avatar == null %}
+            {% if post.user.avatar == null %}
                   <img src="{{asset('img/user.png')}}">
             {% else %}
                 <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
