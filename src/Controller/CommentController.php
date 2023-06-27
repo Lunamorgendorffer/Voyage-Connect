@@ -5,7 +5,10 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Entity\Comment;
+use App\Form\SearchType;
 use App\Form\CommentType;
+use App\Model\SearchData;
+use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,12 +19,33 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CommentController extends AbstractController
 {
     #[Route('/comment', name: 'app_comment')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(EntityManagerInterface  $entityManager, CommentRepository $commentRepository,Request $request ): Response
     {
-        $comments = $entityManager->getRepository(Comment::class)->findAll();
+       
+
+        $searchData = new SearchData();
+        $form = $this->createForm(SearchType::class, $searchData);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $searchData->page = $request->query->getInt('page', 1);
+
+            $comments = $commentRepository->findBySearch($searchData);
+
+        
+            
+            return $this->render('post/index.html.twig', [
+                'form' => $form->createView(),
+                'comments' => $comments
+            ]);
+
+        }
+
 
         return $this->render('post/index.html.twig', [
-            'comments' => $comments,
+            'form' => $form->createView(),
+            'comments' =>  $entityManager->getRepository(Comment::class)->findAll()
         ]);
     }
 

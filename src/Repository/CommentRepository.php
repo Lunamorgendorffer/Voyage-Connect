@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Model\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Comment>
@@ -37,6 +38,17 @@ class CommentRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findBySearch(SearchData $searchData)
+    {
+        return $data = $this->createQueryBuilder('c')
+            ->select('c')
+            ->andWhere('p.title LIKE :q')
+            ->setParameter('c.text', "%{$searchData->q}%")
+            ->getQuery()
+            ->getResult();
+        ;
     }
 
 //    /**
