@@ -3,53 +3,27 @@
 {% block title %}User Profile{% endblock %}
 
 {% block body %}
-    <div class="main-header">
-        <div class="small-profil">
-            <div class="v31_96">
-                <div class="v31_97"></div>
-                <div class="v31_98"></div>
-            </div>
-            <div class="v31_99">
-                <span class="v31_100">Charles Deo</span>
-                <span class="v31_101">Log out</span>
-            </div>
-            <div class="v31_102">
-                <div class="name"></div>
+<div class="main-header">
+    <div class="header-container">
+        <div class="cover">
+            <div class="button-Profile">
+                <p>Edit Profile</p>
             </div>
         </div>
-
-        <div class="v31_120">
-            <div class="v31_121"></div>
-            <div class="v31_122">
-                <div class="v31_125">
-                    <span class="v31_126">{{app.user.pseudo}}</span>
-                </div>
-                <div class="v31_127">
-                    <div class="v31_128">
-                        <div class="v31_129">
-                        {% if app.user.avatar == null %}
-                            <img src="{{asset('img/avatars/user.png')}}">
-                        {% else %}
-                            <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
-                        {% endif %}
-                        </div>
-                    </div>
-                </div>
+        <div class="profile-user">
+            <div class="pseudo">
+                <p>{{app.user.pseudo}}</p>
             </div>
-            <div class="v31_132">
-                <div class="v31_134"></div>
-                <div class="v31_135">
-                    <span class="v31_136">Edit Profile</span>
-                </div>
-            </div>
-            <div class="v31_137">
-                <div class="v31_138">
-                    <div class="v31_139"></div>
-                </div>
-                <div class="v31_140">
-                    <span class="v31_141">Edit Cover Photo</span>
-                </div>
-            </div>
+            <figure>
+                {% if app.user.avatar == null %}
+                    <img src="{{asset('img/avatars/user.png')}}">
+                {% else %}
+                    <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+                {% endif %}
+            </figure>
+        </div>
+        <div class="button-cover">
+            <p >Edit Cover Photo</p>
         </div>
     </div>
 
