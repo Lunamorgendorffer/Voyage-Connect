@@ -2,7 +2,9 @@
 	{{ form_start(form) }}
 		<div class="d-flex align-items-center">
 				{{ form_widget(form.q) }}
+				{# {{ form_widget(form.user) }} #}
 				{{ form_errors(form.q) }}
+				{# {{ form_errors(form.user) }} #}
 				<button type="submit" id="button-addon2" class="border-0">
 
 					<i class="fa-solid fa-magnifying-glass"></i>

@@ -42,14 +42,20 @@ class PostRepository extends ServiceEntityRepository
 
     public function findBySearch(SearchData $searchData)
     {
-        return $data = $this->createQueryBuilder('p')
+        $queryBuilder = $this->createQueryBuilder('p')
             ->select('p')
-            ->andWhere('p.title LIKE :q')
-            ->setParameter('q', "%{$searchData->q}%")
-            ->getQuery()
-            ->getResult();
-        ;
+            ->innerJoin('p.user', 'u');
+
+            if (!empty($searchData->q)) {
+                $queryBuilder
+                    ->andWhere('p.title LIKE :q')
+                    ->orWhere('u.pseudo LIKE :q')
+                    ->setParameter('q', "%{$searchData->q}%");
+            }
+
+        return $queryBuilder->getQuery()->getResult();
     }
+
 
 
 //    /**
