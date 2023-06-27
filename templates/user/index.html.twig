@@ -3,11 +3,10 @@
 {% block title %}User Profile{% endblock %}
 
 {% block body %}
-<div class="main-header">
     <div class="header-container">
         <div class="cover">
-            <div class="button-Profile">
-                <p>Edit Profile</p>
+            <div class="button-cover">
+                <p>Edit Cover Photo</p>
             </div>
         </div>
         <div class="profile-user">
@@ -22,15 +21,17 @@
                 {% endif %}
             </figure>
         </div>
-        <div class="button-cover">
-            <p >Edit Cover Photo</p>
+        <div class="button-profile">
+            <p >Edit Profile</p>
         </div>
     </div>
 
     <div class="main-contenaire">
         <div class="post-user">
             <div class="title">
-                <span class="v31_264"> About        Posts        Comments </span>
+                <div>About</div>
+                <div>Post</div>
+                <div>Comment</div>
             </div>
             
             {% for post in app.user.posts %}
