@@ -16,7 +16,7 @@ body {
 }
 
 .nav-user{
-    background-color:  #69d1a99c!important;
+    background-color: #fffcfc!important;
     position:absolute;
     top: 0; 
     bottom:0;
@@ -113,17 +113,18 @@ body {
 
 .button-cover{
     width: 172px;
-    height: 44px;
     position: absolute;
-    bottom: 31%;
-    right: 5%;
-    
-    border-radius: 10px;
-    background-color: #FFFFFF;
+    bottom: 40%;
+    right: 2%;
     
 }
 
-.button-cover p{
+.button-profile .btn{
+    background-color: #fff;
+    width: 100%;
+}
+
+.button-cover a{
     text-align: center;
     padding: 5px 5%;
 }
@@ -153,8 +154,6 @@ body {
 .profile-user figure {
     width: 179px;
     height: 179px;
-    background: rgba(251,176,59,1);
-    opacity: 1;
     position: relative;
     top: 0px;
     left: 0px;
@@ -172,17 +171,18 @@ body {
 }
 
 .button-profile {
-    width: 172px;
-    height: 44px;
-    background: rgba(255,255,255,1);
+    width: 145px;
     position: absolute;
-    bottom: 5%;
-    right: 5%;
-    border-radius: 10px;
-    border: 1px solid rgba(0,0,0,1);
+    bottom: 10%;
+    right: 3.5%;
 }
 
-.button-profile p{
+.button-profile .btn{
+    border: 1px solid #000;
+    width: 100%;
+}
+
+.button-profile a{
     text-align: center;
     padding: 5px 5%;
 }

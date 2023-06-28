@@ -6,7 +6,7 @@
     <div class="header-container">
         <div class="cover">
             <div class="button-cover">
-                <p>Edit Cover Photo</p>
+                <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Cover Photo</a>
             </div>
         </div>
         <div class="profile-user">
@@ -15,14 +15,14 @@
             </div>
             <figure>
                 {% if app.user.avatar == null %}
-                    <img src="{{asset('img/avatars/user.png')}}">
+                    <img src="{{asset('img/user.png')}}">
                 {% else %}
                     <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
                 {% endif %}
             </figure>
         </div>
         <div class="button-profile">
-            <p >Edit Profile</p>
+            <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Profile</a>
         </div>
     </div>
 
