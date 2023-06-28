@@ -27,11 +27,11 @@
                         <i class="fas fa-home"></i>
                         <span class="nav-item">Home</span>
                     </a></li>
-                    <li><a href="#">
+                    <li><a href="{{ path('app_post') }}">
                         <i class="fas fa-user"></i>
                         <span class="nav-item">Posts</span>
                     </a></li>
-                    <li><a href="#"><i class="fas fa-tasks"></i>
+                    <li><a href="{{ path('app_api')}}"><i class="fas fa-tasks"></i>
                         <span class="nav-item">Explore</span>
                     </a></li>
                     <li><a href="#">
@@ -42,7 +42,7 @@
                         <i class="fas fa-question-circle"></i>
                         <span class="nav-item">Help</span>
                     </a></li>
-                    <li><a href="#"class="logout">
+                    <li><a href="{{ path('app_logout')}}"class="logout">
                         <i class="fas fa-sign-out-alt"></i>
                         <span class="nav-item">log out</span>
                     </a></li>
