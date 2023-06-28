@@ -1,0 +1,9 @@
+{% for country in countries %}
+{# {% for key , pays in data %} #}
+{# {{ dump(pays[key]['capital']) }} #}
+
+<tr>
+ 
+   <td><img src="{{country.flags.png }}" alt=""></td>
+</tr>
+{% endfor %}  

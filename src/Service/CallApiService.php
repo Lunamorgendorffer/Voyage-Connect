@@ -47,5 +47,14 @@ class CallApiService
 
         return null;
     }
+
+    public function getCountriesByRegion(string $region)
+    {
+        $response = $this->httpClient->request('GET', "https://restcountries.com/v3.1/region/{$region}");
+        $content = $response->getContent();
+
+        return $this->serializer->decode($content, 'json');
+        
+    }
     
 }

@@ -11,31 +11,11 @@
 </head>
 
 <body>
-    <table>
-        <thead>
-            <th>#</th>
-            <th>Name</th>
-            <th>Capital</th>
-            <th>Population</th>
-            <th>Region</th>
-            <th>Flag</th>
-        </thead>
-        <tbody>
-            {% for country in countries %}
-             {# {% for key , pays in data %} #}
-            {# {{ dump(pays[key]['capital']) }} #}
 
-             <tr>
-                <td>{{ loop.index0 }}</td>
-                <td>{{ country.name.common }}</td> 
-                <td>{{ country.capital }}</td> 
-                <td>{{ country.population }}</td>
-                <td>{{ country.region }}</td>
-                <td><img src="{{country.flags.png }}" alt=""></td>
-            </tr>
-            {% endfor %}  
-        </tbody>
-    </table>
+    {% for region in regions %}
+     <a href="{{ path('detailRegion',{region}) }}">{{region}}</a><br>
+    {% endfor %}  
+   
 </body>
 
 </html>

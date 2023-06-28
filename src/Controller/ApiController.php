@@ -11,8 +11,35 @@ class ApiController extends AbstractController
 {
     
     #[Route('/api', name: 'app_api')]
-
     public function index(CallApiService $restCountriesService): Response
+    {
+  
+        $regions = ["europe","asia","americas", "africa", "oceania" ];
+ 
+        return $this->render('api/index.html.twig', [
+            'regions' => $regions,
+        ]);
+    }
+
+
+    #[Route('/detailRegion', name: 'detailRegion')]
+    public function detailRegion(CallApiService $restCountriesService): Response {
+
+
+       $region = $_GET['region'];
+
+        $countries = $restCountriesService->getCountriesByRegion($region);
+        
+        return $this->render('api/detailRegion.html.twig', [
+            'countries' => $countries,
+         
+        ]);
+
+    }
+
+
+    #[Route('/api/detail', name: 'show_api')]
+    public function show(CallApiService $restCountriesService): Response
     {
         $countries = $restCountriesService->getAllCountries();
 
@@ -24,7 +51,7 @@ class ApiController extends AbstractController
 
  
 
-        return $this->render('api/index.html.twig', [
+        return $this->render('api/detail.html.twig', [
             'countries' => $countries,
         ]);
     }
