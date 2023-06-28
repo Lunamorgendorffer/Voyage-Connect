@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\EditProfileType;
 use App\Service\FileUploader;
 use App\Form\EditPasswordType;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,11 +17,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
-    public function index(): Response
+    public function index(UserRepository $userRepository): Response
     {
-
-
-        return $this->render('user/index.html.twig');
+        // Utilisez le User Repository pour récupérer les utilisateurs correspondants à la requête
+        $users = $userRepository->findUsersWithLikesCount(2);
+        
+        return $this->render('user/index.html.twig',[
+            'users' => $users
+        ]);
     }
 
     // fonction ajout + edit une post
@@ -113,6 +117,9 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_post');
 
     }
+
+
+
 
     // fonction pour afficher la page detail de la user 
     #[Route('/user/{id}', name: 'show_user')]

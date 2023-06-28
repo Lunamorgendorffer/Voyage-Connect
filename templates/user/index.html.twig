@@ -74,24 +74,14 @@
                     <h4>Your might know</h4>
                     
                 </div>
+                {% for user in users %}
                 <div class="suggestion-list">
-                    <div class="online">
-                        <img src="{{asset('img/images/member-1.png')}}" alt="">
+                    <div class="suggestion-user">
+                        <img src="{{asset('uploads/' ~ user.avatar)}}" alt="">
                     </div>
-                    <p>Alison Brie</p>
+                    <p>{{user.pseudo}}</p>
                 </div>
-                <div class="suggestion-list">
-                    <div class="online">
-                        <img src="{{asset('img/images/member-2.png')}}" alt="">
-                    </div>
-                    <p>Jackson Wang</p>
-                </div>
-                <div class="suggestion-list">
-                    <div class="online">
-                        <img src="{{asset('img/images/member-3.png')}}" alt="">
-                    </div>
-                    <p>Rose Acer</p>
-                </div>
+                {% endfor %}
             </div>
 
             <div class="down-section">
