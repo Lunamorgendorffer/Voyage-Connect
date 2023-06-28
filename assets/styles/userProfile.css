@@ -280,10 +280,7 @@ body {
     flex-basis: 35%;
     display: flex;
     position: sticky;
-    top: 70px;
-    align-self: flex-start;
-    padding: 20px;
-    border-radius: 4px;
+    padding: 0 20px;
     color: #626262;
     flex-direction: column;
     gap: 4vh;
