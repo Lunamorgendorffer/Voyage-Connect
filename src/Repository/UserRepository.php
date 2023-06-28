@@ -65,6 +65,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->innerJoin('p.likes', 'l')
             ->groupBy('u.id')
             ->having('COUNT(l) >= :minLikesCount')
+            ->setMaxResults(3)
+            ->orderBy('u.pseudo', 'ASC')
             ->setParameter('minLikesCount', $minLikesCount)
             ->getQuery();
 
