@@ -10,17 +10,14 @@
     <h1> Add a post </h1>
 {% endif %}
 
-{# {{form(formAddstagiaire)}} #}
+
 
 {{ form_start(formAddpost) }}
 
-    
-        {{ form_row(formAddpost.title) }}
-        {{ form_row(formAddpost.description) }}
-        {# {{ form_row(formAddpost.creationDate) }} #}
-        {{ form_row(formAddpost.image) }}
-        {# {{ form_row(formAddpost.user) }} #}
-    
+    {{ form_row(formAddpost.title) }}
+    {{ form_row(formAddpost.description) }}
+    {{ form_row(formAddpost.image) }}
+    {# {{ form_row(formAddpost.country) }} #}
     
 {{ form_end(formAddpost) }}
 
