@@ -20,8 +20,6 @@
             
             <div class="nav-center">
                 <div class="search-box w-100">
-                    {# <img src="{{asset('img/images/search.png')}}" alt="">
-                    <input type="text" placeholder="search"> #}
                     {% include "components/_search_data.html.twig" with {
                         form: form ?? null
                     } only %}
