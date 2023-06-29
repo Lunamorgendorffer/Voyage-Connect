@@ -29,12 +29,8 @@ class Post
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $creationDate = null;
     
-   
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
-
-
 
     #[ORM\ManyToOne(inversedBy: 'post', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
@@ -49,10 +45,15 @@ class Post
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoritePost')]
     private Collection $userFavorites;
 
-    #[ORM\ManyToMany(targetEntity: User::class)]
+   
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $country = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'postlikes')]
     private Collection $likes;
 
-    private $name;
+
 
     public function __construct()
     {
@@ -60,6 +61,7 @@ class Post
         $this->comments = new ArrayCollection();
         $this->userFavorites = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -127,17 +129,6 @@ class Post
         return $this;
     }
 
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setName($name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Category>
@@ -224,6 +215,23 @@ class Post
 
     }
 
+
+    public function __toString(){
+        return $this->title;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, User>
      */
@@ -260,11 +268,4 @@ class Post
         return count ($this->likes); 
     }
 
-
-
-
-
-    public function __toString(){
-        return $this->title;
-    }
 }

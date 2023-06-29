@@ -7,6 +7,7 @@ use App\Form\PostType;
 use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Service\FileUploader;
+use App\Service\CallApiService;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PostController extends AbstractController
 {
+    private $callApiService;
+
+    public function __construct(CallApiService $callApiService)
+    {
+        $this->callApiService = $callApiService;
+    }
+
     #[Route('/post', name: 'app_post')]
     public function index(EntityManagerInterface $entityManager,  PostRepository $postRepository, Request $request): Response
     {

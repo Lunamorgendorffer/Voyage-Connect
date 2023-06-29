@@ -65,12 +65,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Comment::class, inversedBy: 'usersLike')]
     private Collection $LikesComment;
 
-    #[ORM\ManyToMany(targetEntity: Post::class)]
-    private Collection $Likes;
 
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'userFavorites')]
     private Collection $favoritePost;
+
+    #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'likes')]
+    private Collection $postlikes;
 
     public function __construct()
     {
@@ -79,6 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->favoritePost = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->likesComment = new ArrayCollection();
+        $this->postlikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -323,23 +325,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Post>
      */
-    public function getLikes(): Collection
+    public function getPostlikes(): Collection
     {
-        return $this->likes;
+        return $this->postlikes;
     }
 
-    public function addLike(Post $like): self
+    public function addPostlike(Post $postlike): self
     {
-        if (!$this->likes->contains($like)) {
-            $this->likes->add($like);
+        if (!$this->postlikes->contains($postlike)) {
+            $this->postlikes->add($postlike);
+            $postlike->addLike($this);
         }
 
         return $this;
     }
 
-    public function removeLike(Post $like): self
+    public function removePostlike(Post $postlike): self
     {
-        $this->likes->removeElement($like);
+        if ($this->postlikes->removeElement($postlike)) {
+            $postlike->removeLike($this);
+        }
 
         return $this;
     }
@@ -403,4 +408,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->pseudo;
     }
+
 }
