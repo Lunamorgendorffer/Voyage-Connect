@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Post;
-
+use App\Service\CallApiService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -15,18 +15,26 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PostType extends AbstractType
 {
-   
-
- 
     
+    private $callApiService;
+
+    public function __construct(CallApiService $callApiService)
+    {
+        $this->callApiService = $callApiService;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-       
+        $countries = $this->callApiService->getCountry();
+        // dd($this->callApiService->getCountry());
+        // $countryChoices = [];
+
+        // foreach ($countries as $country) {
+        //     $countryChoices[$country['name']['common']] = $country['name']['common'];
+        // }
 
         $builder
             ->add('title')
             ->add('description')
-            // ->add('creationDate')
             ->add('image', FileType::class,[
                 'label' => 'profile Picture',
                 'mapped' => false,
@@ -44,7 +52,11 @@ class PostType extends AbstractType
                     ])
                 ],
             ])
-           
+            ->add('country', ChoiceType::class, [
+            //    'class'=>CallApiService::class,
+                'label_attr' => $countries
+                // 'required' => false,
+            ])
             ->add('submit', SubmitType::class)
         ;
     }
@@ -55,6 +67,7 @@ class PostType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Post::class,
+            // 'data_class' => CallApiService::class,
         ]);
     }
 }

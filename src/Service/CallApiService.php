@@ -29,6 +29,19 @@ class CallApiService
         return $this->serializer->decode($content, 'json');
     }
 
+    public function getCountry()
+    {
+
+        $countries = $this->getAllCountries();
+        $countryChoices = [];
+        foreach ($countries as $country) {
+            return $countryChoices[$country['name']['common']] = $country['name']['common'];
+        }
+
+        return null;
+
+    }
+
  
 
     public function getCountryCapital(string $countryCode)

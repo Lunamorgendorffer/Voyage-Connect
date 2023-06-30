@@ -67,7 +67,10 @@ class PostController extends AbstractController
             $post = new post();  // alors crée un nouvel objet post 
         }
         // on crée le formulaire 
-        $form = $this->createForm(PostType::class, $post);
+        $form = $this->createForm(PostType::class, $post, [
+            
+        ]);
+
         $form->handleRequest($request);
 
         //quand on sousmet le formulaire 
