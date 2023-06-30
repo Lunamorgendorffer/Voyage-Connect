@@ -60,7 +60,7 @@
                             <div>
                                 {% if app.user %}
                                 <p>{{app.user.pseudo}}</p>
-                                <a href="{{ path('show_user', {'id': app.user.id})}}">See your profil</a>
+                                <a href="{{ path('app_user', {'id': app.user.id})}}">See your profil</a>
                                 {% endif %}
                             </div>
                         </div>
