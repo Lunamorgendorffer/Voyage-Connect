@@ -58,7 +58,7 @@
 
     <div class="post-row">
         <div class="activity-icons">
-            <div>{% include "components/_like.html.twig" %}</div>
+            <div>{% include "components/_like.html.twig" %}{{ post.likes|length }}</div>
             <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
             <div>{% include "components/_favoritepost.html.twig" %}</div>
 
