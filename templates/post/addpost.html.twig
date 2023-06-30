@@ -21,8 +21,9 @@
     {# {{ form_row(formAddpost.country) }} #}
     {# {{ dump(formAddpost.country.vars.choices) }} #}
     {% for choices in formAddpost.country.vars.choices %}
-        {% for choice in choices.choices %}
-            {{ choice.data }}
+        {% for key, choice in choices.choices %}
+            {{ choice.data }} 
+            {# la value dans le select devra etre choice.data #}
             {# {{ dump(choice.data) }} #}
         {% endfor %}
     {% endfor %}

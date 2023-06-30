@@ -55,7 +55,7 @@ class PostType extends AbstractType
                 ],
                 'mapped' => false,
                 'expanded' => false,
-                'multiple' => false
+                // 'multiple' => false
                 
                 // 'choice_label' => 'common',
                 // 'multiple' => true,
