@@ -25,12 +25,8 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $countries = $this->callApiService->getCountry();
-        // dd($this->callApiService->getCountry());
-        // $countryChoices = [];
+      
 
-        // foreach ($countries as $country) {
-        //     $countryChoices[$country['name']['common']] = $country['name']['common'];
-        // }
 
         $builder
             ->add('title')
@@ -54,8 +50,16 @@ class PostType extends AbstractType
             ])
             ->add('country', ChoiceType::class, [
             //    'class'=>CallApiService::class,
-                'label_attr' => $countries
-                // 'required' => false,
+                'choices' => [
+                    'Pays' => $countries,
+                ],
+                'mapped' => false,
+                'expanded' => false,
+                'multiple' => false
+                
+                // 'choice_label' => 'common',
+                // 'multiple' => true,
+                
             ])
             ->add('submit', SubmitType::class)
         ;

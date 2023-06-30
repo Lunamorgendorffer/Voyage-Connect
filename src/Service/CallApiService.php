@@ -35,10 +35,11 @@ class CallApiService
         $countries = $this->getAllCountries();
         $countryChoices = [];
         foreach ($countries as $country) {
-            return $countryChoices[$country['name']['common']] = $country['name']['common'];
+            $countryChoices[] = $country['name']['common'];
+        
         }
 
-        return null;
+        return $countryChoices;
 
     }
 

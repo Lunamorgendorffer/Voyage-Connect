@@ -18,7 +18,15 @@
     {{ form_row(formAddpost.description) }}
     {{ form_row(formAddpost.image) }}
     {# {{ form_row(formAddpost.country) }} #}
-    
+    {# {{ form_row(formAddpost.country) }} #}
+    {# {{ dump(formAddpost.country.vars.choices) }} #}
+    {% for choices in formAddpost.country.vars.choices %}
+        {% for choice in choices.choices %}
+            {{ choice.data }}
+            {# {{ dump(choice.data) }} #}
+        {% endfor %}
+    {% endfor %}
+
 {{ form_end(formAddpost) }}
 
 
