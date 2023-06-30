@@ -7,10 +7,10 @@
 <div class="post-container">
     <div class="post-row">
         <div class="user-profile">
-            {% if app.user.avatar == null %}
+            {% if post.user.avatar == null %}
                 <img src="{{asset('img/user.png')}}">
             {% else %}
-                <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+                <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
             {% endif %}
             <div>
                 <p>{{post.user}}</p>
@@ -39,10 +39,10 @@
 <div class="comment-container">
     <div class="comment-row">
         <div class="user-profile">
-            {% if app.user.avatar == null %}
+            {% if comment.user.avatar == null %}
                 <img src="{{asset('img/user.png')}}">
             {% else %}
-                <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+                <img src="{{asset('uploads/' ~ comment.user.avatar)}}" > 
             {% endif %}
             <div class="user-profile-info">
                 <p>{{comment.user}}</p>
@@ -55,7 +55,7 @@
         {{comment}} <br>
     </p>
     <div class="post-btn">
-        {% include "components/_likeComment.html.twig" %}
+        {# {% include "components/_likeComment.html.twig" %} #}
         <button class="btn-edit"><a href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a></button> 
         <button class="btn-delete" ><a href="{{ path('delete_comment', {'id':comment.id}) }}">Delete</a></button><br>
     </div>
