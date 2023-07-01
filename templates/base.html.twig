@@ -28,9 +28,7 @@
             
             <div class="nav-right">
                 <ul>
-                    <li><img src="{{ asset('img/images/notification.png') }}" alt=""></li>
-                    <li><img src="{{ asset('img/images/inbox.png') }}" alt=""></li>
-                    <li><img src="{{asset('img/images/video.png')}}" alt=""></li>
+                    <li><i class="fa-regular fa-bell fa-xl"></i></li>
                 </ul>
 
                 <div class="nav-user-icon online">
@@ -38,7 +36,8 @@
                         {% if app.user.avatar == null %}
                             <img src="{{asset('img/user.png')}}">
                         {% else %}
-                            <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+                            <img src="{{asset('uploads/' ~ app.user.avatar)}}" >
+                            <i class="fas fa-caret-down"></i> 
                         {% endif %}
                     {% endif %}
                 </div>
@@ -100,14 +99,35 @@
             <div class="left-sidebard">
                 <div class="imp-links">
                     <h5>Menu</h5>
-                    <a href="{{ path('app_home') }}"><i class="fas fa-home"></i>Home</a>
-                    <a href="{{ path('app_post') }}"><i class="fas fa-tasks"></i>Questions</a>
-                    <a href="#"><i class="fas fa-tag"></i>Tag</a>
-                    <a href="#">See more</a>
+                    <table>
+                        <tr>
+                            <td><i class="fas fa-home"></i></td>
+                            <td><a href="{{ path('app_home') }}">Home</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-tasks"</td>
+                            <td><a href="{{ path('app_post') }}"></i>Posts</a</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa-brands fa-wpexplorer fa-lg"></i></td>
+                            <td><a href="{{ path('app_api')}}"></i>Api</a></td>
+                        </tr>
+
+                        <tr>
+                            <td><i class="fas fa-tag"></i></td>
+                        <td><a href="#"></i>Tag</a></td>
+                        </tr>
+                    </table>
+                    {# <div class="imp-link-flex">
+                        <a href="{{ path('app_home') }}"><i class="fas fa-home"></i>Home</a>
+                        <a href="{{ path('app_post') }}"><i class="fas fa-tasks"></i>Posts</a>
+                        <a href="{{ path('app_api')}}"><i class="fa-brands fa-wpexplorer fa-lg"></i>Api</a>
+                        <a href="#"><i class="fas fa-tag"></i>Tag</a>
+                    </div> #}
                 </div>
                 <div class="shorcut-links">
                     <h5>Personal Navigator</h5>
-                    <a href="#"><i class="fas fa-question-circle"></i>Your Question </a>
+                    <a href="#"><i class="fas fa-question-circle"></i>Your Posts</a>
                     <a href="#"><i class="fas fa-heart"></i>Your likes</a>
                     <a href="#"><i class="fas fa-bookmark"></i>Your Bookmarks</a>
     
@@ -116,65 +136,32 @@
 
             <div class="main-content">
                 {% block body %}{% endblock %}
-                <button type="button" class="load-more-btn">load-more</button>
             </div>
 
             <div class="right-sidebard">
                 <div class="sidebar-title">
-                    <h4>Most-reading posts</h4>
+                    <h4><i class="fa-solid fa-arrow-trend-up"></i>Most-reading posts</h4>
                     <a href="#">See All</a>
                 </div>
                 <div class="event">
-                    <div class="left-event">
-                        <h3>18</h3>
-                        <span>March</span>
-                    </div>
-                    <div class="right-event">
-                        <h4>Social Media</h4>
-                        <p><i class="fa-solid fa-location-dot"></i>willson Tech park</p>
-                        <a href="#">More Info</a>
-                    </div>
+                    {% for post in posts %}
+                        {% if post.likes|length > 1 %}
+                            <div class="post">
+                            <li>{{ post.title }}</li>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <div class="event">
-                    <div class="left-event">
-                        <h3>22</h3>
-                        <span>June</span>
-                    </div>
-                    <div class="right-event">
-                        <h4><i class="fa-solid fa-location-dot"></i>Mobile Marketing</h4>
-                        <p>willson Tech park</p>
-                        <a href="#">More Info</a>
-                    </div>
-                </div>
+
                 <div class="sidebar-title">
-                    <h4>Featured links</h4>
-                    <a href="#">Close</a>
+                    <h4><i class="fa-solid fa-list"></i>Featured links</h4>
                 </div>
-                <a href="#"><img class="sidebar-ads"  src="{{asset('img/images/advertisement.png')}}" alt="">latest News</a>
-                <a href="#"><img class="sidebar-ads"  src="{{asset('img/images/feed-image-4.png')}}" alt="">Friends</a>
-                <a href="#"><img class="sidebar-ads"  src="{{asset('img/images/feed-image-3.png')}}" alt="">Group</a>
-                <div class="sidebar-title">
-                    <h4>Conversation</h4>
-                    <a href="#">Hide Chat</a>
+                <div class="rgpd-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">CGU</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
                 </div>
-                <div class="online-list">
-                    <div class="online">
-                        <img src="{{asset('img/images/member-1.png')}}" alt="">
-                    </div>
-                    <p>Alison Brie</p>
-                </div>
-                <div class="online-list">
-                    <div class="online">
-                        <img src="{{asset('img/images/member-2.png')}}" alt="">
-                    </div>
-                    <p>Jackson Wang</p>
-                </div>
-                <div class="online-list">
-                    <div class="online">
-                        <img src="{{asset('img/images/member-3.png')}}" alt="">
-                    </div>
-                    <p>Rose Acer</p>
-                </div>
+                
             </div>
         </div>
 

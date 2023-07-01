@@ -4,9 +4,12 @@
 
 
 {% block body %}
+<div class="post-input-container">
+    <button class="btn-add"><a href="{{ path('add_post')}}">Add Post </a></button><br>
+</div>
 
-<div class="write-post-container">
-    <div class="user-profile">
+{# <div class="write-post-container"> #}
+    {# <div class="user-profile">
         {% if app.user.avatar == null %}
             <img src="{{asset('img/user.png')}}">
         {% else %}
@@ -15,22 +18,10 @@
           
         <div>
             <p>{{app.user.pseudo}}</p>
-            <small>Public <i class="fas fa-caret-down"></i></small>
+            
         </div>
-    </div>
-    <div class="post-input-container">
-        <div class="addbtn">
-            <button class="btn-add"><a href="{{ path('add_post')}}">Add Post </a></button><br>
-        </div>
-        {# <div class="add-post-links">
-            <div class="post-links">
-                <a href="#"><img src="{{asset('img/images/live-video.png')}}" alt="">Live video</a>
-                <a href="#"><img src="{{asset('img/images/photo.png')}}" alt="">Photo/video</a>
-                <a href="#"><img src="{{asset('img/images/feeling.png')}}" alt="">Feeling/Activity</a>
-            </div>
-        </div> #}
-    </div>
-</div>
+    </div> #}
+{# </div> #}
 
 {% for post in posts %} 
 {# {{ dump(post) }} #}
@@ -49,12 +40,15 @@
         </div>
         <a href="#"><i class="fas fa-ellipsis-v"></i></a>
     </div>
-    <p class="post-text">
-        <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
-        {{post.description}}
-    </p>
-
-    <img style="max-width:50%" src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
+    <div class="post-text">
+        <h5>
+            <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+        </h5>
+        <p>{{post.description}}</p>
+    </div>
+    <figure>
+        <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
+    </figure>
 
     <div class="post-row">
         <div class="activity-icons">

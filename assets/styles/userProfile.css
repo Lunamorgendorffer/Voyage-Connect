@@ -8,12 +8,9 @@
     text-decoration: none;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    list-style: none;
 }
 
-body {
-    background-color: #F7F7F8;
-}
+
 
 .nav-user{
     background-color: #fffcfc!important;
