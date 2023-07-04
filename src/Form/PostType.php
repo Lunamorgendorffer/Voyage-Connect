@@ -53,8 +53,8 @@ class PostType extends AbstractType
                 'choices' => [
                     'Pays' => $countries,
                 ],
-                'mapped' => false,
-                'expanded' => false,
+                // 'mapped' => false,
+                // 'expanded' => false,
                 // 'multiple' => false
                 
                 // 'choice_label' => 'common',
