@@ -196,6 +196,21 @@
 
 }
 
+/* Ajoutez ce style pour mettre en évidence l'onglet actif */
+.title a.active {
+    font-weight: bold;
+    color: #000;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+
 .post-user {
     width:65%;
     background-color: #fff;
