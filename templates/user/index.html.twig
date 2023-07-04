@@ -29,43 +29,56 @@
     <div class="main-contenaire">
         <div class="post-user">
             <div class="title">
-                <div>About</div>
-                <div>Post</div>
-                <div>Comment</div>
+                <a href="#" data-target="about">About</a>
+                <a href="#" class="active" data-target="posts">Posts</a>
+                <a href="#" data-target="comments">Comments</a>
             </div>
-            
-            {% for post in app.user.posts %}
-            <div class="post-profile">
-                <div class="post-profile-info">
-                    <div class="detail">
-                        {% if post.user.avatar == null %}
-                            <img src="{{asset('img/user.png')}}">
-                        {% else %}
-                            <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
-                        {% endif %}
-                        <div class="name-date">
-                            <p class="v31_217">{{post.user.pseudo}}</p>
-                            <span class="v31_218">{{post.creationDate |format_datetime(locale='fr') }}</span>
+
+            <!-- Contenu de la section "About" -->
+            <div id="about" class="section">
+                <p>pseudo: {{app.user.pseudo}}</p>
+                <p>email: {{app.user.email}}</p>
+            </div>
+            <!-- Contenu de la section "About" -->
+            <div id="posts" class="section active">
+                {% for post in app.user.posts %}
+                <div  class="post-profile">
+                    <div class="post-profile-info">
+                        <div class="detail">
+                            {% if post.user.avatar == null %}
+                                <img src="{{asset('img/user.png')}}">
+                            {% else %}
+                                <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                            {% endif %}
+                            <div class="name-date">
+                                <p class="v31_217">{{post.user.pseudo}}</p>
+                                <span class="v31_218">{{ post.creationTime }}</span>
+                            </div>
                         </div>
+                        <a href="#"><i class="fas fa-ellipsis-h"></i></a>
                     </div>
-                    <a href="#"><i class="fas fa-ellipsis-h"></i></a>
+                    <div class="post-content ">
+                        <h3>{{post}}</h3>
+                        <p class="post-text">
+                            {{post.description}}
+                        </p>
+                        <figure>
+                            <img src="{{asset('uploads/' ~ post.image)}}"  alt="">
+                        </figure>
+                    </div>
+                    <div class="post-profile-info">
+                        <div>{% include "components/_like.html.twig" %}</div>
+                        <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
+                        <div>{% include "components/_favoritepost.html.twig" %}</div>
+                    </div>
                 </div>
-                <div class="post-content ">
-                    <h3>{{post}}</h3>
-                    <p class="post-text">
-                        {{post.description}}
-                    </p>
-                    <figure>
-                        <img src="{{asset('uploads/' ~ post.image)}}"  alt="">
-                    </figure>
-                </div>
-                <div class="post-profile-info">
-                    <div>{% include "components/_like.html.twig" %}</div>
-                    <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
-                    <div>{% include "components/_favoritepost.html.twig" %}</div>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
+
+            <!-- Contenu de la section "Comments" -->
+            <div id="comments" class="section">
+            </div>
+            <!-- Contenu de la section "Comments" -->
         </div>
 
         <div class="right-side">
