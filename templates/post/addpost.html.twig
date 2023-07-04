@@ -17,28 +17,7 @@
     {{ form_row(formAddpost.title) }}
     {{ form_row(formAddpost.description) }}
     {{ form_row(formAddpost.image) }}
-    {# {{ form_row(formAddpost.country) }} #}
-    {# {{ form_row(formAddpost.country) }} #}
-    {# {{ dump(formAddpost.country.vars.choices) }} #}
-    <div class="form-group">
-        <label>{{ formAddpost.country.vars.label }}</label>
-        <select >
-            {% for choices in formAddpost.country.vars.choices %}
-                {% for key, choice in choices.choices %}
-                    <option value="{{ choice.data }}">{{ choice.data }}</option>
-                    {# {{ dump(choice.data) }} #}
-                {% endfor %}
-            {% endfor %}
-        </select>
-    </div>
-
-    {# {% for choices in formAddpost.country.vars.choices %} #}
-        {# {% for key, choice in choices.choices %}
-            {{ choice.data }} 
-            {# la value dans le select devra etre choice.data #}
-        {# {% endfor %} #}
-    {# {% endfor %} #}
-
+    {{ form_widget(formAddpost.country) }}
 
 {{ form_end(formAddpost) }}
 

@@ -49,17 +49,13 @@ class PostType extends AbstractType
                 ],
             ])
             ->add('country', ChoiceType::class, [
-            //    'class'=>CallApiService::class,
-                'choices' => [
-                    'Pays' => $countries,
-                ],
-                // 'mapped' => false,
-                // 'expanded' => false,
-                // 'multiple' => false
-                
-                // 'choice_label' => 'common',
-                // 'multiple' => true,
-                
+                'choices' => $countries,
+                'choice_label' => function ($value, $key, $index) {
+                    return $value;
+                },
+                'choice_value' => function ($value) {
+                    return $value;
+                },
             ])
             ->add('submit', SubmitType::class)
         ;
