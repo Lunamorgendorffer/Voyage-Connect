@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use DateInterval;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PostRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 
@@ -103,6 +105,26 @@ class Post
         $this->creationDate = $creationDate;
 
         return $this;
+    }
+
+    public function getCreationTime(): string
+    {
+        $now = new DateTime();
+        $diff = $this->creationDate->diff($now);
+
+        if ($diff->d > 0) {
+            return $diff->format('%ad ago'); // ex: 3d ago
+        }
+
+        if ($diff->h > 0) {
+            return $diff->format('%hh %im ago'); // ex: 2h 30m ago
+        }
+
+        if ($diff->i > 0) {
+            return $diff->format('%im ago'); // ex: 45m ago
+        }
+
+        return 'Just now';
     }
 
     public function getImage(): ?string
@@ -214,23 +236,20 @@ class Post
         return $this->userFavorites->contains($user);
 
     }
-
-
-    public function __toString(){
-        return $this->title;
-    }
-
+    
     public function getCountry(): ?string
     {
         return $this->country;
     }
-
+    
     public function setCountry(?string $country): self
     {
         $this->country = $country;
 
         return $this;
     }
+
+    
 
     /**
      * @return Collection<int, User>
@@ -252,7 +271,7 @@ class Post
     public function removeLike(User $like): self
     {
         $this->likes->removeElement($like);
-
+        
         return $this;
     }
 
@@ -262,10 +281,13 @@ class Post
         return $this->likes->contains($user);
 
     }
-
+    
     public function howManyLikes(): int 
     {
         return count ($this->likes); 
     }
-
+    
+    public function __toString(){
+        return $this->title;
+    }
 }

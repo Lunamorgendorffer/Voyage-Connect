@@ -8,21 +8,6 @@
     <button class="btn-add"><a href="{{ path('add_post')}}">Add Post </a></button><br>
 </div>
 
-{# <div class="write-post-container"> #}
-    {# <div class="user-profile">
-        {% if app.user.avatar == null %}
-            <img src="{{asset('img/user.png')}}">
-        {% else %}
-            <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
-        {% endif %}
-          
-        <div>
-            <p>{{app.user.pseudo}}</p>
-            
-        </div>
-    </div> #}
-{# </div> #}
-
 {% for post in posts %} 
 {# {{ dump(post) }} #}
 <div class="post-container">
@@ -35,7 +20,7 @@
             {% endif %}
             <div>
                 <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
-                <span>{{post.creationDate| format_datetime(locale='fr') }}</span>
+                <span>{{ post.creationTime }}</span>
             </div>
         </div>
         <a href="#"><i class="fas fa-ellipsis-v"></i></a>
