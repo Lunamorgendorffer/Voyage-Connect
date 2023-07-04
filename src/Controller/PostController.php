@@ -81,7 +81,11 @@ class PostController extends AbstractController
             if ($image) { 
                 $imageFileName = $fileUploader->upload($image); 
                 $post->setImage($imageFileName);
+            }else {
+                // Aucun fichier d'image n'a été soumis, conserve l'ancienne valeur
+                $post->setImage($post->getImage());
             }
+            
             $post->setUser($user);
             $post->setCreationDate(new \DateTime());
 
