@@ -14,46 +14,43 @@
 </head>
 
 <body>
-    <div class="fill">
-        {% for region in regions %}
-        {# {{ dump(regions) }} #}
-        <div class="holder">
-            <div class="vessel">
-                <div class="cole">
-                    <h1 class="continent-title">{{region}}</h1>
-                    <p class="p">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex ea rerum porro adipisci tempora unde! Placeat ducimus sunt qui vero, 
-                        excepturi rem harum dignissimos numquam veniam voluptatem quam doloremque repellendus.
-                    </p>
-                    <button type="button">
-                        <a href="{{ path('detailRegion',{region}) }}">See more</a>
-                    </button>
-    
+
+    {# {{ dump(regions) }} #}
+    <div class="holder">
+        <div class="boxs">
+                {% for region in regions %}
+                <div class="boxi card1">
+                    <h5>{{region}}</h5>
+                    <button class="button"><a href="{{ path('detailRegion',{region}) }}">see more</a></button>
                 </div>
-                <div class="divs">
-                    <div class="boxs">
-                        <div class="boxi card1">
-                            <h5>Mauritania</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                        <div class="boxi card2">
-                            <h5>Algeria</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                        <div class="boxi card3">
-                            <h5>Egypt</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                        <div class="boxi card4">
-                            <h5>EAU</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
+                {% endfor %}  
+            </div>
+        </div>
+        
+        
+        {# <div class="vessel">
+            
+            <div class="divs">
+                <div class="boxs">
+                    <div class="boxi card1">
+                        <h5>Mauritania</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                    <div class="boxi card2">
+                        <h5>Algeria</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                    <div class="boxi card3">
+                        <h5>Egypt</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                    <div class="boxi card4">
+                        <h5>EAU</h5>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     </div>
                 </div>
             </div>
-        </div>
-        {% endfor %}  
-    </div>
-   
-</body>
+        </div> #}
+    </body>
 
 </html>

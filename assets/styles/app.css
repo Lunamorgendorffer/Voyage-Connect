@@ -554,50 +554,17 @@ body{
 }
 
 .holder{
-    width: 100%;
-    height: 100vh;
-    background-image:url('/public/img/country/background.png');
-    /* filter: grayscale(50%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image:url('/public/img/country/background.jpg');
     background-position: center ;
     background-size: cover;
-    padding-left: 8%;
-    padding-right: 8%;
-    border-bottom: 1px solid #000000;
-    margin-bottom: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+
 }
 
-.vessel{
-    display: flex;
-    height: 88%;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.cole{
-    flex-basis: 50% !important;
-}
-
-h1{
-    color: #fff;
-    font-size: 100px;
-    text-transform: uppercase;
-}
-
-.p{
-  color:#fff;
-  font-size: 20px;
-  line-height: 15px;  
-}
-
-p{
-    color:#fff;
-    font-size: 14px;
-    line-height: 15px;  
-}
-
-
-button{
+.button{
     width:180px;
     color: #000;
     font-size: 12px;
@@ -605,67 +572,46 @@ button{
     background-color: #fff;
     border: none;
     border-radius: 20px;
-    outline: none;
-    margin-top: 30px;
+    position: relative;
+    top: 20%;
+    left: 14%;
 }
 .boxs{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;  
+    display: flex;
+    align-items: center;
+    /* margin: auto 0; */
 }
 
-/* .divs{
-    position: absolute;
-    right: 6%;
-    bottom: 0;
-} */
 
 .boxi{
-    width: 250px;
-    height: 280px;
+    width: 300px;
+    height: 380px;
     border-radius: 10px;
     padding: 15px 25px;
     cursor: pointer;
     margin: 10px 15px;
-    background-position: center ;
-    background-size: cover;
+    /* background-position: center ;
+    background-size: cover; */
     transition: transform 0.5s;
 }
 
 .card1{
-    background-image: url('/public/img/country/pic-1.png');
-
-}
-
-.card2{
-    background-image: url('/public/img/country/pic-2.png');
-
-}
-
-.card3{
-    background-image: url('/public/img/country/pic-3.png');
-
-}
-
-.card4{
-    background-image: url('/public/img/country/pic-4.png');
+    /* background-image: url('/public/img/country/pic-1.png'); */
+    background-color: #1876f2;
 
 }
 
 .boxi:hover{
     transform: translateY(-10px);
 }
+
 h5{
     color: #fff;
     text-shadow: 0 0 5px #999;
+    text-align: center;
+    text-transform: uppercase;
 }
 
-.card p{
-    text-shadow: 0 0 5px #999;
-    font-size: 8px;
-}
 
 
 
