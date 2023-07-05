@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Messages;
 use App\Form\MessagesType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,7 +21,7 @@ class MessagesController extends AbstractController
     }
 
     #[Route('/send', name: 'send')]
-    public function send(Request $request): Response
+    public function send(EntityManagerInterface $entityManager, Request $request): Response
     {
         $message = new Messages();
         $form = $this->createForm(MessagesType::class, $message);
@@ -30,16 +31,24 @@ class MessagesController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $message->setSender($this->getUser());
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($message);
-            $em->flush();
+            $message=$form->getData();
+            $entityManager->persist($message);
+            $entityManager->flush();
 
-            $this->addFlash("message", "Message envoyé avec succès.");
-            return $this->redirectToRoute("messages");
+            // $this->addFlash("message", "Message envoyé avec succès.");
+            return $this->redirectToRoute("app_messages");
         }
 
         return $this->render("messages/send.html.twig", [
             "form" => $form->createView()
         ]);
     }
+
+    #[Route('/received', name: 'received')]
+    public function received(): Response
+    {
+        return $this->render('messages/received.html.twig');
+    }
+    
+
 }

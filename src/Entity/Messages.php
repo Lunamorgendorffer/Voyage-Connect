@@ -24,7 +24,7 @@ class Messages
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column]
-    private ?bool $is_read = null;
+    private ?bool $is_read;
 
     #[ORM\ManyToOne(inversedBy: 'sent')]
     #[ORM\JoinColumn(nullable: false)]
@@ -36,6 +36,7 @@ class Messages
 
     public function __construct(){
         $this->created_at = new \DateTimeImmutable();
+        $this->is_read = false;
 
     }
     public function getId(): ?int
