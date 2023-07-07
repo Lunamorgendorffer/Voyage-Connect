@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Messages;
 use App\Form\MessagesType;
+use App\Entity\Notification;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,12 @@ class MessagesController extends AbstractController
 {
     #[Route('/messages', name: 'app_messages')]
     public function index(): Response
-    {
+    {   
+        // Récupérer les notifications de l'utilisateur connecté
+        $notifications = $this->getUser()->getNotifications();
+
         return $this->render('messages/index.html.twig', [
-            'controller_name' => 'MessagesController',
+            'notifications' => $notifications,
         ]);
     }
 
@@ -33,6 +37,14 @@ class MessagesController extends AbstractController
 
             $message=$form->getData();
             $entityManager->persist($message);
+            $entityManager->flush();
+
+            $notification = new Notification();
+            $notification->setNotifyMessage("Vous avez reçu un nouveau message.");
+            $notification->setUser($message->getRecipient());
+            $notification->setRelatedMessage($message);
+
+            $entityManager->persist($notification);
             $entityManager->flush();
 
             // $this->addFlash("message", "Message envoyé avec succès.");

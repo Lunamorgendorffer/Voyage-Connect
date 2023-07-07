@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\MessagesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,9 +36,13 @@ class Messages
     #[ORM\JoinColumn(nullable: false)]
     private ?User $recipient = null;
 
+    #[ORM\OneToMany(mappedBy: 'related_message', targetEntity: Notification::class, orphanRemoval: true)]
+    private Collection $notifications_message;
+
     public function __construct(){
         $this->created_at = new \DateTimeImmutable();
         $this->is_read = false;
+        $this->notifications_message = new ArrayCollection();
 
     }
     public function getId(): ?int
@@ -112,6 +118,36 @@ class Messages
     public function setRecipient(?User $recipient): self
     {
         $this->recipient = $recipient;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notification>
+     */
+    public function getNotificationsMessage(): Collection
+    {
+        return $this->notifications_message;
+    }
+
+    public function addNotificationsMessage(Notification $notificationsMessage): self
+    {
+        if (!$this->notifications_message->contains($notificationsMessage)) {
+            $this->notifications_message->add($notificationsMessage);
+            $notificationsMessage->setRelatedMessage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotificationsMessage(Notification $notificationsMessage): self
+    {
+        if ($this->notifications_message->removeElement($notificationsMessage)) {
+            // set the owning side to null (unless already changed)
+            if ($notificationsMessage->getRelatedMessage() === $this) {
+                $notificationsMessage->setRelatedMessage(null);
+            }
+        }
 
         return $this;
     }
