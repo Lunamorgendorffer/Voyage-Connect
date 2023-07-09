@@ -34,6 +34,9 @@ class Post
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
+    #[ORM\Column(type: Types::BOOLEAN)]
+    private bool $locked = false;
+
     #[ORM\ManyToOne(inversedBy: 'post', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
@@ -289,5 +292,25 @@ class Post
     
     public function __toString(){
         return $this->title;
+    }
+
+    /**
+     * Get the value of locked
+     */ 
+    public function getLocked()
+    {
+        return $this->locked;
+    }
+
+    /**
+     * Set the value of locked
+     *
+     * @return  self
+     */ 
+    public function setLocked($locked)
+    {
+        $this->locked = $locked;
+
+        return $this;
     }
 }
