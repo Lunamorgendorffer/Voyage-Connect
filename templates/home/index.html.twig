@@ -19,6 +19,9 @@
                     <a href="{{ path('app_api')}}">Api</a>
                     <a href="{{ path('app_post')}}">Posts</a>
                     <a href="{{ path('app_user')}}">User</a>
+                    {% if is_granted ('ROLE_ADMIN') %}
+                        <a href="{{ path('admin_index')}}">Admin</a>
+                    {% endif %}
                     <a href="{{ path('app_logout')}}">Se deconnecter</a>
                 </div>
             </div>
