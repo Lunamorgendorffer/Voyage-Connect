@@ -10,13 +10,22 @@ import './styles/app.css';
 import './styles/register.css';
 import './styles/home.css';
 import './styles/userProfile.css';
+
+import './scripts/profilscript.js';
 import './scripts/menu-nav.js';
 import './scripts/scrollreveal.min.js';
-import ScrollReveal from 'scrollreveal';
 
 import Like from './scripts/like.js';
 import Favorite from './scripts/favorite.js';
-// import './scripts/profilscript.js';
+import ScrollReveal from 'scrollreveal';
+
+//--------- partie pour le switch du panel Admin pour ban un user ---------//
+document.addEventListener('DOMContentLoaded', function() {
+    const switchElements = document.querySelectorAll('input[id^=switch]');
+    console.log(switchElements.length);
+    const formElement = document.getElementById('banForm');
+});
+
 
 /*=============== SHOW MENU ===============*/
 const navMenu = document.getElementById('nav-menu');
@@ -35,8 +44,6 @@ if(navClose){
     })
 }
 
-
-
 /*=============== REMOVE MENU MOBILE ===============*/
 
 const navLink = document.querySelectorAll('.nav_link');
@@ -54,13 +61,6 @@ const blurHeader = () => {
 };
 
 window.addEventListener('scroll', blurHeader);
-
-
-/*=============== SHOW SCROLL UP ===============*/ 
-
-
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
@@ -89,28 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
         new Favorite(favoriteElements);
     }
 
-    const links = document.querySelectorAll(".title a");
-    const sections = document.querySelectorAll(".section");
-    console.log('hello')
-    // Ajoutez un gestionnaire d'événement de clic à chaque lien
-    links.forEach(function(link) {
-        link.addEventListener("click", function(e) {
-            e.preventDefault();
+    // //--------- Ban User ---------//
+    // const switchElements = document.querySelectorAll('input[id^=switch]');
+    // console.log(switchElements.length);
+    // const formElement = document.getElementById('banForm');
 
-            // Supprimez la classe "active" de tous les liens et sections
-            links.forEach(function(link) {
-                link.classList.remove("active");
-            });
-
-            sections.forEach(function(section) {
-                section.classList.remove("active");
-            });
-
-            // Ajoutez la classe "active" au lien et à la section correspondants
-            const target = this.getAttribute("data-target");
-            this.classList.add("active");
-            document.getElementById(target).classList.add("active");
-        });
-    });
-    
 })
