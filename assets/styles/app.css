@@ -11,7 +11,7 @@
 :root{
     --body-color:#efefef;
     --nav-color: #fff;
-    --bg-color:#fff;
+    --bg-color: #fff5ee;
 }
 
 .dark-theme{
@@ -21,7 +21,13 @@
 }
 
 body{
-   background: var(--body-color) ; 
+   /* background: #efefef ;  */
+   /* background-color: #cecece; */
+    /* background-image: linear-gradient(315deg, #f7b42c 0%, #fc575e 74%); */
+    /* background: linear-gradient(315deg, rgba(249,139,66,1) 0%, rgba(252,87,94,1) 74%); */
+    /* background-image: url('/public/img/1.jpeg'); */
+    background: rgb(63,222,255);
+    background: linear-gradient(90deg, rgba(63,222,255,1) 0%, rgba(63,112,255,1) 100%);
    transition: background 0.3s;
 }
 
@@ -29,7 +35,12 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background:var(--nav-color);
+    /* background-color: hsla(0, 0%, 0%, .3); */
+    backdrop-filter: blur(25px);
+    background: #efefef;
+    /* background: rgb(63,222,255);
+background: linear-gradient(90deg, rgba(63,222,255,1) 0%, rgba(63,112,255,1) 100%); */
+    /* background:var(--nav-color); */
     padding: 5px 5%;
     position: sticky;
     top: 0;
@@ -48,19 +59,18 @@ body{
 }
 
 .nav-left a{
-    color: #0a0a0a;
+    color: #fff;
     font-weight: 600;
     font-size: 20px;
 }
 
 .nav-right ul li {
     list-style: none;
-    display: inline-block ;
+    
 }
 
-.nav-right ul li img {
-    width: 28px;
-    margin: 0 15px;
+.nav-right ul  {
+    margin: 0;
 }
 
 .nav-user-icon {
@@ -127,7 +137,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:50px;
+    /* gap:50px; */
 }
 
 .right-sidebard{
@@ -176,15 +186,15 @@ body{
     margin-bottom: 30px;
     color: #626262;
     gap: 15px;
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 
 
 
-.shorcut-links{
+/* .shorcut-links{
     width: 100%;
-}
+} */
 
 
 .imp-links h5, .shorcut-links h5{
@@ -456,7 +466,8 @@ body{
 }
 
 .btn-add{
-    background-color: #23a875;
+    /* background-color: #23a875; */
+    background-color: #ffa343;
     border-radius: 8px;
     border: none;
     padding: 10px;
@@ -488,9 +499,10 @@ body{
 }
 
 .user-profile a{
-    font-size: 12px;
-    color: #1876f2;
+    /* font-size: 12px; */
+    /* color: #1876f2; */
     text-decoration: none;
+    text-transform: capitalize;
 }
 
 .settings-menu-inner{
@@ -606,9 +618,7 @@ body{
 }
 
 h5{
-    color: #fff;
-    text-shadow: 0 0 5px #999;
-    text-align: center;
+    
     text-transform: uppercase;
 }
 
