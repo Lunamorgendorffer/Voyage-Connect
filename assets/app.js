@@ -11,10 +11,70 @@ import './styles/register.css';
 import './styles/home.css';
 import './styles/userProfile.css';
 import './scripts/menu-nav.js';
+import './scripts/scrollreveal.min.js';
+import ScrollReveal from 'scrollreveal';
 
 import Like from './scripts/like.js';
 import Favorite from './scripts/favorite.js';
 // import './scripts/profilscript.js';
+
+/*=============== SHOW MENU ===============*/
+const navMenu = document.getElementById('nav-menu');
+const navToggle = document.getElementById('nav-toggle');
+const navClose = document.getElementById('nav-close');
+
+if(navToggle){
+    navToggle.addEventListener('click',() =>{
+        navMenu.classList.add('show-menu');
+    })
+}
+
+if(navClose){
+    navClose.addEventListener('click',() =>{
+        navMenu.classList.remove('show-menu');
+    })
+}
+
+
+
+/*=============== REMOVE MENU MOBILE ===============*/
+
+const navLink = document.querySelectorAll('.nav_link');
+
+const linkAction = ()  =>{
+    const NavMenu = document.getElementById('nav_menu');
+    navMenu.classList.remove('show-menu');
+}
+
+navLink.forEach(n=>navMenu.addEventListener('click', n, linkAction))
+/*=============== ADD BLUR TO HEADER ===============*/
+const blurHeader = () => {
+    const header = document.getElementById('header');
+    window.scrollY >= 50 ? header.classList.add('blur-header') : header.classList.remove('blur-header');
+};
+
+window.addEventListener('scroll', blurHeader);
+
+
+/*=============== SHOW SCROLL UP ===============*/ 
+
+
+/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+
+
+/*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+    origin:'top',
+    distance:'600px',
+    duration: 300,
+    delay:400,
+})
+
+sr.reveal ('.home_data', '.explore_data')
+sr.reveal ('.home_card', {delay:600, distance: '100px', interval:500})
+sr.reveal ('.post-card', {interval:800})
+sr.reveal ('home_data', {origin:'right'})
+
 
 document.addEventListener('DOMContentLoaded', () => {
     
@@ -53,47 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-})
-  
-
-const menuBtn = document.querySelector('.menu-btn');
-const navigation = document.querySelector('.nav');
-// console.log('nav')
-
-// menuBtn.addEventListener('click', () => {
-//     menuBtn.classList.toggle('active');
-//     navigation.classList.toggle('active');
-// })
-
-// script for video slider 
-
-const btns = document.querySelectorAll('.nav-btn');
-const slides = document.querySelectorAll('.video-slide');
-const contents = document.querySelectorAll('.content');;
-console.log('nav-btn')
-console.log('video-slide')
-
-var sliderNav= function(manual){
-    btns.forEach((btn) => {
-        btn.classList.remove('active');
-    });
-
-    slides.forEach((slide) => {
-        slide.classList.remove('active');
-    });
-
-    contents.forEach((content) => {
-        content.classList.remove('active');
-    });
-
-
-    btns[manual].classList.add('active');
-    slides[manual].classList.add('active');
-    contents[manual].classList.add('active');
-}
-
-btns.forEach((btn,i) => {
-    btn.addEventListener('click', () => {
-        sliderNav(i);
-    })
 })
