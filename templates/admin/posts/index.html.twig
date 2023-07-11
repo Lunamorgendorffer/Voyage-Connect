@@ -21,6 +21,7 @@
                             <th>List de postes</th>
                             <th>date de creation</th>
                             <th>Nombre de commentaires</th>
+                            <th>Lock</th>
                             <th>Modifier</th>
                         </tr>
                     </thead>
@@ -31,6 +32,14 @@
                             <td>{{post.title}}</td>
                             <td>{{post.creationDate | date ('d/m/Y') }}</td>
                             <td>{{post.comments|length }}</td>
+                            <td>
+                                <div class="form-check form-switch">
+                                    <form action="{{ path('admin_posts_lock') }}" method="post" id="lockForm">
+                                        <input class="form-check-input" type="checkbox" name="isLock" role="switch" id="switch{{ post.id }}" {{ post.Locked ? "checked" : ""}} onchange="this.form.submit()">
+                                        <input type="hidden" name="postId" value="{{ post.id }}">
+                                    </form>
+                                </div>
+                            </td>
                             <td><a href="{{ path('admin_posts_edit_post', {'id': post.id})}}" class="btn btn-warning">Modifer</a></td>
                         </tr>
                         {% endfor %}

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Service\FileUploader;
+use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,4 +64,26 @@ class PostsController extends AbstractController
         ]);
 
     }
+
+    // fonction pour bloqué un event
+    #[Route('/post/lock', name: 'lock', methods: ['POST'])]
+    public function lockPost(EntityManagerInterface $em, Request $request, PostRepository $postRepository): Response
+    {
+
+        if ($request->isMethod('POST')) {
+            $postId = $request->request->get('postId');
+            $post = $postRepository->find($postId);
+
+            if ($post) {
+
+                $isLock = $request->request->has('isLock');
+                $post->setLocked($isLock);
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('admin_posts_index');
+        }
+    }
+
+
 }

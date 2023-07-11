@@ -26,6 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const formElement = document.getElementById('banForm');
 });
 
+//--------- partie pour le switch du panel Admin pour lock un event ---------//
+document.addEventListener('DOMContentLoaded', function() {
+    const switchElements = document.querySelectorAll('input[id^=switch]');
+    console.log(switchElements.length);
+    const formElement = document.getElementById('lockForm');
+});
 
 /*=============== SHOW MENU ===============*/
 const navMenu = document.getElementById('nav-menu');
