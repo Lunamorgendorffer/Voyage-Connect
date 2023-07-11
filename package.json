@@ -19,6 +19,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "axios": "^1.4.0"
+        "axios": "^1.4.0",
+        "scrollreveal": "^4.0.9"
     }
 }
