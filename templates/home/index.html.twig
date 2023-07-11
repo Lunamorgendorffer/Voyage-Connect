@@ -3,88 +3,182 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <title>{% block title %}Home{% endblock %}</title>
     {% block stylesheet %}
     {{ encore_entry_link_tags('home') }}
     {% endblock %}
 </head>
 <body>
-    <header id="header-home">
-        <a href="{{ path('app_home')}}" class="logo">Voyage Connect</a>
-        <div class="menu-btn"></div>
-        {% if app.user %}
-            <div class="nav">
-                <div class="nav-items">
-                    <a href="{{ path('app_home')}}">Home</a>
-                    <a href="{{ path('app_api')}}">Api</a>
-                    <a href="{{ path('app_post')}}">Posts</a>
-                    <a href="{{ path('app_user')}}">User</a>
-                    {% if is_granted ('ROLE_ADMIN') %}
-                        <a href="{{ path('admin_index')}}">Admin</a>
-                    {% endif %}
-                    <a href="{{ path('app_logout')}}">Se deconnecter</a>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="nav_logo">Voyage Connect</a>
+            
+            <div class="nav_menu" id="nav-menu">
+                {% if app.user %}
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="{{ path('app_home') }}" class="nav_link">Home</a>
+                    </li>
+                    
+                    <li class="nav_item">
+                        <a href="{{ path('app_api')}}" class="nav_link">Explore</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">About Us</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_post') }}" class="nav_link">Posts</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_logout') }}" class="login">Log Out</a>
+                    </li>
+                {% else %}
+                    <li class="nav_item">
+                        <a href="{{ path('app_register')}}" class="login">Sign In</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_login')}}" class="login">Login</a>
+                    </li>
+                </ul>
+                {% endif %}
+            
+                <!-- Close Button -->
+                <div class="nav_close" id="nav-close">
+                    <i class="ri-close-line"></i>
                 </div>
             </div>
-        {% else %}
-            <ul style="display: flex; justify-content: center; gap:30px">
-                <li style="list-style-type: none;" ><a class="nav-link px-2 fs-3 fw-medium"href="{{ path('app_login')}}">Se connecter</a></li>
-                <li style="list-style-type: none;"><a class="nav-link px-2 fs-3 fw-medium " href="{{ path('app_register')}}">S'enregistrer</a></li>
-            </ul> 
-        {% endif %}
-        {% if app.user %}
-        <h3 style="text-align: center; margin:4vh;">Bienvenue {{app.user.pseudo}}</h3>
-        {% else %}
-        <h3 style="text-align: center; margin:4vh;" >Bienvenue Vous !</h3>
-        {% endif %}   
-    </header>
-    
-    <section class="home">
-        
-    
-        <video class="video-slide active" src="{{asset('build/video/1.mp4')}}" autoplay muted loop></video>
-        <video class="video-slide" src="{{asset('build/video/2.mp4')}}" autoplay muted loop></video>
-        <video class="video-slide" src="{{asset('build/video/3.mp4')}}" autoplay muted loop></video>
-        <video class="video-slide" src="{{asset('build/video/5.mp4')}}" autoplay muted loop></video>
-    
-    
-        <div class="content active">
-            <h1>Wonderful<br><span>Island</span></h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum rerum, cumque nihil mollitia incidunt magnam eum veritatis nobis beatae fuga consectetur alias quia nostrum corrupti quod itaque expedita earum nulla molestiae recusandae veniam doloremque et aliquid. Esse quas dolorum natus? Libero, velit. Culpa, ipsa laboriosam nobis, at exercitationem nisi sequi, tempore cupiditate temporibus itaque ea est laborum dicta similique optio impedit. Libero minus eos unde harum neque porro, repellendus ratione facere obcaecati, enim, commodi doloremque! Repudiandae minima saepe suscipit labore enim nesciunt recusandae quam quos nihil vero nemo vitae officiis laudantium sed cumque adipisci quae maxime, doloremque placeat et ab.</p>
-            <a href="#">Reade More</a>
-        </div>
-        <div class="content">
-            <h1>Camping<br><span>Island</span></h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum rerum, cumque nihil mollitia incidunt magnam eum veritatis nobis beatae fuga consectetur alias quia nostrum corrupti quod itaque expedita earum nulla molestiae recusandae veniam doloremque et aliquid. Esse quas dolorum natus? Libero, velit. Culpa, ipsa laboriosam nobis, at exercitationem nisi sequi, tempore cupiditate temporibus itaque ea est laborum dicta similique optio impedit. Libero minus eos unde harum neque porro, repellendus ratione facere obcaecati, enim, commodi doloremque! Repudiandae minima saepe suscipit labore enim nesciunt recusandae quam quos nihil vero nemo vitae officiis laudantium sed cumque adipisci quae maxime, doloremque placeat et ab.</p>
-            <a href="#">Reade More</a>
-        </div>
-        <div class="content">
-            <h1>Adventures<br><span>off Roads</span></h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum rerum, cumque nihil mollitia incidunt magnam eum veritatis nobis beatae fuga consectetur alias quia nostrum corrupti quod itaque expedita earum nulla molestiae recusandae veniam doloremque et aliquid. Esse quas dolorum natus? Libero, velit. Culpa, ipsa laboriosam nobis, at exercitationem nisi sequi, tempore cupiditate temporibus itaque ea est laborum dicta similique optio impedit. Libero minus eos unde harum neque porro, repellendus ratione facere obcaecati, enim, commodi doloremque! Repudiandae minima saepe suscipit labore enim nesciunt recusandae quam quos nihil vero nemo vitae officiis laudantium sed cumque adipisci quae maxime, doloremque placeat et ab.</p>
-            <a href="#">Reade More</a>
-        </div>
-        <div class="content">
-            <h1>Road trip<br><span>Together</span></h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum rerum, cumque nihil mollitia incidunt magnam eum veritatis nobis beatae fuga consectetur alias quia nostrum corrupti quod itaque expedita earum nulla molestiae recusandae veniam doloremque et aliquid. Esse quas dolorum natus? Libero, velit. Culpa, ipsa laboriosam nobis, at exercitationem nisi sequi, tempore cupiditate temporibus itaque ea est laborum dicta similique optio impedit. Libero minus eos unde harum neque porro, repellendus ratione facere obcaecati, enim, commodi doloremque! Repudiandae minima saepe suscipit labore enim nesciunt recusandae quam quos nihil vero nemo vitae officiis laudantium sed cumque adipisci quae maxime, doloremque placeat et ab.</p>
-            <a href="#">Reade More</a>
-        </div>
-        <div class="content">
-            <h1>Feel Nature<br><span>Relax</span></h1>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum rerum, cumque nihil mollitia incidunt magnam eum veritatis nobis beatae fuga consectetur alias quia nostrum corrupti quod itaque expedita earum nulla molestiae recusandae veniam doloremque et aliquid. Esse quas dolorum natus? Libero, velit. Culpa, ipsa laboriosam nobis, at exercitationem nisi sequi, tempore cupiditate temporibus itaque ea est laborum dicta similique optio impedit. Libero minus eos unde harum neque porro, repellendus ratione facere obcaecati, enim, commodi doloremque! Repudiandae minima saepe suscipit labore enim nesciunt recusandae quam quos nihil vero nemo vitae officiis laudantium sed cumque adipisci quae maxime, doloremque placeat et ab.</p>
-            <a href="#">Reade More</a>
-        </div>
-        <div class="media-icons">
-            <a href="https://fr-fr.facebook.com/"><i class="fab fa-facebook"></i></a>
-            <a href="https://twitter.com/?lang=fr"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/"><i class="fab fa-square-instagram"></i></a>
-        </div>
-        <div class="slider-navigation">
-            <div class="nav-btn active"></div>
-            <div class="nav-btn"></div>
-            <div class="nav-btn"></div>
-            <div class="nav-btn"></div>
+            <div class="nav_toggle" id="nav-toggle">
+                <i class="ri-menu-fill"></i>
             </div>
-        </div>
-    </section>
+        </nav>
+        <!-- Close Button -->
+    </header>
+    <!--==================== MAIN ====================-->
+    <main class="main">
+        <!--==================== HOME ====================-->
+       <section class="home section" id="home">
+           <!--<img src="./img/home-bg.jpg" alt="" class="home_bg">-->
+           <video class="home_bg" src="{{asset('video/3.mp4')}}" autoplay muted loop></video>
+           <div class="home_shadow"></div>
+
+           <div class="home_container">
+               <div class="home_data">
+                   <h3 class="home_subtitle">Welcome travellers </h3>
+                   <h1 class="home_title">Are you ready ?</h1>
+                   <p class="home_description">
+                       Experience unforgettable adventures.
+                   </p>
+                   {% if app.user %}
+                   <a href="{{ path('app_post') }}" class="button">Start Your Journey<i class="ri-arrow-right-line"></i></a>
+                   {% else %}
+                   <a href="{{ path('app_login') }}" class="nav_link">Start Your Journey<i class="ri-arrow-right-line"></i></a>
+                   {% endif %}
+               </div>
+           </section>
+
+           <section class="main-section">
+               <h2>Destinations</h2>
+               <div class="home_cards">
+                   <article class="home_card">
+                       <img src="{{asset('img/a.jpg')}}" alt="" class="home_card-img">
+                       <h3 class="home_card-title">Africa</h3>
+                       <div class="home_card-shadow"></div>
+                   </article>
+
+                   <article class="home_card">
+                       <img src="{{asset('img/am.jpg')}}" alt="" class="home_card-img">
+                       <h3 class="home_card-title">America</h3>
+                       <div class="home_card-shadow"></div>
+                   </article>
+
+                   <article class="home_card">
+                       <img src="{{asset('img/b.jpg')}}" alt="" class="home_card-img">
+                       <h3 class="home_card-title">Asia</h3>
+                       <div class="home_card-shadow"></div>
+                   </article>
+                   
+                   <article class="home_card">
+                       <img src="{{asset('img/home-mountain.jpg')}}" alt="" class="home_card-img">
+                       <h3 class="home_card-title">Europe</h3>
+                       <div class="home_card-shadow"></div>
+                   </article>
+
+                   <article class="home_card">
+                       <img src="{{asset('img/home-beach.jpg')}}" alt="" class="home_card-img">
+                       <h3 class="home_card-title">Oceania</h3>
+                       <div class="home_card-shadow"></div>
+                   </article>
+
+               </div>
+           </div>
+       </section>
+
+       <!--==================== EXPLORE ====================-->
+       <section class="explore" id="explore">
+           <div class="explore_container">
+               <div class="explore_content">
+                   <div class="explore_data">
+                       <h2>Explore The <br> 
+                           Best Paradises
+                       </h2>
+
+                       <p class="explore_descriscription"> Exploring paradises such as islands and 
+                           valleys when traveling the world is one of 
+                           the greatest experiences when you travel,<br> it 
+                           offers you harmony and peace and you 
+                           can enjoy it with great comfort.
+                       </p>
+                   </div>
+               </div>
+           </div>
+           <div class="explore_shadow"></div>
+       </section>
+
+       <!--==================== POPULAR ====================-->
+       <section class="popular section" id="popular">
+           <div class="popular_posts">
+               <div class="popular_subhead">
+                   <h2>Posts Trending</h2>
+                   <p>
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam, veniam nobis <br>assumenda atque voluptatum voluptates, 
+                       adipisci molestias consequatur eius maiores.
+                   </p>
+               </div>
+
+               <div class="posts">
+                   <div class="post-card">
+                       <img src="{{asset('img/popular-forest.jpg')}}" alt="">
+                       <h5>Title of post</h5>
+                   </div>
+                   <div class="post-card">
+                       <img src="./img/popular-lake.jpg" alt="">
+                       <h5>Title of post</h5>
+                   </div>
+                   <div class="post-card">
+                       <img src="{{asset('img/popular-mountain.jpg')}}" alt="">
+                       <h5>Title of post</h5>
+                   </div>
+               </div>
+             
+               <a class="button" href="#">See More <i class="ri-arrow-right-line"></i></a>
+           </div>
+           
+       </section>
+        
+       
+        
+       <!--==================== JOIN ====================-->
+       <section class="join section">
+           
+       </section>
+   </main>
+
+   <!--==================== FOOTER ====================-->
+   <footer class="footer">
+        
+   </footer>
+
     
     {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
