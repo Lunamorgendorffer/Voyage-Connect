@@ -14,12 +14,11 @@
     <body>
         <nav class="navmenu">
             <div class="nav-left">
-                <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo">
                 <a href="{{ path('app_home') }}">Voyage Connect</a>
             </div>
             
-            <div class="nav-center">
-                <div class="search-box w-100">
+            <div class="nav-center w-50">
+                <div class="search-box ">
                     {% include "components/_search_data.html.twig" with {
                         form: form ?? null
                     } only %}
@@ -28,7 +27,8 @@
             
             <div class="nav-right">
                 <ul>
-                    <li><i class="fa-regular fa-bell fa-xl"></i></li>
+                    <li><i class="fa-solid fa-bell"></i></li>
+                    <li><i class="fa-solid fa-envelope"></i></li>
                 </ul>
 
                 <div class="nav-user-icon online">
