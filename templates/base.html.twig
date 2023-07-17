@@ -17,12 +17,9 @@
                 <a href="{{ path('app_home') }}">Voyage Connect</a>
             </div>
             
-            <div class="nav-center w-50">
-                <div class="search-box ">
-                    {% include "components/_search_data.html.twig" with {
-                        form: form ?? null
-                    } only %}
-                </div>
+            <div class="search">
+                <input class="form-control" type="text" id="live_search" placeholder="Search...">
+                <div id="result"></div>
             </div>
             
             <div class="nav-right">
@@ -166,6 +163,7 @@
         </div>
 
         {% block javascripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
             {{ encore_entry_script_tags('app') }}
             {# {{ encore_entry_script_tags('nav') }} #}

@@ -38,23 +38,33 @@ class PostController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $searchData->page = $request->query->getInt('page', 1);
 
-            $posts = $postRepository->findBySearch($searchData);
-
+            
             // dd($posts);
             
             return $this->render('post/index.html.twig', [
                 'form' => $form->createView(),
                 'posts' => $posts
             ]);
-
+            
         }
 
-
+        
         return $this->render('post/index.html.twig', [
             'form' => $form->createView(),
             'posts' => $entityManager->getRepository(Post::class)->findAll(),
             
         ]);
+    }
+    
+    // fonction pour la recherche d'event par nom
+    #[Route("/post/search", name: "search", methods: ["GET"])]
+    public function search(Request $request, PostRepository $postRepository): Response
+    {
+        $searchTerm = $request->query->get('searchTerm');
+        
+        $posts = $postRepository->findBySearch($searchTerm);
+
+        return $this->json($posts);
     }
 
     // fonction ajout + edit une post

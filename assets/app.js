@@ -14,6 +14,7 @@ import './styles/userProfile.css';
 import './scripts/profilscript.js';
 import './scripts/menu-nav.js';
 import './scripts/scrollreveal.min.js';
+import'./scripts/searchData.js';
 
 import Like from './scripts/like.js';
 import Favorite from './scripts/favorite.js';
