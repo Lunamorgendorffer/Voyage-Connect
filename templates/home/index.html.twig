@@ -64,7 +64,11 @@
 
            <div class="home_container">
                <div class="home_data">
+                {% if app.user %}
+                    <h3 class="home_subtitle">Welcome {{app.user.pseudo}}</h3>
+                {% else %}
                    <h3 class="home_subtitle">Welcome travellers </h3>
+                {% endif %}  
                    <h1 class="home_title">Are you ready ?</h1>
                    <p class="home_description">
                        Experience unforgettable adventures.
@@ -147,16 +151,16 @@
 
                <div class="posts">
                    <div class="post-card">
-                       <img src="{{asset('img/popular-forest.jpg')}}" alt="">
-                       <h5>Title of post</h5>
+                       <img class="post-card-img"src="{{asset('img/popular-forest.jpg')}}" alt="">
+                       <h5 class="post-card-title">Title of post</h5>
                    </div>
                    <div class="post-card">
-                       <img src="./img/popular-lake.jpg" alt="">
-                       <h5>Title of post</h5>
+                       <img class="post-card-img" src="./img/popular-lake.jpg" alt="">
+                       <h5 class="post-card-title">Title of post</h5>
                    </div>
                    <div class="post-card">
-                       <img src="{{asset('img/popular-mountain.jpg')}}" alt="">
-                       <h5>Title of post</h5>
+                       <img class="post-card-img" src="{{asset('img/popular-mountain.jpg')}}" alt="">
+                       <h5 class="post-card-title">Title of post</h5>
                    </div>
                </div>
              

@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;1,100;1,300&family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Maven+Pro:wght@400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;900&family=Ubuntu:wght@400;500;700&display=swap');
+@font-face {
+    font-family:'Monecias-Regular';
+    src: url(../fonts/Monecias-Regular.otf);
+}
 
 *{
     margin:0;
@@ -11,7 +16,7 @@
 :root{
     --body-color:#efefef;
     --nav-color: #fff;
-    --bg-color: #fff5ee;
+    --bg-color: url('/public/img/n.png');
 }
 
 .dark-theme{
@@ -43,11 +48,18 @@ body{
     width: 75px;
     margin-right:45px;
 }
-
+.nav-center{
+    width: 47%;
+}
+.nav-left, .nav-right{
+    flex-basis: 25%;
+}
 .nav-left, .nav-right, .nav-center{
     display: flex;
     align-items: center;
+    justify-content: center;
 }
+
 
 .nav-left a{
     color: #fff;
@@ -55,21 +67,22 @@ body{
     font-size: 20px;
 }
 
-.nav-right ul li {
-    list-style: none;
-    
-}
-
-.nav-right ul  {
-    margin: 0;
-}
-
 .nav-user-icon {
     margin-left: 30px;
 }
-.nav-user-icon img{
-    width: 40px;
-    border-radius: 50%;
+
+.nav-icons{
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+
+.nav-icons i{
+    color: #fff;
+}
+.nav-user-pic{
+    width: 45px;
+    border-radius: 50% ;
     cursor: pointer;
 }
 
@@ -107,7 +120,13 @@ body{
     background-color: #41db51;
     position: absolute;
     top:0;
-    right:0;
+    right: 0;
+}
+
+.fa-caret-down{
+    position: absolute;
+    bottom: 0px;
+    right: 0;
 }
 /****************************************************MAIN*******************************************/
 .cont{
@@ -118,20 +137,15 @@ body{
 }
 
 .left-sidebard{
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     flex-basis: 25%;
     position: sticky;
     top: 70px;
-    align-self: flex-start;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* gap:50px; */
+    border-radius: 20px;
 }
 
 .right-sidebard{
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     flex-basis: 25%;
     position: sticky;
     top: 70px;
@@ -150,58 +164,32 @@ body{
 
 /****************************************LEFT SIDEBAR*****************************/
 .imp-links{
-    border-bottom: 1px solid #ccc ;
-    width: 100%;
+    border-bottom: 1px solid #9a9a9a;
+}
+.menu-links{
+    margin: 0px 10px;
+    padding: 5%;
 }
 
-.imp-links table{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.imp-links table td{
-    padding: 15px;
-   
-}
-
-.imp-links table td a{
-    color: #626262;
-    text-decoration: none;
-}
-
-.shorcut-links a{
+.imp-links a, .shorcut-links a{
     text-decoration: none;
     display: flex;
     align-items: center;
     margin-bottom: 30px;
     color: #626262;
     gap: 15px;
-    /* justify-content: center; */
+    font-size: 18px;
+   
 }
-
-
-
-
-/* .shorcut-links{
-    width: 100%;
-} */
-
 
 .imp-links h5, .shorcut-links h5{
     margin: 20px 0;
     color: #626262;
     font-weight: 500;
     text-align: center;
+    font-size: 2rem;
 }
 
-
-.search-bar input{
-    width:100%;
-    background: transparent;
-    padding: 10px;
-    outline: none;
-    border: 1px solid #9a9a9a;
-}
 
 /****************************************RIGHT SIDEBAR*****************************/
 .sidebar-title{
@@ -308,7 +296,8 @@ body{
 
 .post-container{
     width: 100%;
-    background-color:  var(--bg-color);
+    /* background-color:  var(--bg-color); */
+    background: url('/public/img/n.png');
     border-radius: 10px;
     padding: 20px;
     color: #626262;
@@ -334,6 +323,10 @@ body{
 .post-text h5 a{
     color: #0a0a0a;
     text-decoration: none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    /* font-family: 'Maven Pro', sans-serif; */
+
 }
 
 .post-text p{

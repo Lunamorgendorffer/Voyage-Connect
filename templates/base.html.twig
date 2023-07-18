@@ -17,23 +17,24 @@
                 <a href="{{ path('app_home') }}">Voyage Connect</a>
             </div>
             
-            <div class="search">
+            <div class="nav-center">
                 <input class="form-control" type="text" id="live_search" placeholder="Search...">
                 <div id="result"></div>
             </div>
             
             <div class="nav-right">
-                <ul>
-                    <li><i class="fa-solid fa-bell"></i></li>
-                    <li><i class="fa-solid fa-envelope"></i></li>
-                </ul>
+                <div class="nav-icons">
+                    <i class="fa-solid fa-bell fa-xl"></i>
+                    <i class="fa-solid fa-envelope fa-xl"></i>
+                </div>
+                
 
                 <div class="nav-user-icon online">
                     {% if app.user %}
                         {% if app.user.avatar == null %}
-                            <img src="{{asset('img/user.png')}}">
+                            <img class="nav-user-pic" s src="{{asset('img/user.png')}}">
                         {% else %}
-                            <img src="{{asset('uploads/' ~ app.user.avatar)}}" >
+                            <img  class="nav-user-pic" src="{{asset('uploads/' ~ app.user.avatar)}}" >
                             <i class="fas fa-caret-down"></i> 
                         {% endif %}
                     {% endif %}
@@ -96,37 +97,19 @@
             <div class="left-sidebard">
                 <div class="imp-links">
                     <h5>Menu</h5>
-                    <table>
-                        <tr>
-                            <td><i class="fas fa-home"></i></td>
-                            <td><a href="{{ path('app_home') }}">Home</a></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fas fa-tasks"</td>
-                            <td><a href="{{ path('app_post') }}"></i>Posts</a</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa-brands fa-wpexplorer fa-lg"></i></td>
-                            <td><a href="{{ path('app_api')}}"></i>Api</a></td>
-                        </tr>
-
-                        <tr>
-                            <td><i class="fas fa-tag"></i></td>
-                        <td><a href="#"></i>Tag</a></td>
-                        </tr>
-                    </table>
-                    {# <div class="imp-link-flex">
+                    <div class="menu-links">
                         <a href="{{ path('app_home') }}"><i class="fas fa-home"></i>Home</a>
+                        <a href="{{ path('app_api')}}"><i class="fa-brands fa-wpexplorer fa-lg"></i>Explore</a>
                         <a href="{{ path('app_post') }}"><i class="fas fa-tasks"></i>Posts</a>
-                        <a href="{{ path('app_api')}}"><i class="fa-brands fa-wpexplorer fa-lg"></i>Api</a>
-                        <a href="#"><i class="fas fa-tag"></i>Tag</a>
-                    </div> #}
+                    </div>
                 </div>
                 <div class="shorcut-links">
                     <h5>Personal Navigator</h5>
-                    <a href="#"><i class="fas fa-question-circle"></i>Your Posts</a>
-                    <a href="#"><i class="fas fa-heart"></i>Your likes</a>
-                    <a href="#"><i class="fas fa-bookmark"></i>Your Bookmarks</a>
+                    <div class="menu-links">
+                        <a href="#"><i class="fas fa-question-circle"></i>Your Posts</a>
+                        <a href="#"><i class="fas fa-heart"></i>Your likes</a>
+                        <a href="#"><i class="fas fa-bookmark"></i>Your Bookmarks</a>
+                    </div>
     
                 </div>
             </div>
@@ -163,10 +146,9 @@
         </div>
 
         {% block javascripts %}
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
             {{ encore_entry_script_tags('app') }}
-            {# {{ encore_entry_script_tags('nav') }} #}
         {% endblock %}
     </body>
 </html>
