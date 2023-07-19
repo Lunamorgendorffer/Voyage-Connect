@@ -9,14 +9,17 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 
 :root{
     --body-color:#efefef;
     --nav-color: #fff;
-    --bg-color: url('/public/img/n.png');
+    --bg-color: #f6f0eb;
+    /*========== Font and typography ==========*/
+    --body-font: "Poppins", sans-serif;
+    --title-font: 'Lato', sans-serif;
+    --text-font: 'Maven Pro', sans-serif;
 }
 
 .dark-theme{
@@ -24,6 +27,7 @@
     --nav-color: #000;
     --bg-color:#000;
 }
+
 
 body{
     background: rgb(63,222,255);
@@ -246,18 +250,11 @@ body{
 
 .user-profile p{
     margin-bottom: -5px;
-    font-weight: 500;
-    color: #626262;
-
+    font-weight: 600;
 }
 .user-profile small{
     font-size: 12px;
 }
-
-/* .post-input-container{
-    position: relative;
-    left: 80%;
-} */
 
 .post-input-container textarea{
     width:100%;
@@ -296,8 +293,8 @@ body{
 
 .post-container{
     width: 100%;
-    /* background-color:  var(--bg-color); */
-    background: url('/public/img/n.png');
+    background-color:  var(--bg-color);
+    /* background: url('/public/img/n.png'); */
     border-radius: 10px;
     padding: 20px;
     color: #626262;
@@ -330,8 +327,8 @@ body{
 }
 
 .post-text p{
-    color: #9a9a9a;
-    font-size: 15px;
+    color: #000000;
+    font-family: var(--text-font);
 }
 
 .post-container figure{
@@ -376,7 +373,9 @@ body{
 }
 
 .post-row a{
-    color: #626262;
+    color: #000;
+    font-family: var(--text-font);
+    text-decoration: none;
 }
 
 .load-more-btn{
@@ -482,9 +481,6 @@ body{
 }
 
 .user-profile a{
-    /* font-size: 12px; */
-    /* color: #1876f2; */
-    text-decoration: none;
     text-transform: capitalize;
 }
 
