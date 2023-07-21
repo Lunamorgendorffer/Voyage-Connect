@@ -1,13 +1,15 @@
-{% if app.user %}
+{# Vérifie si un utilisateur est connecté.  #}
+{% if app.user %} 
+{# Si connecté, crée un lien avec l'URL de l'action de like pour le post en utilisant la route nommée "app_like" #}
     <a  href="{{ path('app_like', {id: post.id}) }}" data-action="like" data-nb={{ post.likes|length }}>
-    {# <p>{{post.likes}}</p> #}
     {% endif %}
 
     <button>
+        {# Icône du coeur vide #}
         <i class="fa-regular fa-heart unfilled {{ app.user in post.likes ? 'd-none' : '' }}"></i>
+        {# Icône du coeur rempli #}
         <i class="fa-solid fa-heart filled {{ app.user in post.likes ? '' : 'd-none' }}"></i>
     </button>
-    
 
     {% if app.user %}
         </a>
