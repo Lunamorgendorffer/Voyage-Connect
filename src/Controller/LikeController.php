@@ -15,24 +15,25 @@ class LikeController extends AbstractController
     #[Route('/like/post/{id}', name: 'app_like')]
     public function index(EntityManagerInterface $entityManager, Post $post): Response
     {
-        $user = $this->getUser();
+        $user = $this->getUser(); // Récupérer l'utilisateur connecté
         
-        if ($post->isLikedByUser($user)) {
+        if ($post->isLikedByUser($user)) { // Vérifier si l'utilisateur a déjà liké le post
+            
+            $post->removeLike($user); // Si oui, supprimer le like
+            $entityManager->flush();// execute, on envoie les données dans la db 
 
-            $post->removeLike($user);
-            $entityManager->flush();
-
+            // Retourner une réponse JSON indiquant que le like a été supprimé, avec le nombre total de likes mis à jour
             return $this->json([
                 'message' => 'Like has been deleted',
                 'nbLike' => $post->howManyLikes()
             ]);
         }
-
+        // Si l'utilisateur n'a pas liké le post, ajouter le like
         $post->addLike($user);
+        // execute, on envoie les données dans la db 
+        $entityManager->flush(); 
         
-        $entityManager->flush();
-        
-        return $this->json([
+        return $this->json([// Retourner une réponse JSON indiquant que le like a été ajouté, avec le nombre total de likes mis à jour
             'message' => 'Like has been added',
             'nbLike' => $post->howManyLikes()
         ]);
