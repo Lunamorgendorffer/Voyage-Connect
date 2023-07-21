@@ -13,51 +13,53 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class PostType extends AbstractType
+
+class PostType extends AbstractType //définit une classe qui étend une autre classe appelée "AbstractType". 
 {
     
-    private $callApiService;
+    private $callApiService; //
 
+    // Le constructeur accepte le service CallApiService en tant qu'argument
     public function __construct(CallApiService $callApiService)
     {
-        $this->callApiService = $callApiService;
+        $this->callApiService = $callApiService; //On déclare une variable privée $callApiService
     }
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Le constructeur accepte le service CallApiService en tant qu'argument
         $countries = $this->callApiService->getCountry();
       
-
-
+        // On utilise le service CallApiService pour récupérer les pays disponibles
         $builder
-            ->add('title')
-            ->add('description')
-            ->add('image', FileType::class,[
-                'label' => 'profile Picture',
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024K',
-                        'mimeTypes' => [
+            ->add('title')  // Définition des champs du formulaire
+            ->add('description') // Champ description du post
+            ->add('image', FileType::class,[ //Champ de téléchargement de l'image du post
+                'label' => 'profile Picture', // Étiquette du champ
+                'mapped' => false, // Indique que ce champ n'est pas mappé directement à l'entité Post
+                'required' => false, // Le champ n'est pas obligatoire
+                'constraints' => [ // Contraintes sur le champ
+                    new File([ // Le fichier doit respecter certaines contraintes
+                        'maxSize' => '1024K', //Taille maximale du fichier
+                        'mimeTypes' => [ //Types de fichiers autorisés
                             'image/jpg',
                             'image/png',
                             'image/jpeg',
                             'image/gif',
                         ],
-                        'mimeTypesMessage' => 'Please upload an image',
+                        'mimeTypesMessage' => 'Please upload an image', // Message d'erreur si le type de fichier est invalide
                     ])
                 ],
             ])
-            ->add('country', ChoiceType::class, [
-                'choices' => $countries,
+            ->add('country', ChoiceType::class, [  // Champ de sélection du pays
+                'choices' => $countries, // Les options du champ sont les pays récupérés depuis le service CallApiService
                 'choice_label' => function ($value, $key, $index) {
-                    return $value;
+                    return $value;// Libellé de chaque option est le nom du pays
                 },
                 'choice_value' => function ($value) {
-                    return $value;
+                    return $value; // Valeur de chaque option est le nom du pays
                 },
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class) // Bouton de soumission du formulaire
         ;
     }
 
