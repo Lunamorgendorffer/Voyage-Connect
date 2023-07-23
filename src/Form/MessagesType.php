@@ -16,27 +16,31 @@ class MessagesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        // Ajoute un champ "title" de type "TextType" pour saisir le titre du message
         $builder
-            ->add('title', TextType::class,[
-                "attr" =>[
-                    "class"=>"form-control",
-                ]
-            ])
-            ->add('message', TextareaType::class,[
-                "attr" =>[
-                    "class"=>"form-control",
-                ]
-            ])
-            ->add('recipient',  EntityType::class, [
-                "class" => User::class,
-                "choice_label" => "pseudo",
+            ->add('title', TextType::class, [
                 "attr" => [
-                    "class" => "form-control"
+                    "class" => "form-control",
                 ]
             ])
+            // Ajoute un champ "message" de type "TextareaType" pour saisir le contenu du message (texte multiligne)
+            ->add('message', TextareaType::class, [
+                "attr" => [
+                    "class" => "form-control",
+                ]
+            ])
+            // Ajoute un champ "recipient" de type "EntityType" pour sélectionner le destinataire du message
+            ->add('recipient',  EntityType::class, [
+                "class" => User::class, // Les choix du champ sont des instances de la classe "User"
+                "choice_label" => "pseudo", // Le label des choix est défini en utilisant la propriété "pseudo" de l'entité "User"
+                "attr" => [
+                    "class" => "form-control", // Ajoute la classe CSS "form-control" pour améliorer le style du champ
+                ]
+            ])
+            // Ajoute un bouton de soumission du formulaire avec le libellé "Envoyer"
             ->add('envoyer', SubmitType::class, [
                 "attr" => [
-                    "class" => "btn btn-primary"
+                    "class" => "btn btn-primary", // Ajoute la classe CSS "btn btn-primary" pour styliser le bouton
                 ]
             ])
         ;
