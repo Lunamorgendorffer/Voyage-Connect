@@ -1,46 +1,39 @@
 <?php
 
-namespace App\Form;
-
-use App\Entity\Post;
-use App\Service\CallApiService;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\Validator\Constraints\File;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 
-
-class PostType extends AbstractType //définit une classe qui étend une autre classe appelée "AbstractType". 
+class PostType extends AbstractType
 {
-    
-    private $callApiService; //
+    private $callApiService;
 
     // Le constructeur accepte le service CallApiService en tant qu'argument
     public function __construct(CallApiService $callApiService)
     {
-        $this->callApiService = $callApiService; //On déclare une variable privée $callApiService
+        $this->callApiService = $callApiService;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // Le constructeur accepte le service CallApiService en tant qu'argument
-        $countries = $this->callApiService->getCountry();
-      
         // On utilise le service CallApiService pour récupérer les pays disponibles
+        $countries = $this->callApiService->getCountry();
+
+        // Définition des champs du formulaire
         $builder
-            ->add('title')  // Définition des champs du formulaire
+            ->add('title') // Champ titre du post
             ->add('description') // Champ description du post
-            ->add('image', FileType::class,[ //Champ de téléchargement de l'image du post
+            ->add('image', FileType::class, [ // Champ de téléchargement de l'image du post
                 'label' => 'profile Picture', // Étiquette du champ
                 'mapped' => false, // Indique que ce champ n'est pas mappé directement à l'entité Post
                 'required' => false, // Le champ n'est pas obligatoire
                 'constraints' => [ // Contraintes sur le champ
                     new File([ // Le fichier doit respecter certaines contraintes
-                        'maxSize' => '1024K', //Taille maximale du fichier
-                        'mimeTypes' => [ //Types de fichiers autorisés
+                        'maxSize' => '1024K', // Taille maximale du fichier
+                        'mimeTypes' => [ // Types de fichiers autorisés
                             'image/jpg',
                             'image/png',
                             'image/jpeg',
@@ -50,10 +43,10 @@ class PostType extends AbstractType //définit une classe qui étend une autre c
                     ])
                 ],
             ])
-            ->add('country', ChoiceType::class, [  // Champ de sélection du pays
+            ->add('country', ChoiceType::class, [ // Champ de sélection du pays
                 'choices' => $countries, // Les options du champ sont les pays récupérés depuis le service CallApiService
                 'choice_label' => function ($value, $key, $index) {
-                    return $value;// Libellé de chaque option est le nom du pays
+                    return $value; // Libellé de chaque option est le nom du pays
                 },
                 'choice_value' => function ($value) {
                     return $value; // Valeur de chaque option est le nom du pays
@@ -62,6 +55,7 @@ class PostType extends AbstractType //définit une classe qui étend une autre c
             ->add('submit', SubmitType::class) // Bouton de soumission du formulaire
         ;
     }
+
 
   
 
