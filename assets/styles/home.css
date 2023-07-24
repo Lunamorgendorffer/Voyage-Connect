@@ -377,7 +377,7 @@ flex-direction: column;
     color: transparent;
     border-radius: 20px;
     text-align: center;
-    transition: opacity 0.3s, transform 0.2s; /* Ajout d'une transition pour l'effet hover */
+    transition: opacity 0.3s, transform 0.1s; /* Ajout d'une transition pour l'effet hover */
     transform: translateY(100%); /* Pour cacher le titre au départ */
 }
 
