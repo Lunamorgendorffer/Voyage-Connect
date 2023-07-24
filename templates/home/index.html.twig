@@ -62,8 +62,8 @@
            <video class="home_bg" src="{{asset('video/5.mp4')}}" autoplay muted loop></video>
            
 
-           <div class="home_container">
-               <div class="home_data">
+            <div class="home_container">
+                <div class="home_data">
                 {% if app.user %}
                     <h3 class="home_subtitle">Welcome {{app.user.pseudo}}</h3>
                 {% else %}
@@ -76,53 +76,26 @@
                    <a href="{{ path('app_login') }}" class="nav_link">Start Your Journey<i class="ri-arrow-right-line"></i></a>
                    {% endif %}
                </div>
-           </section>
+            </div>
+        </section>
 
-           <section class="main-section">
-               <h2 class="big-title">Destinations</h2>
-               <div class="home_cards">
-                    {% for region, image in regions %}
-                    {# {{ dump(image) }} #}
-                    <article class="home_card">
-                            <a href="{{ path('detailRegion',{region}) }}">
-                            <img src="{{ asset(image) }}" alt="{{ region }}" class="home_card-img">
-                            <h3 class="home_card-title">{{ region }}</h3>
-                            </a>
-                    </article>
-                    {% endfor %}
-
-
-                   {# <article class="home_card">
-                       <img src="{{asset('img/am.jpg')}}" alt="" class="home_card-img">
-                       <h3 class="home_card-title">America</h3>
-                       <div class="home_card-shadow"></div>
-                   </article>
-
-                   <article class="home_card">
-                       <img src="{{asset('img/b.jpg')}}" alt="" class="home_card-img">
-                       <h3 class="home_card-title">Asia</h3>
-                       <div class="home_card-shadow"></div>
-                   </article>
-                   
-                   <article class="home_card">
-                       <img src="{{asset('img/home-mountain.jpg')}}" alt="" class="home_card-img">
-                       <h3 class="home_card-title">Europe</h3>
-                       <div class="home_card-shadow"></div>
-                   </article>
-
-                   <article class="home_card">
-                       <img src="{{asset('img/home-beach.jpg')}}" alt="" class="home_card-img">
-                       <h3 class="home_card-title">Oceania</h3>
-                       <div class="home_card-shadow"></div>
-                   </article> #}
-
-               </div>
-               
-           </div>
+        <section class="main-section">
+            <h2 class="big-title">Destinations</h2>
+            <div class="home_cards">
+                {% for region, image in regions %}
+                {# {{ dump(image) }} #}
+                <article class="home_card">
+                        <a href="{{ path('detailRegion',{region}) }}">
+                        <img src="{{ asset(image) }}" alt="{{ region }}" class="home_card-img">
+                        <h3 class="home_card-title">{{ region }}</h3>
+                        </a>
+                </article>
+                {% endfor %}
+            </div>
        </section>
 
        <!--==================== EXPLORE ====================-->
-       <section class="explore" id="explore">
+        <section class="explore" id="explore">
            <div class="explore_container">
                <div class="explore_content">
                    <div class="explore_data">
@@ -139,10 +112,10 @@
                    </div>
                </div>
            </div>
-       </section>
+        </section>
 
        <!--==================== POPULAR ====================-->
-       <section class="popular section" id="popular">
+        <section class="popular section" id="popular">
            <div class="popular_posts">
                <div class="popular_subhead">
                    <h2 class="big-title">Posts Trending</h2>
@@ -152,32 +125,22 @@
                    </p>
                </div>
 
-               <div class="posts">
-                   <div class="post-card">
-                       <img class="post-card-img"src="{{asset('img/popular-forest.jpg')}}" alt="">
-                       <h5 class="post-card-title">Title of post</h5>
-                   </div>
-                   <div class="post-card">
-                       <img class="post-card-img" src="./img/popular-lake.jpg" alt="">
-                       <h5 class="post-card-title">Title of post</h5>
-                   </div>
-                   <div class="post-card">
-                       <img class="post-card-img" src="{{asset('img/popular-mountain.jpg')}}" alt="">
-                       <h5 class="post-card-title">Title of post</h5>
-                   </div>
-               </div>
-             
+                <div class="posts">
+                    {% if trendingPosts is not empty %}
+                        {% for post in trendingPosts %}
+                        <div class="post-card">
+                            <a href="{{ path('show_post', {'id': post.id})}}">
+                                <img class="post-card-img" src="{{asset('uploads/' ~ post.image)}}" alt="{{ post.title }}">
+                                <p class="post-card-title">{{ post.title }}</p>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
                <a class="button" href="#">See More <i class="ri-arrow-right-line"></i></a>
-           </div>
-           
-       </section>
+           </div>  
+         </section>
         
-       
-        
-       <!--==================== JOIN ====================-->
-       <section class="join section">
-           
-       </section>
    </main>
 
    <!--==================== FOOTER ====================-->

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Post;
 use App\Model\SearchData;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
@@ -49,6 +50,18 @@ class PostRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findTrendingPosts(int $limit = 3)
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.likes', 'l')
+            ->select('p.id', 'p.title', 'p.image') // Include the id, title, and image properties in the selection
+            ->groupBy('p.id') // Group by post id
+            ->orderBy('COUNT(l.id)', 'DESC') // Order by the count of likes for each post
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
     }
 
 

@@ -362,18 +362,25 @@ flex-direction: column;
 }
 
 .post-card-title {
-    position: relative;
-    left: 1rem;
-    bottom: 6rem;
-    font-size: var(--h3-font-size);
-    color: #000;
-    background: #efefef70;
-    width: 32%;
-    border-radius: 20px;
+    position: absolute;
+    bottom: 1.75rem;
+    left: 0;
+    max-width: 100%;
     padding: 5px;
+    color: transparent;
+    border-radius: 20px;
     text-align: center;
-   
+    transition: opacity 0.3s, transform 0.2s; /* Ajout d'une transition pour l'effet hover */
+    transform: translateY(100%); /* Pour cacher le titre au départ */
 }
+
+.post-card:hover .post-card-title {
+    color: #000;
+    transform: translateY(0); /* Fait apparaître le titre lorsque la souris passe sur l'image */
+    opacity: 1; /* Rend le titre complètement opaque */
+    background: #efefef70;
+}
+
 
 .buttonp{
     padding: 1.25rem 1.5rem;
