@@ -151,6 +151,13 @@ flex-direction: column;
     font-family: var(--home-family);
 }
 
+.nav_link:hover {
+    background-color: #ffa343; /* Ajout d'une couleur de fond lors du survol */
+    border-radius: 5px; /* Pour ajouter des coins arrondis */
+    padding: 5px 10px; /* Pour ajouter un peu d'espace autour du texte */
+    transition: background-color 0.3s; /* Ajout d'une transition en douceur */
+}
+
 .nav_close{
     position: absolute;
     top: 1rem;
@@ -378,6 +385,7 @@ flex-direction: column;
     color: #000;
     transform: translateY(0); /* Fait apparaître le titre lorsque la souris passe sur l'image */
     opacity: 1; /* Rend le titre complètement opaque */
+    font-weight: 600;
     background: #efefef70;
 }
 
