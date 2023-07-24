@@ -122,6 +122,11 @@
                     <a href="#">See All</a>
                 </div>
                 <div class="event">
+                {% if trendingPosts is not empty %}
+                    {% for post in trendingPosts %}
+                        <p ><a href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></p>
+                    {% endfor %}
+                {% endif %}
                     {# {% for post in posts %}
                         {% if post.likes|length > 1 %}
                             <div class="post">

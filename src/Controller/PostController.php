@@ -29,10 +29,13 @@ class PostController extends AbstractController
     { 
         // Récupérer tous les posts depuis la base de données
         $posts = $entityManager->getRepository(Post::class)->findAll();
+
+        $trendingPosts = $entityManager->getRepository(Post::class)->findTrendingPosts(3);
         
         // Retourne sur la vue 'post/index.html.twig' en lui passant les posts en tant que variable 'posts'
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
+            'trendingPosts' => $trendingPosts,
         ]);
     }
     
