@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 // use Symfony\Component\Serializer\Annotation\Ignore;
 // use Symfony\Component\HttpFoundation\File\File;
 // use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -71,8 +73,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Notification::class, orphanRemoval: true)]
     private Collection $notifications;
 
-    #[ORM\Column]
+    #[ORM\Column (nullable: true)]
     private ?bool $is_banned = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $register_at = null;
 
     public function __construct()
     {
@@ -85,6 +90,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->sent = new ArrayCollection();
         $this->received = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->register_at = new DateTime();
+    
+    
     }
 
     public function getId(): ?int
@@ -511,6 +519,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsBanned(bool $is_banned): self
     {
         $this->is_banned = $is_banned;
+
+        return $this;
+    }
+
+    public function getRegisterAt(): ?\DateTimeInterface
+    {
+        return $this->register_at;
+    }
+
+    public function setRegisterAt(\DateTimeInterface $register_at): self
+    {
+        $this->register_at = $register_at;
 
         return $this;
     }
