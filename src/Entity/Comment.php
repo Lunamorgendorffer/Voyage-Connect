@@ -30,7 +30,7 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'Likes')]
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likeComment')]
     private Collection $usersLike;
 
     public function __construct()

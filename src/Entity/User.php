@@ -45,16 +45,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
-    // #[Vich\UploadableField(mapping: 'posts', fileNameProperty: 'avatar', size: 'imageSize'),Ignore()]
-    // private ?File $imageFile = null;
-
-    // #[ORM\Column(nullable: true)]
-    // private ?int $imageSize = null;
-
     private ?string $plainPassword = null;
-
-    // #[ORM\Column(nullable: true)]
-    // private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Post::class, orphanRemoval: true)]
     private Collection $posts;
@@ -63,9 +54,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $comments;
 
     #[ORM\ManyToMany(targetEntity: Comment::class, inversedBy: 'usersLike')]
-    private Collection $LikesComment;
-
-
+    private Collection $likeComment;
 
     #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'userFavorites')]
     private Collection $favoritePost;
@@ -91,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->likes = new ArrayCollection();
         $this->favoritePost = new ArrayCollection();
         $this->posts = new ArrayCollection();
-        $this->likesComment = new ArrayCollection();
+        $this->likeComment = new ArrayCollection();
         $this->postlikes = new ArrayCollection();
         $this->sent = new ArrayCollection();
         $this->received = new ArrayCollection();
@@ -367,23 +356,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return Collection<int, Comment>
      */
-    public function getLikesComment(): Collection
+    public function getLikeComment(): Collection
     {
-        return $this->likes;
+        return $this->likeComment;
     }
 
-    public function addLikeComment(Comment $like): self
+    public function addLikeComment(Comment $likeComment): self
     {
-        if (!$this->likes->contains($like)) {
-            $this->likes->add($like);
+        if (!$this->likeComments->contains($likeComment)) {
+            $this->likeComments->add($likeComment);
         }
 
         return $this;
     }
 
-    public function removeLikeComment(Comment $like): self
+    public function removeLikeComment(Comment $likesComment): self
     {
-        $this->likes->removeElement($like);
+        $this->likesComments->removeElement($likesComment);
 
         return $this;
     }
