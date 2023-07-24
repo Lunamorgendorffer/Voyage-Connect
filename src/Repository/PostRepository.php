@@ -61,8 +61,18 @@ class PostRepository extends ServiceEntityRepository
             ->orderBy('COUNT(l.id)', 'DESC') // Order by the count of likes for each post
             ->setMaxResults($limit)
             ->getQuery()
-            ->getResult();
+            ->getResult()
+        ;
     }
+
+    public function paginationQuery()
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.creationDate', 'DESC')
+            ->getQuery()
+        ;
+    }
+ 
 
 
 

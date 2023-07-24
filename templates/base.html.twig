@@ -113,6 +113,7 @@
             </div>
 
             <div class="main-content">
+                
                 {% block body %}{% endblock %}
             </div>
 
@@ -127,13 +128,6 @@
                         <p ><a href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></p>
                     {% endfor %}
                 {% endif %}
-                    {# {% for post in posts %}
-                        {% if post.likes|length > 1 %}
-                            <div class="post">
-                            <li>{{ post.title }}</li>
-                            </div>
-                        {% endif %}
-                    {% endfor %} #}
                 </div>
 
                 <div class="sidebar-title">

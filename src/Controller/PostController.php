@@ -10,6 +10,7 @@ use App\Service\FileUploader;
 use App\Service\CallApiService;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,17 +26,24 @@ class PostController extends AbstractController
     }
 
     #[Route('/post', name: 'app_post')] // Définir l'URL de la route et le nom de la route
-    public function index(EntityManagerInterface $entityManager ): Response
+    public function index(EntityManagerInterface $entityManager, Request $request, PaginatorInterface $paginator): Response
     { 
         // Récupérer tous les posts depuis la base de données
         $posts = $entityManager->getRepository(Post::class)->findAll();
 
         $trendingPosts = $entityManager->getRepository(Post::class)->findTrendingPosts(3);
+
+        $pagination = $paginator->paginate(
+            $entityManager->getRepository(Post::class)->paginationQuery(),
+            $request->query->get('page', 1),
+            3
+        );
         
         // Retourne sur la vue 'post/index.html.twig' en lui passant les posts en tant que variable 'posts'
         return $this->render('post/index.html.twig', [
             'posts' => $posts,
             'trendingPosts' => $trendingPosts,
+            'pagination' => $pagination
         ]);
     }
     
