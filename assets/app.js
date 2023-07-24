@@ -96,9 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
         new Favorite(favoriteElements);
     }
 
-    // //--------- Ban User ---------//
-    // const switchElements = document.querySelectorAll('input[id^=switch]');
-    // console.log(switchElements.length);
-    // const formElement = document.getElementById('banForm');
 
 })
