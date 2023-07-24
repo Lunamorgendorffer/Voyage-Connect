@@ -57,7 +57,7 @@
     <!--==================== MAIN ====================-->
     <main class="main">
         <!--==================== HOME ====================-->
-       <section class="home section" id="home">
+       <section class="home" id="home">
            <!--<img src="./img/home-bg.jpg" alt="" class="home_bg">-->
            <video class="home_bg" src="{{asset('video/5.mp4')}}" autoplay muted loop></video>
            
@@ -70,11 +70,8 @@
                    <h3 class="home_subtitle">Welcome travellers </h3>
                 {% endif %}  
                    <h1 class="home_title">Are you ready ?</h1>
-                   <p class="home_description">
-                       Experience unforgettable adventures.
-                   </p>
                    {% if app.user %}
-                   <a href="{{ path('app_post') }}" class="button">Start Your Journey<i class="ri-arrow-right-line"></i></a>
+                   <a href="{{ path('app_post') }}" class="button">See your feed<i class="ri-arrow-right-line"></i></a>
                    {% else %}
                    <a href="{{ path('app_login') }}" class="nav_link">Start Your Journey<i class="ri-arrow-right-line"></i></a>
                    {% endif %}
@@ -184,6 +181,7 @@
 
     
     {% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         {{ encore_entry_script_tags('app') }}
        
     {% endblock %}

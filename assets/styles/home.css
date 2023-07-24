@@ -1,6 +1,6 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Poppins:wght@400;500&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@500;600&family=Poppins:wght@400;500&display=swap');
 /*=============== VARIABLES CSS ===============*/
 :root {
   --header-height: 3.5rem;
@@ -13,19 +13,21 @@
   --body-color: hsl(0, 0%, 0%);
   --container-color: hsl(0, 0%, 8%);
   --color:#ffa343;
-  --bg-color:#1c7d93;
+  /* --bg-color:#1c7d93; */
 
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Poppins", sans-serif;
   --second-font: "Montserrat", sans-serif;
+  --home-family: 'Amatic SC', cursive;
+  --btn-family: 'Andika', sans-serif;
   --biggest-font-size: 2.75rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
   --h3-font-size: 1rem;
   --normal-font-size: .938rem;
   --small-font-size: .813rem;
-  --smaller-font-size: .75rem;
+  --title-font-size: 1.75rem;
 
   /*========== Font weight ==========*/
   --font-regular: 400;
@@ -56,23 +58,11 @@ html {
   scroll-behavior: smooth;
 }
 
-body,
-button,
-input {
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  /* color: var(--text-color); */
-}
-
 body {
     background: linear-gradient(90deg, rgba(63,222,255,1) 0%, rgba(63,112,255,1) 100%);
+    font-family: var(--body-font);
 }
 
-button,
-input {
-  outline: none;
-  border: none;
-}
 
 h2{
     font-size: 4em;
@@ -82,20 +72,10 @@ h2{
 }
 
 
-/* ul {
-  list-style: none;
-} */
-
 a {
   text-decoration: none;
 }
 
-/* img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 20px;
-} */
 
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
@@ -143,12 +123,6 @@ flex-direction: column;
     margin: 10px 5rem;
 }
 
-.nav_logo{
-    color: var(--title-color);
-    font-size: 18px;
-    font-weight: var(--font-semi-bold);
-    text-decoration: none;
-}
 
 .nav_toggle, .nav_close{
     /* display: flex;
@@ -159,70 +133,40 @@ flex-direction: column;
 
 }
 
-.login{
-    background-color: #ffa343;
-    padding: 0.25rem 1rem;
-    color: var(--title-color);
-    font-family: var(--second-font);
-    font-weight: var(--font-semi-bold);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    transition: top .4s;
-}
-/* Navigation for mobile devices */
-@media screen and (max-width: 1023px) {
-    .nav_menu {
-        position: fixed;
-        top: -100%;
-        left: 0;
-        background-color: hsla(0, 0%, 0%, .3);
-        width: 100%;
-        padding-block: 4rem;
-        backdrop-filter: blur(24px);
-        -webkit-backdrop-filter: blur(24px);
-        transition: top .4s;
-    }
-
-    .nav_list{
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        row-gap: 2.5rem;
-    }
-
-
-    .nav_link{
-        color: #fff;
-        /* font-weight: 600; */
-    }
-    
-    .nav_close{
-        position: absolute;
-        top: 1rem;
-        right:1.5rem;
-    }
-}
 
 .nav_list{
-   display: flex;
-   text-align: center;
-   column-gap: 4rem;
-
+    display: flex;
+    text-align: center;
+    column-gap: 4rem;
+    
 }
 .nav_item{
- list-style: none;
+    list-style: none;
 }
-.nav_link{
+.nav_logo, .nav_link{
     color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
+    font-size: var(--title-font-size);
+    font-weight: bold;
+    font-family: var(--home-family);
 }
 
 .nav_close{
     position: absolute;
     top: 1rem;
     right:1.5rem;
+}
+
+.login{
+    background-color: #ffa343;
+    padding: 0.25rem 1rem;
+    color: var(--title-color);
+    font-family: var(--home-family);;
+    font-weight: bold !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: top .4s;
+    font-size: var(--title-font-size);
+    border-radius: 20px;
 }
 
 /* Show menu */
@@ -284,28 +228,23 @@ flex-direction: column;
 }
 
 .home_container{
-    display: grid;
-    grid-template-columns: initial;
-    justify-content: initial;
     position: relative;
-    padding-top: 6.5rem;
-    row-gap: 4rem;
 }
 
 .home_data{
     text-align: center;
+    font-family: var(--home-family);;
+    color:#fff;
 }
 
 .home_subtitle{
-font-size: var(--h3-font-size);
-margin-bottom: .5rem;
-color:#fff;
+    font-size: var(--h3-font-size);
+    margin: 0;
 }
 
 .home_title{
     font-size: var(--biggest-font-size);
-    margin-bottom: 1rem;
-    color:#fff;
+    margin: 0;
 }
 
 .home_description{
@@ -382,11 +321,11 @@ color:#fff;
     display: inline-flex;
     align-items: center;
     column-gap: .5rem;
-    font-family: var(--second-font);
-    font-weight: var(--font-semi-bold);
+    font-family: var(--btn-family);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     transition: top .4s;
+    border-radius: 10px;
 }
 
 .button i{
