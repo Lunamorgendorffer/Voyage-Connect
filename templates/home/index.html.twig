@@ -81,13 +81,18 @@
            <section class="main-section">
                <h2 class="big-title">Destinations</h2>
                <div class="home_cards">
-                   <article class="home_card">
-                       <img src="{{asset('img/a.jpg')}}" alt="" class="home_card-img">
-                       <h3 class="home_card-title">Africa</h3>
-                       <div class="home_card-shadow"></div>
-                   </article>
+                    {% for region, image in regions %}
+                    {# {{ dump(image) }} #}
+                    <article class="home_card">
+                            <a href="{{ path('detailRegion',{region}) }}">
+                            <img src="{{ asset(image) }}" alt="{{ region }}" class="home_card-img">
+                            <h3 class="home_card-title">{{ region }}</h3>
+                            </a>
+                    </article>
+                    {% endfor %}
 
-                   <article class="home_card">
+
+                   {# <article class="home_card">
                        <img src="{{asset('img/am.jpg')}}" alt="" class="home_card-img">
                        <h3 class="home_card-title">America</h3>
                        <div class="home_card-shadow"></div>
@@ -109,9 +114,10 @@
                        <img src="{{asset('img/home-beach.jpg')}}" alt="" class="home_card-img">
                        <h3 class="home_card-title">Oceania</h3>
                        <div class="home_card-shadow"></div>
-                   </article>
+                   </article> #}
 
                </div>
+               
            </div>
        </section>
 
