@@ -17,26 +17,26 @@
             
             <div class="nav-center">
                 <input class="form-control" type="text" id="live_search" placeholder="Search...">
-                <div id="result"></div>
+                <div id="result" class="form-control"></div>
             </div>
             
             <div class="nav-right">
                 <div class="nav-icons">
-                    <i class="fa-solid fa-bell fa-xl"></i>
+                    <a href=""><i class="fa-solid fa-bell fa-xl"></i></a>
                     <a href="{{path('app_messages')}}"><i class="fa-solid fa-envelope fa-xl"></i></a>
+                    <div class="nav-user-icon online">
+                        {% if app.user %}
+                            {% if app.user.avatar == null %}
+                                <img class="nav-user-pic" s src="{{asset('img/user.png')}}">
+                            {% else %}
+                                <img  class="nav-user-pic" src="{{asset('uploads/' ~ app.user.avatar)}}" >
+                                <i class="fas fa-caret-down"></i> 
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
                 
 
-                <div class="nav-user-icon online">
-                    {% if app.user %}
-                        {% if app.user.avatar == null %}
-                            <img class="nav-user-pic" s src="{{asset('img/user.png')}}">
-                        {% else %}
-                            <img  class="nav-user-pic" src="{{asset('uploads/' ~ app.user.avatar)}}" >
-                            <i class="fas fa-caret-down"></i> 
-                        {% endif %}
-                    {% endif %}
-                </div>
 
                 <div class="settings-menu">
                     <div id="dark-btn" >

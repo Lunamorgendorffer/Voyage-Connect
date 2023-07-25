@@ -67,7 +67,6 @@ html {
 body {
     background-color: #000;
     background: linear-gradient(to bottom right, #ac7175, #8f5f62, #6e4649);
-    /* background: linear-gradient(90deg, rgba(63,222,255,1) 0%, rgba(63,112,255,1) 100%); */
     font-family: var(--body-font);
 }
 
@@ -80,23 +79,7 @@ body {
     color: var(--text-color);
 }
 
-
-a {
-  text-decoration: none;
-}
-
-
 /*=============== REUSABLE CSS CLASSES ===============*/
-/* .container {
-  max-width: 1120px;
-  margin-inline: auto;
-} */
-
-/* .grid {
-  display: grid;
-  gap: 1.5rem;
-} */
-
 .section {
   padding-block: 5rem 2rem;
 }
