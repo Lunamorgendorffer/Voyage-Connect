@@ -52,6 +52,10 @@ class RegistrationController extends AbstractController
                 $user->setAvatar($imageFileName); // set the image
             }
 
+            $username = strip_tags($form->get('pseudo')->getData());
+
+            $user->setPseudo($username);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
