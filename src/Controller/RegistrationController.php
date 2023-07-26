@@ -37,10 +37,13 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
+            //  Encoder le mot de passe brut (plain password)
+            $user->setPassword( //Ici le mot de passe brut est encodé à l'aide du service de hachage de mot de passe 
+                //Le mot de passe haché sera stocké dans l'entité User 
+                $userPasswordHasher->hashPassword( 
+                    // L'entité User à laquelle le mot de passe est associé
                     $user,
+                    // Récupère le mot de passe à partir du champ 'plainPassword' du formulaire
                     $form->get('plainPassword')->getData()
                 )
             );
@@ -51,12 +54,13 @@ class RegistrationController extends AbstractController
                 $imageFileName = $fileUploader->upload($image); // upload the image
                 $user->setAvatar($imageFileName); // set the image
             }
-
+            // Récupérer le nom d'utilisateur depuis le formulaire et enlever les balises HTML potentielles
             $username = strip_tags($form->get('pseudo')->getData());
-
+            // Définir le nom d'utilisateur dans l'entité User
             $user->setPseudo($username);
-
+            // Persiste l'entité User pour qu'elle soit préparée à être enregistrée en base de données
             $entityManager->persist($user);
+            //Enregistrer les modifications dans la base de données
             $entityManager->flush();
 
             // generate a signed url and email it to the user

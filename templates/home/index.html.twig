@@ -34,12 +34,14 @@
                         <a href="{{ path('app_logout') }}" class="login">Log Out</a>
                     </li>
                 {% else %}
-                    <li class="nav_item">
-                        <a href="{{ path('app_register')}}" class="login">Sign In</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="{{ path('app_login')}}" class="login">Login</a>
-                    </li>
+                    <div class="navflex">
+                        <li class="nav_item">
+                            <a href="{{ path('app_register')}}" class="login">Sign In</a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="{{ path('app_login')}}" class="login">Login</a>
+                        </li>
+                    </div>
                 </ul>
                 {% endif %}
             
@@ -73,7 +75,7 @@
                    {% if app.user %}
                    <a href="{{ path('app_post') }}" class="button">See your feed<i class="ri-arrow-right-line"></i></a>
                    {% else %}
-                   <a href="{{ path('app_login') }}" class="nav_link">Start Your Journey<i class="ri-arrow-right-line"></i></a>
+                   <a href="{{ path('app_login') }}" class="button">Start Your Journey<i class="ri-arrow-right-line"></i></a>
                    {% endif %}
                </div>
             </div>

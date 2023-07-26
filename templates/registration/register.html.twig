@@ -1,48 +1,90 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Register{% endblock %}
-
-{% block body %}
-
-    <main id="main-register">
-        <div class="login-box">
-            <div class="card"> 
-                <div class="login-header">
-                    <h1>Join the community</h1>
-                    <p>Get more features and priviliges by joining to the most helpful community</p>
-                </div>
-                {% for flash_error in app.flashes('verify_email_error') %}
-                    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-                {% endfor %}
-                {{ form_start(registrationForm) }}
-                    <div class="input-box">
-                        {# <input type="text" class= "input-field" placeholder="Pseudo" autocomplete="off" required> #}
-                        {{ form_row(registrationForm.pseudo) }}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>{% block title %}Register{% endblock %}</title>
+    {% block stylesheet %}
+    {{ encore_entry_link_tags('log') }}
+    {% endblock %}
+</head>
+{% for flash_error in app.flashes('verify_email_error') %}
+    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+{% endfor %}
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="{{ path('app_home') }}" class="nav_logo">Voyage Connect</a>
+            
+            <div class="nav_menu" id="nav-menu">
+                {% if app.user %}
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="{{ path('app_home') }}" class="nav_link">Home</a>
+                    </li>
+                    
+                    <li class="nav_item">
+                        <a href="{{ path('app_api')}}" class="nav_link">Explore</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">About Us</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_post') }}" class="nav_link">Posts</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_logout') }}" class="login">Log Out</a>
+                    </li>
+                {% else %}
+                    <div class="navflex">
+                        <li class="nav_item">
+                            <a href="{{ path('app_register')}}" class="login">Sign In</a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="{{ path('app_login')}}" class="login">Login</a>
+                        </li>
                     </div>
-                    <div class="input-box">
-                        {# <input type="text" class= "input-field" placeholder="Email" autocomplete="off" required> #}
-                        {{ form_row(registrationForm.email) }}
-                    </div>
-                    <div class="input-box">
-                        {# <input type="text" class= "input-field" placeholder="Email" autocomplete="off" required> #}
-                        {{ form_row(registrationForm.avatar) }}
-                    </div>
-                    <div class="input-box">
-                        {# <input type="password" class= "input-field" placeholder="Password" autocomplete="off" required> #}
-                        {{ form_row(registrationForm.plainPassword, {
-                            label: 'Password'
-                        }) }}
-                    </div>
-                    <div class="input-box">
-                        {{ form_row(registrationForm.agreeTerms) }}
-                        {# <input type="password" class= "input-field" placeholder="Repeat Password" autocomplete="off" required> #}
-                    </div>
-                
-                {{ form_end(registrationForm) }}
+                </ul>
+                {% endif %}
             </div>
-            <div class="card">
-                <div class="home-image"></div> 
+
+        </nav>
+        <!-- Close Button -->
+    </header>
+	<div class="container d-flex align-items-center justify-content-center ">
+        <div class="rform d-flex align-items-center flex-column w-100">
+            <img src="{{asset('img/img.png')}}" class="compass" alt="boussole">
+            <h2 class="register_title">Join the community</h2>
+            <p class="register_description">Get more features and priviliges by joining to the most helpful community</p>
+
+            {{ form_start(registrationForm)  }}
+    
+            <div class="form-group">
+                {{ form_row(registrationForm.pseudo,{
+                    'attr': {
+                        'class': 'd-flex w-100' } })}}
             </div>
-        </div>
-    </main> 
-{% endblock %}
+    
+            <div class="form-group">
+                {{ form_row(registrationForm.email) }}
+            </div>
+    
+            <div class="form-group">
+                {{ form_row(registrationForm.avatar,{
+                    'attr': {
+                        'class': 'd-flex' } }) }}
+            </div>
+    
+            <div class="form-group">
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+            </div>
+            {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_end(registrationForm) }}
+    </div>
+    
+</div>
+
+</body>

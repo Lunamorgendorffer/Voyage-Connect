@@ -24,8 +24,8 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email',EmailType::class,['attr'=>['class'=>'input-field']] )
-            ->add('pseudo', TextType::class,['attr'=>['class'=>'input-field']])
+            ->add('email',EmailType::class,['attr'=>['class'=>'form-control']] )
+            ->add('pseudo', TextType::class,['attr'=>['class'=>'form-control"']])
             ->add('avatar', FileType::class, [
                 'label' => 'image',
                 'mapped' => false,
@@ -55,7 +55,7 @@ class RegistrationFormType extends AbstractType
                 'mapped'=>false,
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'password-field']],
+                'options' => ['attr' => ['class' => 'form-control']],
                 'required' => true,
                 'first_options'  => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat Password'],

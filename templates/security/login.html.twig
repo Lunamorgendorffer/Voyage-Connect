@@ -1,50 +1,100 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"> se deconnecter</a>
-        </div>
-    {% endif %}
-
-    <main>
-        <div class="login-box">
-            <div class="card"> 
-                <div class="login-header">
-                    <h1>Please sign in</h1>
-                </div>
-                <div class="input-box">
-                    <input type="email" value="{{ last_username }}" class= "input-field" name="email" id="inputEmail" placeholder="Email" autocomplete="off" required> 
-                </div>
-                <div class="input-box">
-                    <input type="password"  name="password" id="inputPassword" class= "input-field" placeholder="Password" autocomplete="off" required>
-                </div>
-                <input type="hidden" name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}" >
-                {#
-                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                    See https://symfony.com/doc/current/security/remember_me.html
-
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Remember me
-                        </label>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Login</title>
+    {% block stylesheet %}
+    {{ encore_entry_link_tags('log') }}
+    {% endblock %}
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="{{ path('app_home') }}" class="nav_logo">Voyage Connect</a>
+            <div class="nav_menu" id="nav-menu">
+                {% if app.user %}
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="{{ path('app_home') }}" class="nav_link">Home</a>
+                    </li>
+                    
+                    <li class="nav_item">
+                        <a href="{{ path('app_api')}}" class="nav_link">Explore</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">About Us</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_post') }}" class="nav_link">Posts</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_logout') }}" class="login">Log Out</a>
+                    </li>
+                {% else %}
+                    <div class="navflex">
+                        <li class="nav_item">
+                            <a href="{{ path('app_register')}}" class="login">Sign In</a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="{{ path('app_login')}}" class="login">Login</a>
+                        </li>
                     </div>
-                #}
-                <div class="input-submit">
-                    <button class="btn btn-lg btn-primary" type="submit">
-                        Sign in
-                    </button>
-                </div>
+                </ul>
+                {% endif %}
             </div>
-        </div>   
-    </main>    
-</form>
-{% endblock %}
+        </nav>
+    </header>
+
+    <main class="main-login">
+        <form method="post">
+            <div class="container d-flex align-items-center justify-content-center">
+                <div class="rform d-flex align-items-center flex-column w-50">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}"> Logout</a>
+                        </div>
+                    {% endif %}
+                    <img src="{{asset('img/img.png')}}" class="compass" alt="boussole">
+                    <div class="login-header">
+                        <h1>Please sign in</h1>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" value="{{ last_username }}" class= "input-field" name="email" id="inputEmail" placeholder="Email" autocomplete="off" required> 
+                    </div>
+                    <div class="form-group">
+                        <input type="password"  name="password" id="inputPassword" class= "input-field" placeholder="Password" autocomplete="off" required>
+                    </div>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
+                    {#
+                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                        See https://symfony.com/doc/current/security/remember_me.html
+    
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Remember me
+                            </label>
+                        </div>
+                    #}
+                    <div class="row">
+                        <div class="col">
+                        <button class="login" type="submit">
+                            Validate
+                        </button>
+                        </div>
+                        <div class="mx-auto p-2">
+
+                            <a href="{{ path('app_register')}}" >Register</a>
+                        </div>
+                    </div>
+                </div>         
+            </div>   
+        </form>  
+    </main>
+</body>
+

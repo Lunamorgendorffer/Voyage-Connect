@@ -79,6 +79,10 @@ body {
     color: var(--text-color);
 }
 
+a{
+    text-decoration: none;
+}
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .section {
   padding-block: 5rem 2rem;
@@ -145,10 +149,13 @@ flex-direction: column;
 .nav_link:hover {
     background-color: #ffa343; /* Ajout d'une couleur de fond lors du survol */
     border-radius: 5px; /* Pour ajouter des coins arrondis */
-    padding: 5px 10px; /* Pour ajouter un peu d'espace autour du texte */
     transition: background-color 0.3s; /* Ajout d'une transition en douceur */
 }
 
+.navflex{
+    display: flex;
+    gap: 40px;
+}
 .nav_close{
     position: absolute;
     top: 1rem;
