@@ -17,12 +17,26 @@
     --body-font: "Poppins", sans-serif;
     --title-font: 'Lato', sans-serif;
     --text-font: 'Maven Pro', sans-serif;
+    /*========== Default linear gradient colors ==========*/
+    --gradient-start-color: #ac7175;
+    --gradient-mid-color: #8f5f62;
+    --gradient-end-color: #6e4649;
 }
 
 .dark-theme{
     --body-color:#0a0a0a;
     --nav-color: #000;
     --bg-color:#000;
+    /*========== Dark mode linear gradient colors ==========*/
+    --gradient-start-color: #2a2a2a;
+    --gradient-mid-color: #1f1f1f;
+    --gradient-end-color: #121212;
+}
+
+body {
+    background-color: var(--body-color) !important;
+    background: linear-gradient(to bottom right, var(--gradient-start-color), var(--gradient-mid-color), var(--gradient-end-color)) !important;
+    font-family: var(--body-font);
 }
 
 button,

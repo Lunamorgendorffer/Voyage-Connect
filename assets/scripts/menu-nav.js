@@ -2,11 +2,10 @@
 var settingsmenu = document.querySelector('.nav-user-icon'); // Sélectionne l'élément avec la classe 'settings-menu' dans le document
 var darkBtn = document.getElementById('dark-btn');  // Sélectionne l'élément avec l'ID 'dark-btn' dans le document
 var settingsmenuOpen = document.querySelector('.settings-menu')
+var gradientStartColor = getComputedStyle(document.documentElement).getPropertyValue('--gradient-start-color');
+var gradientMidColor = getComputedStyle(document.documentElement).getPropertyValue('--gradient-mid-color');
+var gradientEndColor = getComputedStyle(document.documentElement).getPropertyValue('--gradient-end-color');
 
-// function settingsMenuToggle(){
-//     console.log('hello') // Fonction pour basculer la hauteur du menu des paramètres
-//     settingsmenu.classList.toggle('settings-menu-height'); // Ajoute ou supprime la classe 'settings-menu-height' pour afficher ou masquer le menu des paramètres
-// }
 if(settingsmenu){
 
     settingsmenu.addEventListener('click', () =>{
@@ -23,6 +22,7 @@ if(settingsmenu){
         } else{
             localStorage.setItem("theme", "light"); // Sinon, si le thème actuel est "dark", le remplace par "light" dans le localStorage
         }
+        updateGradientColors();
     }
     
     if (localStorage.getItem("theme") == "light"){ // Vérifie si le thème stocké dans le localStorage est "light"
@@ -34,6 +34,21 @@ if(settingsmenu){
     } else{
         localStorage.setItem("theme", "light"); // Si aucune valeur de thème n'est stockée dans le localStorage, définir le thème sur "light"
     }
+    
+    function updateGradientColors() {
+        var theme = localStorage.getItem("theme");
+        if (theme === "light") {
+            document.documentElement.style.setProperty('--gradient-start-color', gradientStartColor);
+            document.documentElement.style.setProperty('--gradient-mid-color', gradientMidColor);
+            document.documentElement.style.setProperty('--gradient-end-color', gradientEndColor);
+        } else if (theme === "dark") {
+            document.documentElement.style.setProperty('--gradient-start-color', '#2a2a2a');
+            document.documentElement.style.setProperty('--gradient-mid-color', '#1f1f1f');
+            document.documentElement.style.setProperty('--gradient-end-color', '#121212');
+        }
+    }
 }
+
+
 
 // settingsMenuToggle()
