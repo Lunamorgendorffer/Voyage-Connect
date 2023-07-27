@@ -1,9 +1,80 @@
-{% for country in countries %}
-{# {% for key , pays in data %} #}
-{# {{ dump(pays[key]['capital']) }} #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Explore the world</title>
+    {% block stylesheet %}
+    {{ encore_entry_link_tags('api') }}
+    {% endblock %}
+</head>
 
-<tr>
- 
-   <td><img src="{{country.flags.png }}" alt=""></td>
-</tr>
-{% endfor %}  
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="{{ path('app_home') }}" class="nav_logo">Voyage Connect</a>
+            
+            <div class="nav_menu" id="nav-menu">
+                {% if app.user %}
+                <ul class="nav_list">
+                    <li class="nav_item">
+                        <a href="{{ path('app_home') }}" class="nav_link">Home</a>
+                    </li>
+                    
+                    <li class="nav_item">
+                        <a href="{{ path('app_api')}}" class="nav_link">Explore</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">About Us</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_post') }}" class="nav_link">Posts</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="{{ path('app_logout') }}" class="login">Log Out</a>
+                    </li>
+                {% else %}
+                    <div class="navflex">
+                        <li class="nav_item">
+                            <a href="{{ path('app_register')}}" class="login">Sign In</a>
+                        </li>
+                        <li class="nav_item">
+                            <a href="{{ path('app_login')}}" class="login">Login</a>
+                        </li>
+                    </div>
+                </ul>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    <section class="container-fluid d-flex align-items-center ">
+      <div class="rform d-flex align-items-center flex-column">
+          <table class="table table-hover">
+              <thead>
+                  <th>#</th>
+                  <th>Flag</th>
+                  <th>Name</th>
+                  <th>Population</th>
+                  <th>Region</th>
+              </thead>
+              <tbody>
+                  {% for row in countries|batch(2) %}
+                  <tr>
+                      {% for country in row %}
+                      <td>{{ loop.parent.loop.index0 * 4 + loop.index }}</td>
+                      <td><img src="{{country.flags.png }}" alt="{{ country.name.common }} flag"></td>
+                      <td>{{ country.name.common }}</td> 
+                      <td>{{ country.population }}</td>
+                      <td>{{ country.subregion }}</td>
+                      {% endfor %}
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+  </section>
+  
+</body>
+</html>

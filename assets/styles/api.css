@@ -11,10 +11,7 @@ body{
     background: linear-gradient(to bottom right, #ac7175, #8f5f62, #6e4649);
 }
 
-a, a:hover{
-    text-decoration: none;
-    /* color: #fff; */
-}
+
 
 .container{
     min-height: 100vh;
@@ -134,7 +131,7 @@ header{
     cursor: pointer;
 }
 
-.home-link{
+.home-link, .home-link:hover{
     color: #fff;
     text-decoration: none;
     font-size: 1.25rem;
