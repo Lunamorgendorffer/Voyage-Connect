@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PostController!{% endblock %}
+{% block title %}Feed{% endblock %}
 
 
 {% block body %}
@@ -8,9 +8,8 @@
     <button class="btn-add"><a href="{{ path('add_post')}}"><i class="fa-solid fa-plus"></i>  Add Post</a></button><br>
 </div>
 
-{# {% for post in posts %}  #}
+
 {% for post in pagination %}
-{# {{ dump(post) }} #}
 <div class="post-container">
     <div class="post-row">
         <div class="user-profile">
@@ -50,5 +49,7 @@
     </div>
 </div>
 {% endfor %}
+
+{{knp_pagination_render(pagination)}}
 
 {% endblock %}

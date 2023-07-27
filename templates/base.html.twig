@@ -77,10 +77,6 @@
                             <a href="#">Help & support <img src="{{asset('img/images/arrow.png')}}" width="10px" alt=""></a>
                         </div>
                         <div class="settings-links">
-                            <img src="{{asset('img/images/display.png')}}" alt="" class="settings-icon">
-                            <a href="#">Display & Acces <img src="{{asset('img//images/arrow.png')}}" width="10px" alt=""></a>
-                        </div>
-                        <div class="settings-links">
                             <img src="{{asset('img/images/logout.png')}}" alt="" class="settings-icon">
                             <a href="{{ path('app_logout')}}"> logout <img src="{{asset('img/images/arrow.png')}}" width="10px" alt=""></a>
                         </div>
@@ -123,11 +119,11 @@
                     <a href="#">See All</a>
                 </div>
                 <div class="event">
-                {# {% if trendingPosts is not empty %}
+                {% if trendingPosts is not empty %}
                     {% for post in trendingPosts %}
                         <p ><a href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></p>
                     {% endfor %}
-                {% endif %} #}
+                {% endif %}
                 </div>
 
                 <div class="sidebar-title">
