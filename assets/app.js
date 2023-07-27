@@ -64,7 +64,9 @@ navLink.forEach(n=>navMenu.addEventListener('click', n, linkAction))
 /*=============== ADD BLUR TO HEADER ===============*/
 const blurHeader = () => {
     const header = document.getElementById('header');
-    window.scrollY >= 50 ? header.classList.add('blur-header') : header.classList.remove('blur-header');
+    if(header){
+        window.scrollY >= 50 ? header.classList.add('blur-header') : header.classList.remove('blur-header');
+    }
 };
 
 window.addEventListener('scroll', blurHeader);
