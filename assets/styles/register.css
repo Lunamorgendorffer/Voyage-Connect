@@ -6,10 +6,10 @@
     box-sizing: border-box;
 }
 
-body{
+/* body{
     background-color: #000;
     background: linear-gradient(to bottom right, #ac7175, #8f5f62, #6e4649);
-}
+} */
 
 a, a:hover{
     text-decoration: none;
@@ -105,5 +105,5 @@ header{
 }
 
 .rform{
-    border: ridge 1.5px white;
+    border: ridge 2.5px  #6e4649;
 }
