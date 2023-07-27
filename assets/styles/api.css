@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@500;600&family=Poppins:wght@400;500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #000;
+    background: linear-gradient(to bottom right, #ac7175, #8f5f62, #6e4649);
+}
+
+a, a:hover{
+    text-decoration: none;
+    /* color: #fff; */
+}
+
+.container{
+    min-height: 100vh;
+    padding: 20px;
+    
+}
+header{
+    position: fixed;
+    width: 100%;
+    background-color: hsla(0, 0%, 0%, .3);
+    backdrop-filter: blur(25px);
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.nav{
+    height: calc(3.5rem +1.5rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 5rem;
+}
+.compass{
+    
+    height: 150px;
+    width: 150px;
+    
+}
+.register_title{
+    font-family: 'Amatic SC', cursive;
+    font-weight: bold;
+    font-size: 2.5rem;
+}
+
+.register_description{
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.5rem;
+}
+
+
+
+.nav_list{
+    display: flex;
+    text-align: center;
+    column-gap: 4rem;
+    
+}
+
+.nav_item{
+    list-style: none;
+}
+
+.nav_logo, .nav_link{
+    color: #fff;
+    font-size: 1.75rem;
+    font-weight: bold;
+    font-family: 'Amatic SC', cursive;
+}
+
+.nav_link:hover {
+    background-color: #ffa343; /* Ajout d'une couleur de fond lors du survol */
+    border-radius: 5px; /* Pour ajouter des coins arrondis */
+    transition: background-color 0.3s; /* Ajout d'une transition en douceur */
+}
+
+.navflex{
+    display: flex;
+    gap: 40px;
+}
+.nav_close{
+    position: absolute;
+    top: 1rem;
+    right:1.5rem;
+}
+
+.login{
+    background-color: #d6793d;
+    padding: 0.25rem 1rem;
+    color: #fff;
+    font-family: 'Amatic SC', cursive;;
+    font-weight: bold !important;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: top .4s;
+    font-size: 1.75rem;
+    border-radius: 20px;
+}
+
+.main-section {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin:  0 5rem; */
+    padding-bottom: 5rem;
+}
+.main-section h3{
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-color)
+}
+.home_cards{
+    display: flex;
+    gap:1rem;
+    margin: 2rem 5rem;
+}
+
+.home_card{
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.home-link{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.home_card-img{
+    transition: transform .4s;
+    width: 100%;
+    display: block;
+}
+
+
+.home_card-title{
+    position: absolute;
+    left: 1rem;
+    bottom:1rem;
+    font-size: var(--h3-font-size);
+    z-index: 1;
+}
+
+.home_card:hover .home_card-img{
+    transform:scale(1.2)
+}
+
+.rform{
+    border: ridge 1.5px white;
+    margin: 17rem 0;
+}

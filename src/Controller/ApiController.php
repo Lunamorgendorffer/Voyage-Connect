@@ -15,7 +15,13 @@ class ApiController extends AbstractController
     public function index(CallApiService $restCountriesService): Response
     {
         // Liste des régions pour afficher les liens vers les détails de chaque région
-        $regions = ["europe","asia","americas", "africa", "oceania" ];
+        $regions = [
+            "Asia" => "img/b.jpg",
+            "Americas" => "img/am.jpg" , 
+            "Africa" => "img/a.jpg",
+            "Europe"=> "img/home-mountain.jpg" ,
+            "Oceania" => "img/home-beach.jpg"
+        ];
 
         return $this->render('api/index.html.twig', [
             'regions' => $regions,

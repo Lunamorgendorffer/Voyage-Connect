@@ -553,16 +553,6 @@ input {
     background: #0a0a0a;
 }
 
-.holder{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-image:url('/public/img/country/background.jpg');
-    background-position: center ;
-    background-size: cover;
-
-}
 
 .button{
     width:180px;
@@ -576,34 +566,7 @@ input {
     top: 20%;
     left: 14%;
 }
-.boxs{
-    display: flex;
-    align-items: center;
-    /* margin: auto 0; */
-}
 
-
-.boxi{
-    width: 300px;
-    height: 380px;
-    border-radius: 10px;
-    padding: 15px 25px;
-    cursor: pointer;
-    margin: 10px 15px;
-    /* background-position: center ;
-    background-size: cover; */
-    transition: transform 0.5s;
-}
-
-.card1{
-    /* background-image: url('/public/img/country/pic-1.png'); */
-    background-color: #1876f2;
-
-}
-
-.boxi:hover{
-    transform: translateY(-10px);
-}
 
 h5{
     

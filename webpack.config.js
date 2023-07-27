@@ -24,6 +24,7 @@ Encore
   
     .addEntry('home', './assets/styles/home.css')
     .addEntry('log', './assets/styles/register.css')
+    .addEntry('api', './assets/styles/api.css')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
