@@ -9,8 +9,10 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PostType extends AbstractType
 {
@@ -29,8 +31,8 @@ class PostType extends AbstractType
 
         // Définition des champs du formulaire
         $builder
-            ->add('title') // Champ titre du post
-            ->add('description') // Champ description du post
+            ->add('title', TextType::class,['attr'=>['class'=>'form-control"']]) // Champ titre du post
+            ->add('description',TextareaType::class,['attr'=>['class'=>'form-control"']]) // Champ description du post
             ->add('image', FileType::class, [ // Champ de téléchargement de l'image du post
                 'label' => 'profile Picture', // Étiquette du champ
                 'mapped' => false, // Indique que ce champ n'est pas mappé directement à l'entité Post

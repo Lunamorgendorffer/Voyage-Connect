@@ -4,22 +4,37 @@
 {% block title %}AddPost{% endblock %}
 
 {% block body %}
-{% if edit %}
-    <h1>Update a post</h1>
-{% else %}
-    <h1> Add a post </h1>
-{% endif %}
+<div class="container d-flex align-items-center justify-content-center ">
+    <div class="rform d-flex align-items-center flex-column w-100">
+        <img src="{{asset('img/img.png')}}" class="compass" alt="boussole">
+        <h2 class="register_title">
+            {% if edit %}
+                <h1>Update a post</h1>
+            {% else %}
+                <h1> Add a post </h1>
+            {% endif %}
+        </h2>
 
-
-
-{{ form_start(formAddpost) }}
-
-    {{ form_row(formAddpost.title) }}
-    {{ form_row(formAddpost.description) }}
-    {{ form_row(formAddpost.image) }}
-    {{ form_widget(formAddpost.country) }}
-
-{{ form_end(formAddpost) }}
-
+        {{ form_start(formAddpost) }}
+        <div class="form-group">
+            {{ form_row(formAddpost.title,{
+                'attr': {
+                    'class': 'd-flex w-100' } }) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(formAddpost.description,{
+                'attr': {
+                    'class': 'd-flex w-100' } }) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(formAddpost.image,{
+                'attr': {
+                    'class': 'd-flex' } }) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(formAddpost.country) }}
+        </div>
+    {{ form_end(formAddpost) }}
+</div>
 
 {% endblock %}

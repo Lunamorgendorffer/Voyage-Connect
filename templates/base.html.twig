@@ -17,7 +17,7 @@
             
             <div class="nav-center">
                 <input class="form-control" type="text" id="live_search" placeholder="Search...">
-                <div id="result" class="form-control"></div>
+                <div id="result"></div>
             </div>
             
             <div class="nav-right">
@@ -121,7 +121,7 @@
                 <div class="event">
                 {% if trendingPosts is not empty %}
                     {% for post in trendingPosts %}
-                        <p ><a href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></p>
+                        <li><a class=" text-decoration-none text-dark-emphasis" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li>
                     {% endfor %}
                 {% endif %}
                 </div>
@@ -130,9 +130,9 @@
                     <h4><i class="fa-solid fa-list"></i>Featured links</h4>
                 </div>
                 <div class="rgpd-links">
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">CGU</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a class=" text-decoration-none text-dark-emphasis" href="#">FAQ</a></li>
+                    <li><a class=" text-decoration-none text-dark-emphasis"  href="#">CGU</a></li>
+                    <li><a class=" text-decoration-none text-dark-emphasis"  href="#">Privacy Policy</a></li>
                 </div>
                 
             </div>

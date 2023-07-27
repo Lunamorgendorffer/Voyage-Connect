@@ -64,6 +64,7 @@ class PostController extends AbstractController
     public function add(EntityManagerInterface $entityManager, Post $post = null, FileUploader $fileUploader, Request $request): Response 
     {
         $user= $this->getUser(); // Récupère l'utilisateur connecté
+        $trendingPosts = $entityManager->getRepository(Post::class)->findTrendingPosts(3);
         if (!$post){ // si la post n'existe pas 
             $post = new post();  // alors crée un nouvel objet post 
         }
@@ -109,6 +110,7 @@ class PostController extends AbstractController
         return $this->render('post/addpost.html.twig', [
            'formAddpost' => $form->createView(),
            'edit'=> $post->getId(),
+           'trendingPosts' => $trendingPosts,
             
         ]);
 
