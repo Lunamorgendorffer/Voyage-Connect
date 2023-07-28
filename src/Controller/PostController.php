@@ -31,12 +31,14 @@ class PostController extends AbstractController
         // Récupérer tous les posts depuis la base de données
         $posts = $entityManager->getRepository(Post::class)->findAll();
 
+        // Récupérer les posts les plus populaires pour afficher dans la section des tendances
         $trendingPosts = $entityManager->getRepository(Post::class)->findTrendingPosts(3);
 
-        $pagination = $paginator->paginate(
-            $entityManager->getRepository(Post::class)->paginationQuery(),
-            $request->query->get('page', 1),
-            3
+        // Pagination des posts pour n'afficher que 3 posts par page
+        $pagination = $paginator->paginate( //C'est une méthode du service $paginator. Elle est utilisée pour paginer les données. 
+            $entityManager->getRepository(Post::class)->paginationQuery(), //ici on récupère les données à paginer
+            $request->query->get('page', 1),// le numéro de page que nous voulons afficher.
+            3 // le nombre d'éléments à afficher par page. 
         );
         
         // Retourne sur la vue 'post/index.html.twig' en lui passant les posts en tant que variable 'posts'
