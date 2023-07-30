@@ -65,22 +65,27 @@ class PostsController extends AbstractController
 
     }
 
-    // fonction pour bloqué un event
+    // Cette fonction permet de bloquer/débloquer un post
     #[Route('/post/lock', name: 'lock', methods: ['POST'])]
     public function lockPost(EntityManagerInterface $em, Request $request, PostRepository $postRepository): Response
     {
-
+        // Vérifier si la requête est de type POST
         if ($request->isMethod('POST')) {
+            // Récupérer l'ID du post à bloquer/débloquer depuis la requête
             $postId = $request->request->get('postId');
+            // Trouver le post correspondant dans la base de données
             $post = $postRepository->find($postId);
 
+            // Si le post existe
             if ($post) {
-
+                // Vérifier si le post doit être bloqué ou débloqué
                 $isLock = $request->request->has('isLock');
+                 // Définir l'état de verrouillage du post
                 $post->setLocked($isLock);
+                // Enregistrer les changements dans la base de données
                 $em->flush();
             }
-
+            // Rediriger vers la page d'index des posts de l'administration
             return $this->redirectToRoute('admin_posts_index');
         }
     }
