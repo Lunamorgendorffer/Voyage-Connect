@@ -9,6 +9,7 @@
 import './styles/app.css';
 import './styles/register.css';
 import './styles/home.css';
+import './styles/responsive.css';
 import './styles/userProfile.css';
 
 import './scripts/profilscript.js';
@@ -45,6 +46,7 @@ if(navToggle){
     })
 }
 
+/*=============== MENU HIDDEN ===============*/
 if(navClose){
     navClose.addEventListener('click',() =>{
         navMenu.classList.remove('show-menu');
@@ -61,6 +63,7 @@ const linkAction = ()  =>{
 }
 
 navLink.forEach(n=>navMenu.addEventListener('click', n, linkAction))
+// navLink.forEach(n => n.addEventListener('click', linkAction));
 /*=============== ADD BLUR TO HEADER ===============*/
 const blurHeader = () => {
     const header = document.getElementById('header');
@@ -70,6 +73,35 @@ const blurHeader = () => {
 };
 
 window.addEventListener('scroll', blurHeader);
+
+// //////////////////////////Désactiver ScrollReveal en version mobile /////////////////////////
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+if (isMobile) {
+    sr.destroy(); // Désactiver ScrollReveal en version mobile
+    // Activer le défilement horizontal en version mobile
+    const postsContainer = document.querySelector('.posts');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+    const scrollStep = 200; // Ajustez cette valeur selon vos besoins pour contrôler la distance de défilement
+
+    let scrollPosition = 0;
+
+    leftArrow.addEventListener('click', () => {
+        scrollPosition -= scrollStep;
+        if (scrollPosition < 0) scrollPosition = 0;
+        postsContainer.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+    });
+
+    rightArrow.addEventListener('click', () => {
+        scrollPosition += scrollStep;
+        if (scrollPosition > postsContainer.scrollWidth - postsContainer.clientWidth) {
+            scrollPosition = postsContainer.scrollWidth - postsContainer.clientWidth;
+        }
+        postsContainer.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+    });
+}
+
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
