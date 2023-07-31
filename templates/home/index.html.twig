@@ -84,9 +84,6 @@
             <img src="{{asset('img/img.png')}}" class="compass" alt="boussole">
             <h2 class="big-title">Destinations</h2>
             <div class="home_cards">
-                <div class="arrow left-arrow">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </div>
                 {% for region, image in regions %}
                 {# {{ dump(image) }} #}
                 <article class="home_card">
@@ -96,9 +93,6 @@
                     </a>
                 </article>
                 {% endfor %}
-                <div class="arrow right-arrow">
-                    <i class="fa-solid fa-arrow-right"></i>
-                </div>
             </div>
        </section>
 

@@ -9,8 +9,8 @@
 import './styles/app.css';
 import './styles/register.css';
 import './styles/home.css';
-import './styles/responsive.css';
 import './styles/userProfile.css';
+// import './styles/_responsive.css';
 
 import './scripts/profilscript.js';
 import './scripts/menu-nav.js';
@@ -41,12 +41,14 @@ document.addEventListener('DOMContentLoaded', function() {
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
+const menu = document.getElementById('menu');
 
 if(navToggle){
     navToggle.addEventListener('click',() =>{
         navMenu.classList.add('show-menu');
-        navToggle.style.display = 'none';
+        menu.style.display = 'none';
         // navToggle.classList.toggle('d-none');
+        
     })
 }
 
@@ -54,7 +56,7 @@ if(navToggle){
 if(navClose){
     navClose.addEventListener('click',() =>{
         navMenu.classList.remove('show-menu');
-        navToggle.style.display = 'block';
+        menu.style.display = 'block';
     })
 }
 
@@ -80,33 +82,6 @@ const blurHeader = () => {
 window.addEventListener('scroll', blurHeader);
 
 // //////////////////////////Désactiver ScrollReveal en version mobile /////////////////////////
-const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-if (isMobile) {
-    sr.destroy(); // Désactiver ScrollReveal en version mobile
-    // Activer le défilement horizontal en version mobile
-    const postsContainer = document.querySelector('.posts');
-    const leftArrow = document.querySelector('.left-arrow');
-    const rightArrow = document.querySelector('.right-arrow');
-    const scrollStep = 200; // Ajustez cette valeur selon vos besoins pour contrôler la distance de défilement
-
-    let scrollPosition = 0;
-
-    leftArrow.addEventListener('click', () => {
-        scrollPosition -= scrollStep;
-        if (scrollPosition < 0) scrollPosition = 0;
-        postsContainer.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-    });
-
-    rightArrow.addEventListener('click', () => {
-        scrollPosition += scrollStep;
-        if (scrollPosition > postsContainer.scrollWidth - postsContainer.clientWidth) {
-            scrollPosition = postsContainer.scrollWidth - postsContainer.clientWidth;
-        }
-        postsContainer.scrollTo({ left: scrollPosition, behavior: 'smooth' });
-    });
-}
-
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({

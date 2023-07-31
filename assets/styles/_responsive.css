@@ -1,0 +1,122 @@
+@media screen and (max-width: 768px) {
+
+    .nav{
+        max-width: 1120px;
+        margin-inline: 1.5rem;
+    }
+    .nav_list {
+        display: none !important;
+        /*text-align:center;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2.5rem;
+        */
+    }
+    .nav_close{
+        display: block;
+        font-size: 1.25rem;
+        color: var(--title-color);
+        cursor: pointer;
+    }
+
+    .nav_close{
+        display: block !important;
+        position: absolute;
+        top: 1rem;
+        right:1.5rem;
+    }
+
+    .nav_toggle{
+        display: block !important;
+        color: var(--title-color) !important;
+    }
+
+    .show-menu .nav_toggle{
+        display: none !important;
+    }
+
+    .show-menu .nav_list {
+        /* top: 0; */
+        /* position: relative; */
+        display: block !important;
+    }
+
+
+    /*.nav_menu{
+        position: fixed;
+        top: -100%;
+        left: 0;
+        background-color: gray;
+        width: 100%;
+        padding-block:4rem;
+        transition:top 0.4s;
+    }
+    */
+    .home{
+      min-height: 50vh !important;
+    }
+
+    .home_bg {
+    
+        height: 50% !important; /* Ajuster la hauteur de la vidéo pour les écrans mobiles */
+    }
+    
+    .main-section {
+        height: 50%  !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    .compass{
+        height: 50px !important;
+        width: 50px !important;
+    }
+
+    .big-title {
+        font-size: 2.75rem;
+    }
+
+    .home_cards {
+        flex-direction: column; /* Afficher les cartes en colonnes sur les écrans mobiles */
+    }
+
+    .home_card {
+        width: 100%; 
+    }
+
+    .home_card-img {
+        height: 100px; 
+    }
+    
+    .home_card-title{
+        font-size: 0.75rem !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        padding: 10px !important;
+      
+    }
+    .explore{
+        display: none !important;
+    }
+
+    .section {
+        padding-block: 2rem 1rem;
+    }
+
+    .popular {
+        border-top: none !important;
+    }
+
+    .posts {
+        flex-direction: column;
+        margin-left: 12rem;
+    }
+
+    .post_descriscription{
+        font-size: 0.75rem !important;
+        font-weight: 500 !important;
+    }
+    .post-card-img {
+        width: 50% !important;
+    }
+
+}
