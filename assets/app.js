@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const formElement = document.getElementById('lockForm');
 });
 
+
+
 /*=============== SHOW MENU ===============*/
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
@@ -43,6 +45,8 @@ const navClose = document.getElementById('nav-close');
 if(navToggle){
     navToggle.addEventListener('click',() =>{
         navMenu.classList.add('show-menu');
+        navToggle.style.display = 'none';
+        // navToggle.classList.toggle('d-none');
     })
 }
 
@@ -50,6 +54,7 @@ if(navToggle){
 if(navClose){
     navClose.addEventListener('click',() =>{
         navMenu.classList.remove('show-menu');
+        navToggle.style.display = 'block';
     })
 }
 

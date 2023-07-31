@@ -208,8 +208,8 @@ flex-direction: column;
         row-gap: 2.5rem;
         */
     }
-    .nav_toggle, .nav_close{
-        display: flex;
+    .nav_close{
+        display: block;
         font-size: 1.25rem;
         color: var(--title-color);
         cursor: pointer;
@@ -219,6 +219,15 @@ flex-direction: column;
         position: absolute;
         top: 1rem;
         right:1.5rem;
+    }
+
+    .nav_toggle{
+        display: block;
+        color: var(--title-color) !important;
+    }
+
+    .show-menu .nav_toggle{
+        display: none !important;
     }
 
     /*.nav_menu{

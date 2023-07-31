@@ -42,16 +42,15 @@
                             <a href="{{ path('app_login')}}" class="login">Login</a>
                         </li>
                     </div>
+                    {% endif %}
+                    <!-- Close Button -->
+                    <div class="nav_close" id="nav-close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
                 </ul>
-                {% endif %}
-            
-                <!-- Close Button -->
-                <div class="nav_close" id="nav-close">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
             </div>
             <div class="nav_toggle" id="nav-toggle">
-                <i class="fa-solid fa-bars"></i>
+                <i class="fa-solid fa-bars" id="menu"></i>
             </div>
         </nav>
         <!-- Close Button -->
