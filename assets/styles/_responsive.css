@@ -62,13 +62,13 @@
     }
     
     .main-section {
-        height: 50%  !important;
+        /* height: 50%  !important; */
         padding-bottom: 2rem !important;
     }
     
     .compass{
-        height: 50px !important;
-        width: 50px !important;
+        /* height: 150px !important; */
+        width: 25% !important;
     }
 
     .big-title {
@@ -77,15 +77,21 @@
 
     .home_cards {
         flex-direction: column; /* Afficher les cartes en colonnes sur les écrans mobiles */
+        margin: 0 !important;
+        width: 80% !important;
     }
 
     .home_card {
         width: 100%; 
     }
 
-    .home_card-img {
-        height: 100px; 
+    .home_card a {
+        width: 90%;
     }
+
+    /* .home_card-img {
+        height: 100px; 
+    } */
     
     .home_card-title{
         font-size: 0.75rem !important;
