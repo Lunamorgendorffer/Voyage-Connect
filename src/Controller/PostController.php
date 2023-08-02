@@ -131,12 +131,15 @@ class PostController extends AbstractController
 
     // fonction pour afficher la page detail de la post 
     #[Route('/post/{id}', name: 'show_post')] // Définir l'URL de la route et le nom de la route
-    public function show(Post $post): Response
+    public function show(EntityManagerInterface $entityManager, Post $post): Response
     {
+        // Récupérer les posts les plus populaires pour afficher dans la section des tendances
+        $trendingPosts = $entityManager->getRepository(Post::class)->findTrendingPosts(3);
         // Retourne sur la vue 'post/detailpost.html.twig' avec 
         return $this->render('post/detailpost.html.twig', [
         //les données de l'entité Post en tant que variable 'post'
         'post' => $post, 
+        'trendingPosts' => $trendingPosts,
         ]);
     }
 
