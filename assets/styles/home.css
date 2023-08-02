@@ -479,8 +479,6 @@ flex-direction: column;
 .footer > * {
     flex:  1 100%;
 }
-
-
 .footer__logo {
     color: #fff;
     font-size: var(--title-font-size);
@@ -566,5 +564,22 @@ flex-direction: column;
     color: #2f2f2f;
 }
 
+@media screen and (min-width: 40.375em) {
+    .footer__nav > * {
+      flex: 1;
+    }
+    
+    .nav__item--extra {
+      flex-grow: 2;
+    }
+    
+    .footer__addr {
+      flex: 1 0px;
+    }
+    
+    .footer__nav {
+      flex: 2 0px;
+    }
+}
 
 
