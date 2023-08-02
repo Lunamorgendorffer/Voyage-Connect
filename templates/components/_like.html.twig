@@ -4,11 +4,11 @@
     <a  href="{{ path('app_like', {id: post.id}) }}" data-action="like" data-nb={{ post.likes|length }}>
     {% endif %}
 
-    <button>
+    <button style="background-color:transparent;padding: 5px; ">
         {# Icône du coeur vide #}
         <i class="fa-regular fa-heart unfilled {{ app.user in post.likes ? 'd-none' : '' }}"></i>
         {# Icône du coeur rempli #}
-        <i class="fa-solid fa-heart filled {{ app.user in post.likes ? '' : 'd-none' }}"></i>
+        <i style="color:red" class="fa-solid fa-heart filled {{ app.user in post.likes ? '' : 'd-none' }}"></i>
     </button>
 
     {% if app.user %}

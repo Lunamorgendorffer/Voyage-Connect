@@ -24,13 +24,14 @@
 }
 
 .dark-theme{
-    --body-color:#0a0a0a;
-    --nav-color: #000;
-    --bg-color:#000;
+    --body-color:#151515;
+    --nav-color: #242424;
+    --bg-color:#151515;
     /*========== Dark mode linear gradient colors ==========*/
     --gradient-start-color: #2a2a2a;
     --gradient-mid-color: #1f1f1f;
     --gradient-end-color: #121212;
+    
 }
 
 body {
@@ -565,6 +566,20 @@ input {
 #dark-btn.dark-btn-on{
     padding-left: 23px;
     background: #0a0a0a;
+}
+
+/* CSS pour le mode sombre */
+.dark-theme .post-text h5 a,
+.dark-theme .post-text p{
+    color: #f6f6f6; /* Couleur du texte en mode sombre */
+}
+
+.dark-theme .user-profile a {
+    color: #f6f6f6;
+}
+
+.dark-theme .country{
+    color: #f6f6f6;
 }
 
 

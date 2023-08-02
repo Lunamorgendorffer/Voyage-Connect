@@ -38,8 +38,8 @@
     <div class="post-row">
         <div class="activity-icons">
             <div>{% include "components/_like.html.twig" %}{{ post.likes|length }}</div>
-            <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
-            <div><a href="{{ path('app_api')}}" class="btn btn-outline-secondary">{{post.country}}</a></div>
+            <div><i class="fa-regular fa-message p-1"></i> {{post.comments|length }}</div>
+            <div><a href="{{ path('app_api')}}" class="country btn btn-outline-secondary">{{post.country}}</a></div>
 
         </div>
         <div class="post-btn">
