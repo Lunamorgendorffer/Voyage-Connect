@@ -39,15 +39,17 @@
         <div class="activity-icons">
             <div>{% include "components/_like.html.twig" %}{{ post.likes|length }}</div>
             <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
-            <div>{% include "components/_favoritepost.html.twig" %}</div>
+            <div><a href="{{ path('app_api')}}" class="btn btn-outline-secondary">{{post.country}}</a></div>
 
         </div>
-        {% if is_granted('ROLE_ADMIN') %}
         <div class="post-btn">
-            <button class="btn btn-light"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
-            <button class="btn btn-light" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
+            {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
+            <button class="btn btn-outline-secondary"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') %}
+            <button class="btn btn-outline-secondary" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 </div>
 {% endfor %}
