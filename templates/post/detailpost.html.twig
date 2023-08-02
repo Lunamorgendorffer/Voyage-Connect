@@ -55,15 +55,25 @@
         {{comment}} <br>
     </p>
     <div class="post-btn">
-        {# {% include "components/_likeComment.html.twig" %} #}
-        <button class="btn-edit"><a href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a></button> 
+        {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
+        <button class="btn-edit"><a href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a></button>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %} 
         <button class="btn-delete" ><a href="{{ path('delete_comment', {'id':comment.id}) }}">Delete</a></button><br>
+        {% endif %}
     </div>
 </div>
 {% endfor %}
-
-<div class="addbtn">
-    <button class="btn-add"><a href="{{ path('add_comment', {'postId': post.id} ) }}">Add</a></button><br>
-</div>
+{% if post.locked %}
+    <div class="alert alert-secondary" role="alert">
+        <p class="text-center">
+            <i class="fa-solid fa-circle-info"></i>Post is locked
+        </p>
+    </div>
+{% else %}
+    <div class="addbtn">
+        <button class="btn-add"><a href="{{ path('add_comment', {'postId': post.id} ) }}">Add</a></button><br>
+    </div>
+{% endif %}
 
 {% endblock %}

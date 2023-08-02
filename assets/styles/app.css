@@ -587,6 +587,14 @@ h5{
     text-transform: uppercase;
 }
 
+.alert-secondary{
+    background-color: #ffa343 ;
+    border-color: #ffa343;
+}
+
+.fa-circle-info{
+    margin-right: 10px !important;
+}
 
 
 
