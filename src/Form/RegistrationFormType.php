@@ -25,7 +25,7 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email',EmailType::class,['attr'=>['class'=>'form-control']] )
-            ->add('pseudo', TextType::class,['attr'=>['class'=>'form-control"']])
+            ->add('pseudo', TextType::class,['attr'=>['class'=>'form-control']])
             ->add('avatar', FileType::class, [
                 'label' => 'image',
                 'mapped' => false,

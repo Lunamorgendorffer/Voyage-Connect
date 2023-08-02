@@ -2,28 +2,56 @@
 
     .nav{
         max-width: 1120px;
-        margin-inline: 1.5rem;
-    }
-    .nav_list {
-        display: none !important;
-        /*text-align:center;
-        display: flex;
-        flex-direction: column;
-        row-gap: 2.5rem;
-        */
-    }
-    .nav_close{
-        display: block;
-        font-size: 1.25rem;
-        color: var(--title-color);
-        cursor: pointer;
+        margin: 1rem  !important;
+        height: 100%;
     }
 
+    .nav_logo{
+        display: none !important;
+    }
+    .nav_list{
+        display: none !important;
+    }
+
+    .show-menu {
+        margin: 0 auto !important;
+        width: 100%;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background: rgb(0, 0, 0) !important;
+        
+    }
+
+    .show-menu .nav_list {
+        display: block !important;
+    }
+
+
+    .show-menu .nav_item {
+        list-style: none;
+        font-weight: 600;
+        margin: 0 10px
+    }
+
+    .show-menu .nav_link {
+        display: block;
+        font-size: 32px;
+        margin-bottom: 30px;
+        text-decoration: none;
+    }
+
+    .show-menu .login {
+        background-color: transparent;
+        border-radius: 0;
+        backdrop-filter: none !important;
+    }
     .nav_close{
         display: block !important;
         position: absolute;
         top: 1rem;
         right:1.5rem;
+        cursor: pointer;
+        color: var(--title-color);
     }
 
     .nav_toggle{
@@ -35,11 +63,7 @@
         display: none !important;
     }
 
-    .show-menu .nav_list {
-        /* top: 0; */
-        /* position: relative; */
-        display: block !important;
-    }
+    
 
 
     /*.nav_menu{
@@ -72,16 +96,16 @@
     }
 
     .big-title {
-        font-size: 2.75rem;
+        font-size: 2.75rem !important;
     }
 
-    .home_cards {
+    .home_cards{
         flex-direction: column; /* Afficher les cartes en colonnes sur les écrans mobiles */
         margin: 0 !important;
         width: 80% !important;
     }
 
-    .home_card {
+    .home_card  {
         width: 100%; 
     }
 
@@ -105,7 +129,7 @@
     }
 
     .section {
-        padding-block: 2rem 1rem;
+        padding-block: 2rem 1rem !important;
     }
 
     .popular {
@@ -114,15 +138,41 @@
 
     .posts {
         flex-direction: column;
-        margin-left: 12rem;
+        margin: 0 !important;
+        width: 80% !important;
     }
 
+    .post-card{
+        width: 100% !important; 
+    }
+
+    
     .post_descriscription{
-        font-size: 0.75rem !important;
+        font-size: 1rem !important;
         font-weight: 500 !important;
     }
+
     .post-card-img {
-        width: 50% !important;
+        width:100% !important;
+    }
+
+    .legal .legal__links {
+        margin-left: auto !important;
+    }
+    .footer__nav > * {
+        flex: 1 !important;
+    }
+      
+    .nav__item--extra {
+        flex-grow: 2 !important;
+    }
+      
+    .footer__addr {
+        flex: 1 0px !important;
+    }
+      
+    .footer__nav {
+        flex: 2 0px !important;
     }
 
 }
