@@ -19,18 +19,22 @@
         </div>
         <a href="{{ path('app_post') }}">Back</a>
     </div>
-    <h1>{{post}}</h1>
-    <p class="post-text">
-        {{post.description}}
-    </p>
+    <div class="post-text">
+        <h5>
+            <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+        </h5>
+        <p>{{post.description}}</p>
+    </div>
+    <figure>
+        <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
+    </figure>
 
-    <img style="max-width:50%" src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
 
     <div class="post-row">
         <div class="activity-icons">
             <div>{% include "components/_like.html.twig" %}</div>
             <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
-            <div>{% include "components/_favoritepost.html.twig" %}</div>
+            <div><a href="{{ path('app_api')}}" class="btn btn-outline-secondary">{{post.country}}</a></div>
         </div>
     </div>
 </div>
