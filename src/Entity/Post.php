@@ -37,7 +37,7 @@ class Post
     #[ORM\Column(type: Types::BOOLEAN)]
     private bool $locked = false;
 
-    #[ORM\ManyToOne(inversedBy: 'post', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'post')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
