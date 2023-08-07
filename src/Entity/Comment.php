@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CommentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
@@ -53,6 +54,27 @@ class Comment
         $this->creationDate = $creationDate;
 
         return $this;
+    }
+
+    //fonction personalisé pour modif affichage de la date de publication 
+    public function getCreationTime(): string
+    {
+        $now = new DateTime(); // Obtenir la date et l'heure actuelles
+        $diff = $this->creationDate->diff($now); // Calculer la différence entre la date de création et la date actuelle
+
+        if ($diff->d > 0) {
+            return $diff->format('%ad ago'); // Si la différence est supérieure à 0 jours, renvoyer le format "X jours auparavant" (ex: il y a 3 jours)
+        }
+
+        if ($diff->h > 0) {
+            return $diff->format('%hh %im ago'); //  Si la différence est supérieure à 0 heures, renvoyer le format "Xh Xm auparavant" (ex: il y a 2h 30m)
+        }
+
+        if ($diff->i > 0) {
+            return $diff->format('%im ago'); // Si la différence est supérieure à 0 minutes, renvoyer le format "Xm auparavant" (ex: il y a 45m)
+        }
+
+        return 'Just now'; //  Si aucune des conditions ci-dessus n'est remplie, renvoyer "À l'instant" car le post est très récent
     }
 
     public function getText(): ?string

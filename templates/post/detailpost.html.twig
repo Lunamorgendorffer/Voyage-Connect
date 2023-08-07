@@ -14,7 +14,7 @@
             {% endif %}
             <div>
                 <p>{{post.user}}</p>
-                <span>{{post.creationDate | date ('d/m/Y') }}</span>
+                <span>{{post.creationTime }}</span>
             </div>
         </div>
         <a href="{{ path('app_post') }}">Back</a>
@@ -51,7 +51,7 @@
             <div class="user-profile-info">
                 <p>{{comment.user}}</p>
                 <span class="dot"></span>
-                <span>{{comment.creationDate | date ('d/m/Y') }}</span>
+                <span>{{comment.creationTime}}</span>
             </div>
         </div>
     </div>
