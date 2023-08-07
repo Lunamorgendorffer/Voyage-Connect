@@ -52,11 +52,11 @@ class CommentController extends AbstractController
     // fonction ajout + edit une comment
     #[Route('/comment/add/{postId}', name: 'add_comment')]
     #[Route('/comment/{id}/edit', name: 'edit_comment')]
-    public function add(EntityManagerInterface $entityManager, Comment $comment = null, $postId = null, Request $request): Response 
+    public function add(EntityManagerInterface $entityManager, Comment $comment = null,Post $post = null, $postId = null, Request $request): Response 
     {
         
         $user= $this->getUser(); 
-        // dd($this->getUser());
+        $trendingPosts = $entityManager->getRepository(Post::class)->findTrendingPosts(3);
         if (!$comment){ // si la comment n'existe pas 
             $comment = new comment();  // alors crée un nouvel objet comment 
         }
@@ -84,6 +84,7 @@ class CommentController extends AbstractController
         return $this->render('comment/addcomment.html.twig', [
            'formAddcomment' => $form->createView(),
            'edit'=> $comment->getId(),
+           'trendingPosts' => $trendingPosts,
             
         ]);
 
