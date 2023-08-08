@@ -27,12 +27,32 @@ security:
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
+            # form_login:
+            #     # ...
+            #     check_path: app_login
+            #     login_path: app_login
+            #     always_use_default_target_path: false
+            #     default_target_path: / 
+
+            # Ajout de la configuration pour empêcher les utilisateurs bannis de se connecter
+            # request_matcher:
+            #     path: '^/'
+            #     match_if_missing: true
+            #     rules:
+            #         - { path: '^/login$', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            #         - { path: '^/reset-password$', roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            #         - { path: '^/', roles: [IS_AUTHENTICATED_FULLY, IS_BANNED_FALSE] }
+                    
+
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/user, roles: ROLE_USER }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/reset-password$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: [IS_AUTHENTICATED_FULLY, IS_BANNED_FALSE] }
 
 when@test:
     security:

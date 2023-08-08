@@ -7,13 +7,23 @@ parameters:
     file_directory: '%kernel.project_dir%/public/uploads'
 
 services:
-    # default configuration for services in *this* file
+    # Configuration du service personnalisé FileUploader
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%file_directory%'
+
+    # Configuration du voteur RoleHierarchyVoter
+    Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter:
+        # ...
+        arguments: [{ IS_BANNED_FALSE: 'ROLE_USER' }]
+
+    # Default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
-    # makes classes in src/ available to be used as services
-    # this creates a service per class whose id is the fully-qualified class name
+    # Makes classes in src/ available to be used as services
+    # This creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/'
         exclude:
@@ -21,14 +31,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # Add more service definitions when explicit configuration is needed
+    # Please note that last definitions always *replace* previous ones
     # config/services.yaml
-
-    App\Service\FileUploader:
-        arguments:
-            $targetDirectory: '%file_directory%'
-
+    
 knp_paginator:
     page_range: 5                      # number of links shown in the pagination menu (e.g: you have 10 pages, a page_range of 3, on the 5th page you'll see links to page 4, 5, 6)
     default_options:
