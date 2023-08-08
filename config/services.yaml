@@ -12,11 +12,6 @@ services:
         arguments:
             $targetDirectory: '%file_directory%'
 
-    # Configuration du voteur RoleHierarchyVoter
-    Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter:
-        # ...
-        arguments: [{ IS_BANNED_FALSE: 'ROLE_USER' }]
-
     # Default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

@@ -14,16 +14,6 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils, Security $security): Response
     {
-        // Vérifier si l'utilisateur est déjà connecté, dans ce cas, redirigez-le où vous le souhaitez
-        if ($security->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return $this->redirectToRoute('app_home'); // Remplacez "route_after_login" par le nom de la route vers laquelle vous souhaitez rediriger l'utilisateur connecté.
-        }
-
-        // Vérifier si l'utilisateur est banni, s'il l'est, empêcher la connexion
-        if ($security->isGranted('IS_BANNED_FALSE')) {
-            return $this->redirectToRoute('app_login'); // Remplacez "route_user_banned" par le nom de la route vers laquelle vous souhaitez rediriger un utilisateur banni.
-        }
-
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
