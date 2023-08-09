@@ -113,27 +113,47 @@
             </div>
 
             <div class="right-sidebard">
-                <div class="sidebar-title">
-                    <h4><i class="fa-solid fa-arrow-trend-up"></i>Most-reading posts</h4>
-                    <a href="#">See All</a>
-                </div>
-                <div class="event">
-                {% if trendingPosts is not empty %}
-                    {% for post in trendingPosts %}
-                        <li><a class=" text-decoration-none text-dark-emphasis" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li>
-                    {% endfor %}
-                {% endif %}
+                <div class="right-subpart">
+                    <div class="event">
+                        <div class="sidebar-title">
+                            <h4><i class="fa-solid fa-arrow-trend-up"></i>Most-reading posts</h4>
+                            <a href="#">See All</a>
+                        </div>
+                        <div class="list-event">
+                        {% if trendingPosts is not empty %}
+                            {% for post in trendingPosts %}
+                                <li class="event-items"><a class="link text-decoration-none fs-6" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li>
+                            {% endfor %}
+                        {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="event">
+                        <div class="sidebar-title">
+                            <h4><i class="fa-solid fa-list"></i>Featured links</h4>
+                        </div>
+                        <div class="rgpd-links">
+                            <li class="event-items"><a class=" link text-decoration-none  fs-5" href="#">FAQ</a></li>
+                            <li class="event-items"><a class=" link text-decoration-none  fs-5"  href="#">CGU</a></li>
+                            <li class="event-items"><a class=" link text-decoration-none  fs-5"  href="#">Privacy Policy</a></li>
+                        </div>
+                    </div>
+    
                 </div>
 
-                <div class="sidebar-title">
-                    <h4><i class="fa-solid fa-list"></i>Featured links</h4>
+                <div class="right-subpart">
+                    <div class="event">
+                        <div class="sidebar-title">
+                            <h4><i class="fas fa-home"></i>Menu</h4>
+                        </div>
+                        <div class="rgpd-links">
+                            <li class="event-items"><a href="{{ path('app_home') }}" class="link text-decoration-none  fs-5" href="#">Home</a></li>
+                            <li class="event-items"><a href="{{ path('app_api')}}" class="link text-decoration-none  fs-5"  href="#">Explore</a></li>
+                            <li class="event-items"><a href="{{ path('app_post') }}" class="link text-decoration-none  fs-5"  href="#">Feed</a></li>
+                        </div>
+                    </div>
                 </div>
-                <div class="rgpd-links">
-                    <li><a class=" text-decoration-none text-dark-emphasis" href="#">FAQ</a></li>
-                    <li><a class=" text-decoration-none text-dark-emphasis"  href="#">CGU</a></li>
-                    <li><a class=" text-decoration-none text-dark-emphasis"  href="#">Privacy Policy</a></li>
-                </div>
-                
+
             </div>
         </div>
 

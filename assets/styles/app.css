@@ -15,8 +15,8 @@
     --bg-color: #f6f0eb;
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;
-    --title-font: 'Lato', sans-serif;
-    --text-font: 'Maven Pro', sans-serif;
+    --title-font: 'lato', sans-serif;
+    --text-font: 'Andika', sans-serif;;
     /*========== Default linear gradient colors ==========*/
     --gradient-start-color: #ac7175;
     --gradient-mid-color: #8f5f62;
@@ -171,14 +171,11 @@ input {
 }
 
 .right-sidebard{
-    background: var(--bg-color);
     flex-basis: 25%;
     position: sticky;
     top: 70px;
-    align-self: flex-start;
     padding: 20px;
-    border-radius: 20px;
-    color: #626262;
+    align-self: flex-start;
     display: flex;
     flex-direction: column
 }
@@ -191,9 +188,9 @@ input {
 }
 
 /****************************************LEFT SIDEBAR*****************************/
-.imp-links{
+/* .imp-links{
     border-bottom: 1px solid #9a9a9a;
-}
+} */
 .menu-links{
     margin: 0px 10px;
     padding: 5%;
@@ -220,18 +217,36 @@ input {
 
 
 /****************************************RIGHT SIDEBAR*****************************/
+.right-subpart{
+    background: var(--bg-color);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
 .sidebar-title{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 
 .right-sidebard h4{
     font-weight: 600;
-    font-size: 16px;
+    font-size: 1.5rem;
     display: flex;
     gap: 15px;
+}
+
+.list-event{
+    padding: 2% 0;
+    border-bottom: 1px solid #ccc ;
+}
+
+.event-items{
+    margin: 10px 0;
+}
+
+.link{
+    color: #0a0a0a;
 }
 
 
@@ -243,7 +258,6 @@ input {
 
 .event{
     margin-bottom: 20px;
-    border-bottom: 1px solid #ccc ;
 }
 
 .event .post{
@@ -376,13 +390,12 @@ input {
 }
 
 
-.post-text h5 a{
+.post-text .title-link{
     color: #0a0a0a;
     text-decoration: none;
     font-weight: bold;
-    font-family: 'Lato', sans-serif;
-    /* font-family: 'Maven Pro', sans-serif; */
-
+    font-family: var(--title-font);
+    text-transform: uppercase;
 }
 
 .post-text p{
@@ -607,12 +620,6 @@ input {
     position: relative;
     top: 20%;
     left: 14%;
-}
-
-
-h5{
-    
-    text-transform: uppercase;
 }
 
 .alert-secondary{
