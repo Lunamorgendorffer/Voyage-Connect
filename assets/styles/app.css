@@ -42,7 +42,6 @@ body {
 
 button,
 input {
-  /* outline: none; */
   border: none;
 }
 
@@ -52,8 +51,7 @@ input {
     align-items: center;
     justify-content: space-between;
     backdrop-filter: blur(25px);
-    /* background: #efefef; */
-    padding: 5px 0;
+    padding: 13px 6%;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -64,42 +62,33 @@ input {
     width: 75px;
     margin-right:45px;
 }
-.nav-center{
-    width: 47%;
-    padding: 0 1.5%;
-    flex-direction: column;
-}
 
-.nav-right{
-    flex-basis: 25%;
-    margin-left: 5%;
 
-}
-.nav-left{
-    flex-basis: 25%;
-    margin-right: 2%;
-}
-.nav-left, .nav-right, .nav-center{
+.nav-left, .nav-right{
     display: flex;
     align-items: center;
-    justify-content: center;
 }
 
 
-.nav-left a{
+.nav-left .title-logo{
     color: #fff;
-    font-size: var(--title-font-size);
+    font-size: 2rem;
     font-weight: bold;
     font-family: var(--home-family);
+}
+
+.nav_list_post{
+    display: flex;
+    text-align: center;
+    column-gap: 4rem;
+    margin-right: 2rem;
+    margin-bottom: 0;
 }
 
 .nav-icons{
     display: flex;
     align-items: center;
-    gap:20px;
-    justify-content: space-around;
-    width: 100%;
-    margin-right: 24%;
+    column-gap: 2rem;
 }
 
 .nav-icons i{
@@ -247,10 +236,12 @@ input {
 
 .link{
     color: #0a0a0a;
+    font-family: var(--text-font);
 }
 
 
 .sidebar-title a{
+    font-family: var(--title-font);
     text-decoration: none;
     color: #1876f2;
     font-size: 12px;
@@ -366,11 +357,10 @@ input {
 
 .post-container{
     width: 100%;
-    max-height:500px;
+    max-height:600px;
     background-color:  var(--bg-color);
     border-radius: 10px;
     padding: 20px;
-    color: #626262;
     margin: 20px 0;
 }
 
@@ -408,14 +398,13 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
+    margin-bottom: 10PX;
 
 }
 .post-container figure .post-img{
     width: auto;
     max-height: 275px;
     border-radius: 10px;
-    margin-bottom: 5px;
 }
 
 .post-row{
@@ -502,6 +491,7 @@ input {
 .post-btn {
     display: flex;
     gap: 5%;
+    padding-right: 1rem;
 }
 
 
@@ -631,5 +621,9 @@ input {
     margin-right: 10px !important;
 }
 
+.like-btn{
+    background-color:transparent;
+    padding: 5px;
+}
 
 

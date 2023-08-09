@@ -12,29 +12,43 @@
     <body>
         <nav class="navmenu">
             <div class="nav-left">
-                <a href="{{ path('app_home') }}">Voyage Connect</a>
-            </div>
-            
-            <div class="nav-center">
-                <input class="form-control" type="text" id="live_search" placeholder="Search...">
-                <div id="result"></div>
+                <div class="nav-icons">
+                    <a class="title-logo" href="{{ path('app_home') }}">Voyage Connect</a>
+                    <a href=""><i class="fa-solid fa-bell fa-xl"></i></a>
+                    <a href="{{path('app_messages')}}"><i class="fa-solid fa-envelope fa-xl"></i></a>
+                </div>
             </div>
             
             <div class="nav-right">
-                <div class="nav-icons">
-                    <a href=""><i class="fa-solid fa-bell fa-xl"></i></a>
-                    <a href="{{path('app_messages')}}"><i class="fa-solid fa-envelope fa-xl"></i></a>
-                    <div class="nav-user-icon online">
-                        {% if app.user %}
-                            {% if app.user.avatar == null %}
-                                <img class="nav-user-pic" s src="{{asset('img/user.png')}}">
-                            {% else %}
-                                <img  class="nav-user-pic" src="{{asset('uploads/' ~ app.user.avatar)}}" >
-                                <i class="fas fa-caret-down"></i> 
-                            {% endif %}
+                <ul class="nav_list_post">
+                    <li class="nav_item">
+                        <a href="{{ path('app_home') }}" class="nav_link">Home</a>
+                    </li>
+                    
+                    <li class="nav_item">
+                        <a href="{{ path('app_api')}}" class="nav_link">Explore</a>
+                    </li>
+                    <li class="nav_item">
+                        <a href="#" class="nav_link">About Us</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav_item">
+                        <a href="{{ path('admin_index') }}" class="nav_link">admin</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <div class="nav-user-icon online">
+                    {% if app.user %}
+                        {% if app.user.avatar == null %}
+                            <img class="nav-user-pic" s src="{{asset('img/user.png')}}">
+                        {% else %}
+                            <img  class="nav-user-pic" src="{{asset('uploads/' ~ app.user.avatar)}}" >
+                            <i class="fas fa-caret-down"></i> 
                         {% endif %}
-                    </div>
+                    {% endif %}
                 </div>
+
+                
                 
 
 
@@ -84,28 +98,6 @@
         </nav>
         
         <div class="cont">
-            
-            {# <div class="left-sidebard">
-
-                <div class="imp-links">
-                    <h5>Menu</h5>
-                    <div class="menu-links">
-                        <a href="{{ path('app_home') }}"><i class="fas fa-home"></i>Home</a>
-                        <a href="{{ path('app_api')}}"><i class="fa-brands fa-wpexplorer fa-lg"></i>Explore</a>
-                        <a href="{{ path('app_post') }}"><i class="fas fa-tasks"></i>Posts</a>
-                    </div>
-                </div>
-
-                <div class="shorcut-links">
-                    <h5>Personal <br> Navigator</h5>
-                    <div class="menu-links">
-                        <a href="#"><i class="fas fa-question-circle"></i>Your Posts</a>
-                        <a href="#"><i class="fas fa-heart"></i>Your likes</a>
-                        <a href="#"><i class="fas fa-bookmark"></i>Your Bookmarks</a>
-                    </div>
-                </div>
-
-            </div> #}
 
             <div class="main-content">
                 
@@ -122,7 +114,7 @@
                         <div class="list-event">
                         {% if trendingPosts is not empty %}
                             {% for post in trendingPosts %}
-                                <li class="event-items"><a class="link text-decoration-none fs-6" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li>
+                                <li class="event-items"><a class="link text-decoration-none fs-5" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li>
                             {% endfor %}
                         {% endif %}
                         </div>
@@ -140,20 +132,6 @@
                     </div>
     
                 </div>
-
-                <div class="right-subpart">
-                    <div class="event">
-                        <div class="sidebar-title">
-                            <h4><i class="fas fa-home"></i>Menu</h4>
-                        </div>
-                        <div class="rgpd-links">
-                            <li class="event-items"><a href="{{ path('app_home') }}" class="link text-decoration-none  fs-5" href="#">Home</a></li>
-                            <li class="event-items"><a href="{{ path('app_api')}}" class="link text-decoration-none  fs-5"  href="#">Explore</a></li>
-                            <li class="event-items"><a href="{{ path('app_post') }}" class="link text-decoration-none  fs-5"  href="#">Feed</a></li>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
 

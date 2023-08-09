@@ -5,7 +5,9 @@
 
 {% block body %}
 <div class="post-input-container">
-    <button class="btn-add"><a href="{{ path('add_post')}}"><i class="fa-solid fa-plus"></i>  Add Post</a></button><br>
+    <input class="form-control" type="text" id="live_search" placeholder="Search...">
+    <div id="result"></div>
+    {# <button class="btn-add"><a href="{{ path('add_post')}}"><i class="fa-solid fa-plus"></i>  Add Post</a></button><br> #}
 </div>
 
 
@@ -38,7 +40,7 @@
     <div class="post-row">
         <div class="activity-icons">
             <div>{% include "components/_like.html.twig" %}</div>
-            <div><i class="fa-regular fa-message p-1"></i> {{post.comments|length }}</div>
+            <div>{% include "components/_comment.html.twig" %}</div>
             <div><a href="{{ path('app_api')}}" class="country btn btn-outline-secondary">{{post.country}}</a></div>
 
         </div>
