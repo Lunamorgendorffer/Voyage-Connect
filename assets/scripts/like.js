@@ -21,6 +21,11 @@ export default class Like {
 
     axios.get(url).then(res => { // Faire une requête GET à l'URL spécifiée en utilisant Axios (bibliothèque pour les requêtes HTTP)
       console.log(res);
+      const nb = res.data.nbLike;
+      const span = this.querySelector('span');
+      this.dataset.nb = nb;
+      span.innerHTML = nb + ' likes';
+
 
       // Récupérer les boutons représentant le coeur rempli et le coeur vide
       const heartFilled = this.querySelector('.filled');

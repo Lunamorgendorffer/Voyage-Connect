@@ -10,6 +10,9 @@
         {# Icône du coeur rempli #}
         <i style="color:red" class="fa-solid fa-heart filled {{ app.user in post.likes ? '' : 'd-none' }}"></i>
     </button>
+    <span class="ml-2">{{ post.likes|length }}
+        likes
+    </span>
 
     {% if app.user %}
         </a>
