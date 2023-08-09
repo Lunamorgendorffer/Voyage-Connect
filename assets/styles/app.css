@@ -184,8 +184,9 @@ input {
 }
 
 .main-content{
-    width: 47%;
-    margin-left:25%;
+    width: 70%;
+    padding: 20px;
+    /* margin-left:25%; */
 
 }
 
@@ -351,9 +352,8 @@ input {
 
 .post-container{
     width: 100%;
+    max-height:500px;
     background-color:  var(--bg-color);
-    /* background: url('/public/img/n.png'); */
-    /* background-image: url("/public/img/b4.svg"); */
     border-radius: 10px;
     padding: 20px;
     color: #626262;
@@ -388,16 +388,19 @@ input {
 .post-text p{
     color: #000000;
     font-family: var(--text-font);
+    margin-bottom: 0;
 }
 
 .post-container figure{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 
 }
 .post-container figure .post-img{
-    width: 50%;
+    width: auto;
+    max-height: 275px;
     border-radius: 10px;
     margin-bottom: 5px;
 }
