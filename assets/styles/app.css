@@ -279,6 +279,41 @@ input {
     font-size: 12px;
 }
 
+.dark-mode{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dark-mode p{
+    margin-bottom: -5px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+#dark-btn{
+    background-color: #ccc;
+    width: 45px;
+    border-radius: 15px;
+    padding: 2px 3px;
+    cursor: pointer;
+    display: flex;
+    transition: padding-left 0.5s, background 0.5s;
+}
+
+#dark-btn span{
+    width: 18px;
+    height: 18px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#dark-btn.dark-btn-on{
+    padding-left: 23px;
+    background: #0a0a0a;
+}
+
 .post-input-container textarea{
     width:100%;
     border: 0;
@@ -542,31 +577,6 @@ input {
 
 }
 
-#dark-btn{
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #ccc;
-    width: 45px;
-    border-radius: 15px;
-    padding: 2px 3px;
-    cursor: pointer;
-    display: flex;
-    transition: padding-left 0.5s, background 0.5s;
-}
-
-#dark-btn span{
-    width: 18px;
-    height: 18px;
-    background-color: #fff;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-#dark-btn.dark-btn-on{
-    padding-left: 23px;
-    background: #0a0a0a;
-}
 
 /* CSS pour le mode sombre */
 .dark-theme .post-text h5 a,

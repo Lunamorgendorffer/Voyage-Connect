@@ -39,10 +39,6 @@
 
 
                 <div class="settings-menu">
-                    <div id="dark-btn" >
-                        <span></span>
-        
-                    </div>
                     <div class="settings-menu-inner">
                         <div class="user-profile">
                             {% if app.user %}
@@ -60,11 +56,12 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="user-profile">
-                            <img src="{{asset('img/images/feedback.png')}}" alt="">
+                        <div class="dark-mode">
                             <div>
-                                <p>Give a feedback</p>
-                                <a href="#">Help to improve profile</a>
+                                <p>dark mode button</p>
+                            </div>
+                            <div id="dark-btn" >
+                                <span></span>
                             </div>
                         </div>
                         <hr>
