@@ -16,7 +16,7 @@ a, a:hover{
     padding: 20px;
     
 }
-header{
+.header{
     position: fixed;
     width: 100%;
     background-color: hsla(0, 0%, 0%, .3);
