@@ -4,60 +4,94 @@
 
 
 {% block body %}
-<div class="post-input-container">
-    <input class="form-control" type="text" id="live_search" placeholder="Search...">
-    <div id="result"></div>
-    {# <button class="btn-add"><a href="{{ path('add_post')}}"><i class="fa-solid fa-plus"></i>  Add Post</a></button><br> #}
-</div>
+<main class="cont">
+    <div class="main-content">
+        <div class="post-input-container">
+            <input class="form-control" type="text" id="live_search" placeholder="Search...">
+            <div id="result"></div>
+            {# <button class="btn-add"><a href="{{ path('add_post')}}"><i class="fa-solid fa-plus"></i>  Add Post</a></button><br> #}
+        </div>
 
 
-{% for post in pagination %}
-<div class="post-container">
-    <div class="post-row">
-        <div class="user-profile">
-            {% if post.user.avatar == null %}
-                  <img src="{{asset('img/user.png')}}">
-            {% else %}
-                <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
-            {% endif %}
-            <div>
-                <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
-                <span>{{ post.creationTime }}</span>
+        {% for post in pagination %}
+        <div class="post-container">
+            <div class="post-row">
+                <div class="user-profile">
+                    {% if post.user.avatar == null %}
+                        <img src="{{asset('img/user.png')}}">
+                    {% else %}
+                        <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                    {% endif %}
+                    <div>
+                        <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
+                        <span>{{ post.creationTime }}</span>
+                    </div>
+                </div>
+                <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+            </div>
+            <div class="post-text">
+                <h5>
+                    <a class="title-link"  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+                </h5>
+                <p>{{post.description}}</p>
+            </div>
+            <figure>
+                <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
+            </figure>
+
+            <div class="post-row low">
+                <div class="activity-icons">
+                    <div>{% include "components/_like.html.twig" %}</div>
+                    <div>{% include "components/_comment.html.twig" %}</div>
+                    <div><a href="{{ path('app_api')}}" class="country btn btn-outline-secondary">{{post.country}}</a></div>
+
+                </div>
+                <div class="post-btn">
+                    {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
+                    <button class="btn btn-outline-secondary"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <button class="btn btn-outline-secondary" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
+                    {% endif %}
+                </div>
             </div>
         </div>
-        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-    </div>
-    <div class="post-text">
-        <h5>
-            <a class="title-link"  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
-        </h5>
-        <p>{{post.description}}</p>
-    </div>
-    <figure>
-        <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
-    </figure>
+        {% endfor %}
 
-    <div class="post-row low">
-        <div class="activity-icons">
-            <div>{% include "components/_like.html.twig" %}</div>
-            <div>{% include "components/_comment.html.twig" %}</div>
-            <div><a href="{{ path('app_api')}}" class="country btn btn-outline-secondary">{{post.country}}</a></div>
-
-        </div>
-        <div class="post-btn">
-            {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
-            <button class="btn btn-outline-secondary"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
-            <button class="btn btn-outline-secondary" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
-            {% endif %}
+        <div class="d-flex justify-content-center">
+            {{knp_pagination_render(pagination)}}
         </div>
     </div>
-</div>
-{% endfor %}
 
-<div class="d-flex justify-content-center">
-    {{knp_pagination_render(pagination)}}
-</div>
+    <div class="right-sidebard">
+        <div class="right-subpart">
+            <div class="event">
+                <div class="sidebar-title">
+                    <h4><i class="fa-solid fa-arrow-trend-up"></i>Most-reading posts</h4>
+                    <a href="#">See All</a>
+                </div>
+                <div class="list-event">
+                {% if trendingPosts is not empty %}
+                    {% for post in trendingPosts %}
+                        <li class="event-items"><a class="link text-decoration-none fs-5" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li>
+                    {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="sidebar-title">
+                    <h4><i class="fa-solid fa-list"></i>Featured links</h4>
+                </div>
+                <div class="rgpd-links">
+                    <li class="event-items"><a class=" link text-decoration-none  fs-5" href="#">FAQ</a></li>
+                    <li class="event-items"><a class=" link text-decoration-none  fs-5"  href="#">CGU</a></li>
+                    <li class="event-items"><a class=" link text-decoration-none  fs-5"  href="#">Privacy Policy</a></li>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
 
 {% endblock %}

@@ -303,7 +303,7 @@ header .fixed-nav {
 .cont{
     display:flex;
     justify-content: space-between;
-    padding:5%;
+    padding:13px 5%;
     
 }
 

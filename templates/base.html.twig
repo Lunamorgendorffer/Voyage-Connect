@@ -97,43 +97,11 @@
             </nav>
         </header>
         
-        <main class="cont">
+        {% block body %}
+        
+        {% endblock %}
+        
 
-            <div class="main-content">
-                
-                {% block body %}{% endblock %}
-            </div>
-
-            <div class="right-sidebard">
-                <div class="right-subpart">
-                    <div class="event">
-                        <div class="sidebar-title">
-                            <h4><i class="fa-solid fa-arrow-trend-up"></i>Most-reading posts</h4>
-                            <a href="#">See All</a>
-                        </div>
-                        <div class="list-event">
-                        {% if trendingPosts is not empty %}
-                            {% for post in trendingPosts %}
-                                <li class="event-items"><a class="link text-decoration-none fs-5" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li>
-                            {% endfor %}
-                        {% endif %}
-                        </div>
-                    </div>
-
-                    <div class="event">
-                        <div class="sidebar-title">
-                            <h4><i class="fa-solid fa-list"></i>Featured links</h4>
-                        </div>
-                        <div class="rgpd-links">
-                            <li class="event-items"><a class=" link text-decoration-none  fs-5" href="#">FAQ</a></li>
-                            <li class="event-items"><a class=" link text-decoration-none  fs-5"  href="#">CGU</a></li>
-                            <li class="event-items"><a class=" link text-decoration-none  fs-5"  href="#">Privacy Policy</a></li>
-                        </div>
-                    </div>
-    
-                </div>
-            </div>
-        </main>
 
         {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
