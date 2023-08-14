@@ -20,5 +20,14 @@
         <h4>Capital: {{ country.capital[0] }}</h4> 
     </div>
     {% endfor %}
+
+    <div class="country-posts">
+        <h3>Posts related to {{ countryDetails.name.common }}</h3>
+        <ul>
+            {% for post in countryPosts %}
+                <li>{{ post.title }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

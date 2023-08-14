@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use App\Entity\Post;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -9,13 +11,16 @@ class CallApiService
 {
     private $httpClient;
     private $serializer;
+    private $entityManager;
 
-    public function __construct(SerializerInterface $serializer)
+    public function __construct(SerializerInterface $serializer, EntityManagerInterface $entityManager)
     {
         // Création d'un client HTTP pour effectuer des requêtes
         $this->httpClient = HttpClient::create();
         // Injection du service de sérialisation pour décoder les réponses en JSON
         $this->serializer = $serializer;
+        // Injectez l'EntityManager
+        $this->entityManager = $entityManager; 
     }
 
     // Récupère la liste de tous les pays depuis l'API
@@ -88,5 +93,13 @@ class CallApiService
 
         // Décode le contenu JSON en tableau associatif
         return $this->serializer->decode($content, 'json');
+    }
+
+    // Récupère les posts liés à un pays
+    public function getPostsByCountry( string $countryName)
+    {
+       // Utilisez l'EntityManager pour récupérer les posts liés au pays
+       $posts = $this->entityManager->getRepository(Post::class)->findBy(['country' => $countryName]);
+        return $posts;
     }
 }

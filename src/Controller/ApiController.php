@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\CallApiService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,13 +49,22 @@ class ApiController extends AbstractController
     }
 
     #[Route('/country/{countryCode}', name: 'country_details')]
-    public function countryDetails(string $countryCode, CallApiService $restCountriesService): Response
+    public function countryDetails(string $countryCode, CallApiService $restCountriesService, EntityManagerInterface $entityManager): Response
     {
         // Appelle le service pour récupérer les détails du pays en utilisant le code du pays
         $countryDetails = $restCountriesService->getCountryDetails($countryCode);
 
+        // Appelle le service pour récupérer les posts liés au pays en utilisant le nom du pays
+        $countryName = $countryDetails[0]['name']['common'];
+        $countryPosts = $restCountriesService->getPostsByCountry($entityManager, $countryName);
+
+       
+        // $countryPosts = $restCountriesService->getPostsByCountry($entityManager, $countryDetails['name']['common']);
+        // dd($countryDetails);
+
         return $this->render('api/countryDetails.html.twig', [
             'countryDetails' => $countryDetails,
+            'countryPosts' => $countryPosts,
         ]);
     }
 
