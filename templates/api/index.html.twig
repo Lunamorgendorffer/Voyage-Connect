@@ -1,70 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Explore the world</title>
-    {% block stylesheet %}
-    {{ encore_entry_link_tags('api') }}
-    {% endblock %}
-</head>
-<body>
-    <header class="header" id="header">
-        <nav class="nav">
-            <a href="{{ path('app_home') }}" class="nav_logo">Voyage Connect</a>
-            
-            <div class="nav_menu" id="nav-menu">
-                {% if app.user %}
-                <ul class="nav_list">
-                    <li class="nav_item">
-                        <a href="{{ path('app_home') }}" class="nav_link">Home</a>
-                    </li>
-                    
-                    <li class="nav_item">
-                        <a href="{{ path('app_api')}}" class="nav_link">Explore</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="#" class="nav_link">About Us</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="{{ path('app_post') }}" class="nav_link">Posts</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="{{ path('app_logout') }}" class="login">Log Out</a>
-                    </li>
-                {% else %}
-                    <div class="navflex">
-                        <li class="nav_item">
-                            <a href="{{ path('app_register')}}" class="login">Sign In</a>
-                        </li>
-                        <li class="nav_item">
-                            <a href="{{ path('app_login')}}" class="login">Login</a>
-                        </li>
+{% extends 'base.html.twig' %}
+
+{% block title %}Explore{% endblock %}
+
+{% block body %}
+    <main class="vessel">
+        <div class="cards card1">
+            {% for region, image in regions %}
+            <a class="home-link" href="{{ path('detailRegion',{region}) }}">
+                <div class="card" style="background-image: url('{{asset(image) }}')">
+                    <div class="content-box">
+                        <h1 class="card-title">{{ region }}</h1>
                     </div>
-                </ul>
-                {% endif %}
-            </div>
-        </nav>
-    </header>
-
-    <section class="container-fluid d-flex align-items-center">
-        <div class="rform d-flex align-items-center flex-column">
-            <img src="{{asset('img/img.png')}}" class="compass" alt="boussole">
-            <h2 class="big-title">Destinations</h2>
-            <div class="home_cards">
-                {% for region, image in regions %}
-                <article class="home_card">
-                    <a class="home-link" href="{{ path('detailRegion',{region}) }}">
-                    <img src="{{ asset(image) }}" alt="{{ region }}" class="home_card-img">
-                    <h3 class="home_card-title">{{ region }}</h3>
-                    </a>
-                </article>
-                {% endfor %}
-            </div>
+                </div>
+            </a>
+            {% endfor %}
         </div>
-    </section>
+    </main>
 
+{% endblock %}
 
-</body>
-</html>

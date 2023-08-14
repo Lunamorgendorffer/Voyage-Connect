@@ -783,4 +783,114 @@ header .fixed-nav {
     padding: 5px;
 }
 
+/*-------------------------------------EXPLORE----------------------------------------- */
+.vessel {
+    padding: 13px 5%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+   
+}
 
+.cards {
+    width: 100%;
+    height: max-content;
+    padding: 20px;
+    perspective: 1000px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 10px;
+}
+
+.card {
+    padding-top: 100px;
+    transform-style: preserve-3d;
+    height: 300px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    transition: all 0.5s ease-in-out;
+    background-position: center center;
+}
+.card:hover {
+    background-position: 80% 20%;
+    transform: rotate3d(0.5,1,0,30deg);
+}
+.card-image{
+    background-size: cover;
+}
+.content-box {
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    padding: 50px 25px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+    /* transform-style: preserve-3d; */
+}
+
+.content-box .card-title {
+    color: #fff;
+    font-size: 1.55rem;
+    font-weight: 800;
+    transition: all 0.5s ease-in-out;
+    transform: translate3d(0px, 0px, 20px);
+}
+.content-box .card-title:hover {
+    transform: translate3d(0px, 0px, 50px);
+}
+
+.content-box .card-content {
+    padding-top: 20px;
+    font-size: 13px;
+    color: #d7d7d7;
+    transition: all 0.5s ease-in-out;
+    transform: translate3d(0px, 0px, 20px);
+}
+.content-box .card-content:hover {
+    transform: translate3d(0px, 0px, 50px);
+}
+
+.content-box .see-more {
+    display: block;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #0088ff;
+    padding-top: 15px;
+    transition: all 0.5s ease-in-out;
+    transform: translate3d(0px, 0px, 20px);
+}
+.content-box .see-more:hover {
+    transform: translate3d(0px, 0px, 50px);
+}
+
+.date-box {
+    position: absolute;
+    top: 75px;
+    left: 25px;
+    height: 60px;
+    width: 60px;
+    background-color: #000;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: #0066ff 0px 20px 60px 0px, #00c8ff 0px 18px 36px -18px;
+    transform: translate3d(0px, 0px, 50px);
+}
+.date-box span {
+    display: block;
+    text-align: center;
+}
+.date-box .month {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+}
+.date-box .date {
+    font-size: 20px;
+    font-weight: 900;
+    color: #0088ff;
+}
