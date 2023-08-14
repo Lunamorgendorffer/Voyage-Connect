@@ -47,8 +47,20 @@ class ApiController extends AbstractController
         ]);
     }
 
+    #[Route('/country/{countryCode}', name: 'country_details')]
+    public function countryDetails(string $countryCode, CallApiService $restCountriesService): Response
+    {
+        // Appelle le service pour récupérer les détails du pays en utilisant le code du pays
+        $countryDetails = $restCountriesService->getCountryDetails($countryCode);
+
+        return $this->render('api/countryDetails.html.twig', [
+            'countryDetails' => $countryDetails,
+        ]);
+    }
+
+
     // Route pour afficher les détails de tous les pays
-    #[Route('/api/detail', name: 'show_api')]
+    #[Route('/detailCountry', name: 'detailCountry')]
     public function show(CallApiService $restCountriesService): Response
     {
         // Appelle le service pour récupérer la liste de tous les pays

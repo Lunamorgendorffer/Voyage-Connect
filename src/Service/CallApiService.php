@@ -77,4 +77,16 @@ class CallApiService
         // Décode le contenu JSON en tableau associatif
         return $this->serializer->decode($content, 'json');
     }
+
+    // Récupère les détails d'un pays en fonction de son code
+    public function getCountryDetails(string $countryCode)
+    {
+        // Effectue une requête GET vers l'API pour récupérer les détails du pays avec le code spécifié
+        $response = $this->httpClient->request('GET', "https://restcountries.com/v3.1/alpha/{$countryCode}");
+        // Récupère le contenu JSON de la réponse
+        $content = $response->getContent();
+
+        // Décode le contenu JSON en tableau associatif
+        return $this->serializer->decode($content, 'json');
+    }
 }

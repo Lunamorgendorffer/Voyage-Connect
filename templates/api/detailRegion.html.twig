@@ -50,43 +50,19 @@
     </header>
     <div class="countries" id="countries">
         {% for country in countries %}
+        {# {{ dump(country) }} #}
         <div class="country-div">
-            <img src="{{country.flags.png }}" alt="{{ country.name.common }}">
-            <h2>{{ country.name.common }}</h2>
+            <a href="{{ path('country_details', { 'countryCode': country.cca3 }) }}">
+                <img src="{{country.flags.png }}" alt="{{ country.name.common }}">
+                <h2>{{ country.name.common }}</h2>
+            </a>
             <hr>
             <h4>Population: {{ country.population }}</h4>
             <h4>Region: {{ country.region }}</h4>
+            <h4>Capital: {{ country.capital[0] }}</h4> 
         </div>
         {% endfor %}
 
     </div>
-
-    {# <section class="container-fluid d-flex align-items-center ">
-      <div class="rform d-flex align-items-center flex-column">
-          <table class="table table-hover">
-              <thead>
-                  <th>#</th>
-                  <th>Flag</th>
-                  <th>Name</th>
-                  <th>Population</th>
-                  <th>Region</th>
-              </thead>
-              <tbody>
-                  {% for row in countries|batch(2) %}
-                  <tr>
-                      {% for country in row %}
-                      <td>{{ loop.parent.loop.index0 * 4 + loop.index }}</td>
-                      <td><img src="{{country.flags.png }}" alt="{{ country.name.common }} flag"></td>
-                      <td>{{ country.name.common }}</td> 
-                      <td>{{ country.population }}</td>
-                      <td>{{ country.subregion }}</td>
-                      {% endfor %}
-                  </tr>
-                  {% endfor %}
-              </tbody>
-          </table>
-      </div>
-  </section> #}
-  
 </body>
 </html>
