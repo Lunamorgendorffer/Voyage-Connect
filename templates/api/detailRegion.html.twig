@@ -48,8 +48,20 @@
             </div>
         </nav>
     </header>
+    <div class="countries" id="countries">
+        {% for country in countries %}
+        <div class="country-div">
+            <img src="{{country.flags.png }}" alt="{{ country.name.common }}">
+            <h2>{{ country.name.common }}</h2>
+            <hr>
+            <h4>Population: {{ country.population }}</h4>
+            <h4>Region: {{ country.region }}</h4>
+        </div>
+        {% endfor %}
 
-    <section class="container-fluid d-flex align-items-center ">
+    </div>
+
+    {# <section class="container-fluid d-flex align-items-center ">
       <div class="rform d-flex align-items-center flex-column">
           <table class="table table-hover">
               <thead>
@@ -74,7 +86,7 @@
               </tbody>
           </table>
       </div>
-  </section>
+  </section> #}
   
 </body>
 </html>

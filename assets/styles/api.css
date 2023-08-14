@@ -160,3 +160,29 @@ header{
     border: ridge 1.5px white;
     margin: 17rem 0;
 }
+
+.countries{
+    max-width: 1240px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.country-div{
+    background: #c5e7f5;
+    border: 1px solid burlywood;
+    padding: 15px;
+}
+img{
+    width: 100%;
+    height: 150px;
+}
+
+/* now do styles as much as you want */
+/* add media query for responsive */
+@media screen and (max-width: 576px){
+    .countries{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

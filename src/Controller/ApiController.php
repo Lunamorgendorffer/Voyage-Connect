@@ -37,6 +37,11 @@ class ApiController extends AbstractController
         // Appelle le service pour récupérer la liste des pays de la région spécifiée
         $countries = $restCountriesService->getCountriesByRegion($region);
         
+        // Trie les pays par ordre alphabétique en utilisant leur nom commun
+        usort($countries, function($a, $b) {
+            return strcmp($a['name']['common'], $b['name']['common']);
+        });
+        
         return $this->render('api/detailRegion.html.twig', [
             'countries' => $countries,
         ]);
