@@ -9,9 +9,9 @@
 
 
 :root{
-    --body-color:#efefef;
+    --body-color:#7b96ba;
     --nav-color: #fff;
-    --bg-color: #f6f0eb;
+    --bg-color:#ffffff;
     /*========== Font and typography ==========*/
     --body-font: "Poppins", sans-serif;
     --title-font: 'lato', sans-serif;
@@ -34,9 +34,22 @@
 }
 
 body {
+    position: relative;
     background-color: var(--body-color) !important;
-    background: linear-gradient(to bottom right, var(--gradient-start-color), var(--gradient-mid-color), var(--gradient-end-color)) !important;
+    background-image: url('/public/img/BackgroundVoyage.jpg');
+    /* background: linear-gradient(to bottom right, var(--gradient-start-color), var(--gradient-mid-color), var(--gradient-end-color)) !important; */
     font-family: var(--body-font);
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(123, 150, 186, 0.5); /* Couleur d'arrière-plan avec opacité */
+    z-index: -1; 
 }
 
 button,
@@ -376,6 +389,7 @@ header .fixed-nav {
 }
 
 .right-sidebard h4{
+    font-family: var(--text-font);
     font-weight: 600;
     font-size: 1.5rem;
     display: flex;

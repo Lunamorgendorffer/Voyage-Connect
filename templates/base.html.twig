@@ -30,6 +30,9 @@
                     <li class="nav_item_post">
                         <a href="#" class="scroll-link">About Us</a>
                     </li>
+                    <li class="nav_item_post">
+                        <a href="{{ path('app_post')}}" class="scroll-link">Your Feed</a>
+                    </li>
                     {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav_item_post">
                         <a href="{{ path('admin_index') }}" class="scroll-link">admin</a>
