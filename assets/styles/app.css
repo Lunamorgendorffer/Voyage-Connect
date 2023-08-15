@@ -37,6 +37,7 @@ body {
     position: relative;
     background-color: var(--body-color) !important;
     background-image: url('/public/img/BackgroundVoyage.jpg');
+    background-repeat: repeat;
     /* background: linear-gradient(to bottom right, var(--gradient-start-color), var(--gradient-mid-color), var(--gradient-end-color)) !important; */
     font-family: var(--body-font);
 }
@@ -105,7 +106,7 @@ input {
 }
 
 .scroll-link:hover {
-    background-color: #ffa343;
+    background-color: #d67940;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
@@ -163,9 +164,10 @@ input {
 }
 
 .fa-caret-down{
-    position: absolute;
-    bottom: 0px;
-    right: 0;
+    position: relative !important;
+    top: 20px;
+    right: 16px;
+    color: #fff;
 }
 
 #burger-menu {
@@ -684,12 +686,13 @@ header .fixed-nav {
 }
 
 .btn-add{
-    /* background-color: #23a875; */
-    background-color: #ffa343;
-    border-radius: 8px;
+    
+    background-color: #d67940;
+    border-radius: 20px;
     border: none;
     padding: 10px;
-    width: 100%;
+    width: 10%;
+    margin: 20px 45%;
 }
 
 
@@ -907,4 +910,31 @@ header .fixed-nav {
     font-size: 20px;
     font-weight: 900;
     color: #0088ff;
+}
+/*--------------------------------------- PAGE EXPLORE ---------------------------------------------------*/
+.countries{
+    max-width: 1240px;
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.country-div{
+    background: #ccd9e2;
+    border: none !important;
+    border-radius: 20px;
+    padding: 15px;
+}
+.flag-img{
+    width: 100%;
+    height: 150px;
+}
+
+/* now do styles as much as you want */
+/* add media query for responsive */
+@media screen and (max-width: 576px){
+    .countries{
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

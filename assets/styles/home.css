@@ -67,8 +67,8 @@ html {
 }
 
 body {
-    background-color: #000;
-    background: linear-gradient(to bottom right, #ac7175, #8f5f62, #6e4649);
+    background-color: #7b96ba;
+    /* background: linear-gradient(to bottom right, #ac7175, #8f5f62, #6e4649); */
     font-family: var(--body-font);
 }
 
@@ -144,7 +144,7 @@ flex-direction: column;
 }
 
 .nav_link:hover {
-    background-color: #ffa343; /* Ajout d'une couleur de fond lors du survol */
+    background-color: #d67940; /* Ajout d'une couleur de fond lors du survol */
     border-radius: 5px; /* Pour ajouter des coins arrondis */
     transition: background-color 0.3s; /* Ajout d'une transition en douceur */
 }
@@ -373,7 +373,7 @@ flex-direction: column;
     transform: translateY(0); /* Fait apparaître le titre lorsque la souris passe sur l'image */
     opacity: 1; /* Rend le titre complètement opaque */
     font-weight: 600;
-    background: #efefef70;
+    background:#efefef70;
 }
 
 
@@ -472,7 +472,7 @@ flex-direction: column;
 .footer {
     display: flex;
     flex-flow: row wrap;
-    padding: 30px 30px 20px 30px;
+    padding: 20px 5rem;
     color: #fff;
 }
   
@@ -541,8 +541,38 @@ flex-direction: column;
 }
   
 .nav__ul a {
-    color: #999;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    position: relative;
 }
+
+
+.nav__a::after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #d67940;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.nav__a:hover::after {
+    width: 100%; 
+    left: 0; 
+}
+
+
+
+
+
+
   
 .nav__ul--extra {
     column-count: 2;
@@ -552,7 +582,8 @@ flex-direction: column;
 .legal {
     display: flex;
     flex-wrap: wrap;
-    color: #999;
+    justify-content: center;
+    color: #fff;
 }
     
 .legal__links {

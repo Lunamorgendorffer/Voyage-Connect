@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>{{ countryDetails[0].name.common }} - Détails du pays</title>
-    {% block stylesheet %}
-    {{ encore_entry_link_tags('api') }}
-    {% endblock %}
-</head>
-<body>
+{% extends 'base.html.twig' %}
+
+{% block title %} Detail {{ countryDetails[0].name.common }} {% endblock %}
+
+{% block body %}
     {% for country in countryDetails %}
     {# {{ dump(countryDetails) }} #}
     <div class="country-div">
@@ -21,53 +14,50 @@
     </div>
     {% endfor %}
 
-    <div class="country-posts">
+    <div class="main-content">
         <h3>Posts related to {{ countryDetails[0].name.common }}</h3>
         {% for post in countryPosts %}
-        <div class="post-container">
-            <div class="post-row">
-                <div class="user-profile">
-                    {% if post.user.avatar == null %}
-                        <img src="{{asset('img/user.png')}}">
-                    {% else %}
-                        <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
-                    {% endif %}
-                    <div>
-                        <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
-                        <span>{{ post.creationTime }}</span>
+            <div class="post-container">
+                <div class="post-row">
+                    <div class="user-profile">
+                        {% if post.user.avatar == null %}
+                            <img src="{{asset('img/user.png')}}">
+                        {% else %}
+                            <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                        {% endif %}
+                        <div>
+                            <p><a href="{{ path('show_user', {'id': post.user.id})}}">{{post.user.pseudo}}</a></p>
+                            <span>{{ post.creationTime }}</span>
+                        </div>
+                    </div>
+                    <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                </div>
+                <div class="post-text">
+                    <h5>
+                        <a class="title-link"  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+                    </h5>
+                    <p>{{post.description}}</p>
+                </div>
+                <figure>
+                    <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
+                </figure>
+
+                <div class="post-row low">
+                    <div class="activity-icons">
+                        <div>{% include "components/_like.html.twig" %}</div>
+                        <div>{% include "components/_comment.html.twig" %}</div>
+                        <div><a href="{{ path('app_api')}}" class="country btn btn-outline-secondary">{{post.country}}</a></div>
+
+                    </div>
+                    <div class="post-btn">
+                        {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
+                        <button class="btn btn-outline-secondary"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
+                        {% endif %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <button class="btn btn-outline-secondary" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
+                        {% endif %}
                     </div>
                 </div>
-                <a href="#"><i class="fas fa-ellipsis-v"></i></a>
             </div>
-            <div class="post-text">
-                <h5>
-                    <a class="title-link"  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
-                </h5>
-                <p>{{post.description}}</p>
-            </div>
-            <figure>
-                <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
-            </figure>
-
-            <div class="post-row low">
-                <div class="activity-icons">
-                    <div>{% include "components/_like.html.twig" %}</div>
-                    <div>{% include "components/_comment.html.twig" %}</div>
-                    <div><a href="{{ path('app_api')}}" class="country btn btn-outline-secondary">{{post.country}}</a></div>
-
-                </div>
-                <div class="post-btn">
-                    {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
-                    <button class="btn btn-outline-secondary"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
-                    {% endif %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <button class="btn btn-outline-secondary" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
         {% endfor %}
-      
-    </div>
-</body>
-</html>
+{% endblock %}      
