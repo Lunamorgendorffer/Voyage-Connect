@@ -56,7 +56,7 @@ class ApiController extends AbstractController
 
         // Appelle le service pour récupérer les posts liés au pays en utilisant le nom du pays
         $countryName = $countryDetails[0]['name']['common'];
-        $countryPosts = $restCountriesService->getPostsByCountry($entityManager, $countryName);
+        $countryPosts = $restCountriesService->getPostsByCountry($countryName);
 
        
         // $countryPosts = $restCountriesService->getPostsByCountry($entityManager, $countryDetails['name']['common']);
