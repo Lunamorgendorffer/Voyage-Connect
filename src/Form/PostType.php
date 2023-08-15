@@ -59,7 +59,9 @@ class PostType extends AbstractType
                     return $value; // Valeur de chaque option est le nom du pays
                 },
             ])
-            ->add('submit', SubmitType::class) // Bouton de soumission du formulaire
+            ->add('submit', SubmitType::class,[ // Champ de téléchargement de l'image du post
+                'label' => 'Create Post',
+                'attr'=>['class'=>'create-account']]) // Bouton de soumission du formulaire
         ;
     }
 

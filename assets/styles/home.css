@@ -323,7 +323,9 @@ flex-direction: column;
 
 /*=============== POPULAR ===============*/
 .popular{
-    border: white solid 0.2rem;
+    border-top: white solid 0.2rem;
+    border-left: white solid 0.2rem;
+    border-right: white solid 0.2rem;
 }
 
 .popular_posts{
@@ -474,6 +476,7 @@ flex-direction: column;
     flex-flow: row wrap;
     padding: 20px 5rem;
     color: #fff;
+    border-top: white solid 0.2rem;
 }
   
 .footer > * {

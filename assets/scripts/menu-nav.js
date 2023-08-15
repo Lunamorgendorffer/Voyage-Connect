@@ -38,15 +38,18 @@ if(settingsmenu){
     function updateGradientColors() {
         var theme = localStorage.getItem("theme");
         if (theme === "light") {
-            document.documentElement.style.setProperty('--gradient-start-color', gradientStartColor);
-            document.documentElement.style.setProperty('--gradient-mid-color', gradientMidColor);
-            document.documentElement.style.setProperty('--gradient-end-color', gradientEndColor);
+            document.body.style.backgroundImage = "var(--bg-img)";
+            document.body.style.backgroundColor = "var(--body-color)";
+            document.body.style.setProperty('--before-bg-color', 'rgba(123, 150, 186, 0.5)'); // Set original background color for body::before
         } else if (theme === "dark") {
-            document.documentElement.style.setProperty('--gradient-start-color', '#2a2a2a');
-            document.documentElement.style.setProperty('--gradient-mid-color', '#1f1f1f');
-            document.documentElement.style.setProperty('--gradient-end-color', '#121212');
+            document.body.style.backgroundImage = "none";
+            document.body.style.backgroundColor = "#2a2a2a";
+            document.body.style.setProperty('--before-bg-color', 'transparent'); // Set transparent background color for body::before
         }
     }
+    
+    
+    
 }
 
 
