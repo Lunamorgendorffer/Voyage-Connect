@@ -3,24 +3,32 @@
 {% block title %}AddComment{% endblock %}
 
 {% block body %}
-{% if edit %}
-    <h1>Update comment</h1>
-{% else %}
-    <h1> add comment</h1>
-{% endif %}
+    <div class="registration-form">
+        <div>
+            {% if edit %}
+                <h1 class="add_title">Update comment</h1>
+            {% else %}
+                <h1 class="add_title"> add comment</h1>
+            {% endif %}
+        </div>
 
-{# {{form(formAddstagiaire)}} #}
+        {{ form_start(formAddcomment) }}
+    
+            <div class="form-icon">
+                    <img src="{{asset('img/img.png')}}" class="compass" alt="boussole">
+            </div>
+            <div class="form-group">
+                {{ form_row(formAddcomment.text,{
+                    'attr': {
+                        'class': 'd-flex w-100 border border-secondary' } })  }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formAddcomment.submit) }}
+            </div>
+            
+        {{ form_end(formAddcomment) }}
 
-{{ form_start(formAddcomment) }}
-
-    
-        {{ form_row(formAddcomment.text) }}
-    
-        <button class="btn btn-lg btn-primary" type="submit">
-            Send
-        </button>
-    
-{{ form_end(formAddcomment) }}
+    </div>    
 
 
 {% endblock %}
