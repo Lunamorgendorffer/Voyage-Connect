@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\User;
+use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -57,21 +58,20 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
 
-    public function findUsersWithLikesCount(int $minLikesCount)
+    public function findUsersWithLikesCount(int $limit = 3)
     {
-        $query = $this->createQueryBuilder('u')
-            ->select('u.pseudo', 'u.avatar' )
-            ->innerJoin('u.posts', 'p')
-            ->innerJoin('p.likes', 'l')
+        return $this->createQueryBuilder('u')
+            ->select('u.id','u.pseudo', 'u.avatar')
+            ->leftJoin('u.posts', 'p')
+            ->leftJoin('p.likes', 'pu')
             ->groupBy('u.id')
-            ->having('COUNT(l) >= :minLikesCount')
-            ->setMaxResults(3)
-            ->orderBy('u.pseudo', 'ASC')
-            ->setParameter('minLikesCount', $minLikesCount)
-            ->getQuery();
-
-        return $query->getResult();
+            ->having('COUNT(pu) > 4')
+            ->getQuery()
+            ->getResult()
+        ;
     }
+    
+
 
 
         

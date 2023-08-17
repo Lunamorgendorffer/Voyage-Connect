@@ -20,7 +20,7 @@ class UserController extends AbstractController
     public function index(UserRepository $userRepository): Response
     {
         // Utilisez le User Repository pour récupérer les utilisateurs correspondants à la requête
-        $users = $userRepository->findUsersWithLikesCount(2);
+        $users = $userRepository->findUsersWithLikesCount(3);
         
         return $this->render('user/index.html.twig',[
             'users' => $users
@@ -123,11 +123,12 @@ class UserController extends AbstractController
 
     // fonction pour afficher la page detail de la user 
     #[Route('/user/{id}', name: 'show_user')]
-    public function show(User $user): Response {
-        
+    public function show(User $user, UserRepository $userRepository): Response {
+      
         // Retourne sur la vue 'user/detailuser.html.twig' avec les données suivantes
         return $this->render('user/detailuser.html.twig', [
-        'user' => $user,             // La user à afficher
+        'user' => $user,  
+        'like' =>  $userRepository->findUsersWithLikesCount(3)          
         ]);
     }
 
