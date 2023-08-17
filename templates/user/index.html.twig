@@ -1,126 +1,145 @@
-{% extends 'user.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}User Profile{% endblock %}
-
+{% block title %}My Profil{% endblock %}
+          
 {% block body %}
-    <div class="header-container">
-        <div class="cover">
-            <div class="button-cover">
-                <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Cover Photo</a>
+    <main class="flex-column cont">
+        <div class="header-container">
+            <div class="cover">
+                
+            </div>
+            <div class="cover-content">
+                <div class="profile-user" style="border: 4px solid red;">
+                    <div class="pseudo">
+                        <p>{{app.user.pseudo}}</p>
+                    </div>
+                    <figure>
+                        {% if app.user.avatar == null %}
+                            <img src="{{asset('img/user.png')}}">
+                        {% else %}
+                            <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+                        {% endif %}
+                    </figure>
+                </div>
+                <div class="button-profile" style="border: 4px solid black;">
+                    
+                    <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Cover Photo</a>  
+                    <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Profile</a>
+                </div>
             </div>
         </div>
-        <div class="profile-user">
-            <div class="pseudo">
-                <p>{{app.user.pseudo}}</p>
+    
+        <div class="main-contenaire">
+            <div class="post-user">
+                <div class="title">
+                    <a href="#" data-target="about">Your info</a>
+                    <a href="#" class="active" data-target="posts">Your Posts</a>
+                    <a href="#" data-target="like">Your like</a>
+                </div>
+    
+                <!-- Contenu de la section "About" -->
+                <div id="about" class="section">
+                    <p class="text-center text-capitalize">pseudo: {{app.user.pseudo}}</p>
+                    <p class="text-center text-capitalize">email: {{app.user.email}}</p>
+                    <p class="text-center text-capitalize">register since: {{app.user.registerAt|date("m/d/Y")}}</p>
+                </div>
+                <!-- Contenu de la section "About" -->
+                <div id="posts" class="section active">
+                    {% for post in app.user.posts %}
+                    <div  class="post-profile">
+                        <div class="post-profile-info">
+                            <div class="detail">
+                                {% if post.user.avatar == null %}
+                                    <img src="{{asset('img/user.png')}}">
+                                {% else %}
+                                    <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                                {% endif %}
+                                <div class="name-date">
+                                    <p class="v31_217">{{post.user.pseudo}}</p>
+                                    <span class="v31_218">{{ post.creationTime }}</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="post-content ">
+                            <div class="post-text">
+                                <h5>
+                                    <a class="link-title" href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+                                </h5>
+                                <p>{{post.description}}</p>
+                            </div>
+                            <figure>
+                                <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="image {{post.title}}">
+                            </figure>
+                        </div>
+                        <div class="post-profile-info">
+                            <div>{% include "components/_like.html.twig" %}</div>
+                            <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
+                            <div>{% include "components/_favoritepost.html.twig" %}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+    
+                <!-- Contenu de la section "Like" -->
+                <div id="like" class="section">
+                    <div class="mx-5 border" >
+                        {% for post in app.user.postlikes %}
+                            <div class="liked-post">
+                                <h4><li><a class="link-title2" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li></h4>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Contenu de la section "Like" -->
             </div>
-            <figure>
-                {% if app.user.avatar == null %}
-                    <img src="{{asset('img/user.png')}}">
-                {% else %}
-                    <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
-                {% endif %}
-            </figure>
-        </div>
-        <div class="button-profile">
-            <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Profile</a>
-        </div>
-    </div>
-
-    <div class="main-contenaire">
-        <div class="post-user">
-            <div class="title">
-                <a href="#" data-target="about">About</a>
-                <a href="#" class="active" data-target="posts">Posts</a>
-                <a href="#" data-target="comments">Comments</a>
-            </div>
-
-            <!-- Contenu de la section "About" -->
-            <div id="about" class="section">
-                <p>pseudo: {{app.user.pseudo}}</p>
-                <p>email: {{app.user.email}}</p>
-            </div>
-            <!-- Contenu de la section "About" -->
-            <div id="posts" class="section active">
-                {% for post in app.user.posts %}
-                <div  class="post-profile">
-                    <div class="post-profile-info">
-                        <div class="detail">
-                            {% if post.user.avatar == null %}
+    
+            <div class="right-side">
+                <div class="top-section">
+                    <div class="side-title">
+                        <h4>Your might know</h4>
+                        
+                    </div>
+                    {% for user in users %}
+                    <div class="suggestion-list">
+                        <div class="suggestion-user">
+                            {% if user.avatar == null %}
                                 <img src="{{asset('img/user.png')}}">
                             {% else %}
-                                <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                                <img src="{{asset('uploads/' ~ user.avatar)}}" alt="picture of{{user.pseudo}}">
                             {% endif %}
-                            <div class="name-date">
-                                <p class="v31_217">{{post.user.pseudo}}</p>
-                                <span class="v31_218">{{ post.creationTime }}</span>
-                            </div>
                         </div>
-                        <a href="#"><i class="fas fa-ellipsis-h"></i></a>
+                        <p><a class="user-pseudo" href="{{ path('show_user', {'id':user.id}) }}">{{user.pseudo}}</a></p>
                     </div>
-                    <div class="post-content ">
-                        <h3>{{post}}</h3>
-                        <p class="post-text">
-                            {{post.description}}
-                        </p>
-                        <figure>
-                            <img src="{{asset('uploads/' ~ post.image)}}"  alt="">
-                        </figure>
+                    {% endfor %}
+                </div>
+    
+                <div class="down-section">
+                    <div class="side-title">
+                        <h4>Your Messages</h4>
                     </div>
-                    <div class="post-profile-info">
-                        <div>{% include "components/_like.html.twig" %}</div>
-                        <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
-                        <div>{% include "components/_favoritepost.html.twig" %}</div>
+                    <div class="box">
+                        <div class="div">
+                            <i class="fa-solid fa-envelope fa-xl"></i>
+                        </div>
+                        <p>Inbox</p>
+                    </div>
+                    <div class="box">
+                        <div class="div">
+                            <i class="fa-solid fa-message fa-xl"></i>
+                        </div>
+                        <p>Send a message</p>
+                    </div>
+                    <div class="box">
+                        <div class="div">
+                            <i class="fa-solid fa-inbox fa-xl"></i>
+                        </div>
+                        <p>draft</p>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-
-            <!-- Contenu de la section "Comments" -->
-            <div id="comments" class="section">
-            </div>
-            <!-- Contenu de la section "Comments" -->
+    
         </div>
-
-        <div class="right-side">
-            <div class="top-section">
-                <div class="side-title">
-                    <h4>Your might know</h4>
-                    
-                </div>
-                {% for user in users %}
-                <div class="suggestion-list">
-                    <div class="suggestion-user">
-                        <img src="{{asset('uploads/' ~ user.avatar)}}" alt="">
-                    </div>
-                    <p>{{user.pseudo}}</p>
-                </div>
-                {% endfor %}
-            </div>
-
-            <div class="down-section">
-                <div class="side-title">
-                    <h4>Your Messages</h4>
-                </div>
-                <div class="box">
-                    <div class="div">
-                        <i class="fa-solid fa-envelope fa-xl"></i>
-                    </div>
-                    <p>Inbox</p>
-                </div>
-                <div class="box">
-                    <div class="div">
-                        <i class="fa-solid fa-message fa-xl"></i>
-                    </div>
-                    <p>Send a message</p>
-                </div>
-                <div class="box">
-                    <div class="div">
-                        <i class="fa-solid fa-inbox fa-xl"></i>
-                    </div>
-                    <p>draft</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    </main>
 {% endblock %}
+    

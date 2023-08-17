@@ -1,60 +1,129 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <!-- Axentix CSS minified version -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        {# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> #}
-        
-        {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        {% endblock %}
-    </head>
-    <body>
-        
-            <nav class="nav-user">
-                <div class="logo">
-                    <img src="{{ asset('img/logo.png') }}" alt="">
-                    <a href="{{ path('app_home') }}" class="linklogo">
-                        <span class="nav-item">Voyage Connect</span>
-                    </a>
-                </div>
-                <ul class="sidebar">
-                    <li><a href="{{ path('app_home') }}">
-                        <i class="fas fa-home"></i>
-                        <span class="nav-item">Home</span>
-                    </a></li>
-                    <li><a href="{{ path('app_post') }}">
-                        <i class="fas fa-user"></i>
-                        <span class="nav-item">Posts</span>
-                    </a></li>
-                    <li><a href="{{ path('app_api')}}"><i class="fas fa-tasks"></i>
-                        <span class="nav-item">Explore</span>
-                    </a></li>
-                    <li><a href="#">
-                        <i class="fas fa-cog"></i>
-                        <span class="nav-item">Setting</span>
-                    </a></li>
-                    <li><a href="#">
-                        <i class="fas fa-question-circle"></i>
-                        <span class="nav-item">Help</span>
-                    </a></li>
-                    <li><a href="{{ path('app_logout')}}"class="logout">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span class="nav-item">log out</span>
-                    </a></li>
-                </ul>
-            </nav>
-       
+{% extends 'base.html.twig' %}
 
-        <main id="main-user">
-        {% block body %}{% endblock %}
-        </main>
-      
-        {% block javascripts %} 
-        {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </body>
-</html>
+{% block title %}My Profil{% endblock %}
+          
+{% block body %}
+    <main class="container">
+        <div class="header-container">
+            <div class="cover">
+                <div class="button-cover">
+                    <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Cover Photo</a>
+                </div>
+            </div>
+            <div class="profile-user">
+                <div class="pseudo">
+                    <p>{{app.user.pseudo}}</p>
+                </div>
+                <figure>
+                    {% if app.user.avatar == null %}
+                        <img src="{{asset('img/user.png')}}">
+                    {% else %}
+                        <img src="{{asset('uploads/' ~ app.user.avatar)}}" > 
+                    {% endif %}
+                </figure>
+            </div>
+            <div class="button-profile">
+                <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Profile</a>
+            </div>
+        </div>
+    
+        <div class="main-contenaire">
+            <div class="post-user">
+                <div class="title">
+                    <a href="#" data-target="about">About</a>
+                    <a href="#" class="active" data-target="posts">Posts</a>
+                    <a href="#" data-target="comments">Comments</a>
+                </div>
+    
+                <!-- Contenu de la section "About" -->
+                <div id="about" class="section">
+                    <p>pseudo: {{app.user.pseudo}}</p>
+                    <p>email: {{app.user.email}}</p>
+                </div>
+                <!-- Contenu de la section "About" -->
+                <div id="posts" class="section active">
+                    {% for post in app.user.posts %}
+                    <div  class="post-profile">
+                        <div class="post-profile-info">
+                            <div class="detail">
+                                {% if post.user.avatar == null %}
+                                    <img src="{{asset('img/user.png')}}">
+                                {% else %}
+                                    <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                                {% endif %}
+                                <div class="name-date">
+                                    <p class="v31_217">{{post.user.pseudo}}</p>
+                                    <span class="v31_218">{{ post.creationTime }}</span>
+                                </div>
+                            </div>
+                            <a href="#"><i class="fas fa-ellipsis-h"></i></a>
+                        </div>
+                        <div class="post-content ">
+                            <h3>{{post}}</h3>
+                            <p class="post-text">
+                                {{post.description}}
+                            </p>
+                            <figure>
+                                <img src="{{asset('uploads/' ~ post.image)}}"  alt="">
+                            </figure>
+                        </div>
+                        <div class="post-profile-info">
+                            <div>{% include "components/_like.html.twig" %}</div>
+                            <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
+                            <div>{% include "components/_favoritepost.html.twig" %}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+    
+                <!-- Contenu de la section "Comments" -->
+                <div id="comments" class="section">
+                </div>
+                <!-- Contenu de la section "Comments" -->
+            </div>
+    
+            <div class="right-side">
+                <div class="top-section">
+                    <div class="side-title">
+                        <h4>Your might know</h4>
+                        
+                    </div>
+                    {% for user in users %}
+                    <div class="suggestion-list">
+                        <div class="suggestion-user">
+                            <img src="{{asset('uploads/' ~ user.avatar)}}" alt="">
+                        </div>
+                        <p>{{user.pseudo}}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+    
+                <div class="down-section">
+                    <div class="side-title">
+                        <h4>Your Messages</h4>
+                    </div>
+                    <div class="box">
+                        <div class="div">
+                            <i class="fa-solid fa-envelope fa-xl"></i>
+                        </div>
+                        <p>Inbox</p>
+                    </div>
+                    <div class="box">
+                        <div class="div">
+                            <i class="fa-solid fa-message fa-xl"></i>
+                        </div>
+                        <p>Send a message</p>
+                    </div>
+                    <div class="box">
+                        <div class="div">
+                            <i class="fa-solid fa-inbox fa-xl"></i>
+                        </div>
+                        <p>draft</p>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </main>
+{% endblock %}
+    

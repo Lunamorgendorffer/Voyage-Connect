@@ -1,109 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-
-
-
-
-.nav-user{
-    background-color: #fffcfc!important;
-    position:absolute;
-    top: 0; 
-    bottom:0;
-    height: 100%;
-    left:0;
-    width:20%;
-    padding: 2vw;
-    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-}
-
-.nav-user .logo{
-    text-align: center;
-    display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    gap: 10px;
-    align-items: center;
-    margin: 20px 0 0 30px;
-}
-
-.nav-user .logo img{
-    width: 30%;
-    height: auto;
-    border-radius: 50%
-}
-
-.nav-user.logo span{
-    font-weight: bold;
-    padding-left:15px; 
-    font-size: 18px;
-    text-transform: uppercase;
-}
-
-.nav-user .sidebar{
-    position: relative;
-    top: 30%;
-}
-
-
-.nav-user .sidebar li a{
-    position: relative;
-    color: rgb(85,83,83);
-    font-size: 14px;
-    display: table;
-    width: 300px;
-    padding:10px;
-}
-
-.nav-user .sidebar li a .fas{
-    position:relative;
-    width: 70px;
-    height:40px;
-    top:14px;
-    font-size:20px;
-    text-align: center;
-}
-
-.nav-user .sidebar li a .nav-item{
-    position:relative;
-    top:12px;
-    margin-left:10px;
-}
-
-.nav-user .sidebar li a:hover{
-    background-color: #eee;
-}
-
-
-.nav-user .sidebar li .logout{
-    position:relative;
-    bottom:0; 
-}
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Montserrat:wght@500;600&family=Poppins:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;1,100;1,300&family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Maven+Pro:wght@400;500;600;700;900&family=Playfair+Display:wght@400;500;600;700;900&family=Ubuntu:wght@400;500;700&display=swap');
 
 .header-container {
-    width: 75%;
+    width: 100%;
     height: 403px;
     background: #fff;
-    opacity: 1;
-    position: relative;
-    left: 21%;
     border-radius: 10px;
-    margin: 10px 0 0 10px;
     box-shadow: 0 20px 35px rgba(0,0,0,0.1);
 }
 
 .header-container .cover{
     width: 100%;
     height: 280px;
-    background: radial-gradient(circle, rgba(255,255,255,1) 0%,rgba(145,144,144,1) 100%);
+    background: #285185;
     border-radius: 5px;
+}
+.cover-content{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: 9rem;
 }
 
 .button-cover{
     width: 172px;
     position: absolute;
-    bottom: 40%;
-    right: 2%;
+    top: 23%;
+    right: 5%;
     
 }
 
@@ -118,23 +42,23 @@
 }
 
 .profile-user {
-    width: 400px;
-    position: absolute;
-    top: 19vh;
-    left: 5%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 0 20px;
 }
 
 .profile-user .pseudo {
-    position: absolute;
-    bottom: 5vh;
-    left: 45%;
+    margin-left: 10px;
 }
 
 .profile-user .pseudo p{
     
-    color: rgba(0,0,0,1);
-    font-weight: Bold;
+    color: #fff;
+    
     font-size: 30px;
+    text-transform: capitalize;
+    font-family: 'Andika', sans-serif;;
   
 }
 
@@ -159,10 +83,10 @@
 }
 
 .button-profile {
-    width: 145px;
-    position: absolute;
-    bottom: 10%;
-    right: 3.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 20px;
 }
 
 .button-profile .btn{
@@ -176,14 +100,10 @@
 }
 
 .main-contenaire {
-    position: relative;
-    top: 5vh;
-    left: 21%;
-    width: 75%;
     display: flex;
     justify-content: space-between;
     gap: 5%;
-    margin: 10px 0 0 10px;
+    margin: 20px 0 20px;
 
 }
 
@@ -267,6 +187,7 @@
     color: #000000;
     margin: 15px 0;
     font-size: 15px;
+    font-family: 'lato', sans-serif;
 }
 .post-content figure{
     display: flex;
@@ -301,6 +222,9 @@
 .side-title h4{
     text-align: center;
     margin: 5px 0;
+    font-family: 'Andika', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
 
 }
 
@@ -308,6 +232,8 @@
     display: flex;
     align-items: center;
     margin: 0 0 20px 20px;
+    font-family: 'Andika', sans-serif;
+    text-transform: capitalize;
 }
 
 .suggestion-user{
@@ -343,4 +269,43 @@ position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.link-title2, .link-title{
+    text-decoration: none;
+    color: #000;
+}
+
+.link-title2::after{
+    background: none repeat scroll 0 0 transparent;
+    content: "";
+    display: block;
+    height: 2px;
+    background: #d67940;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+.link-title2:hover::after {
+    width: 50%; 
+}
+
+
+.user-pseudo{
+    text-decoration: none;
+    color: #000;
+}
+
+.user-pseudo::after{
+    background: none repeat scroll 0 0 transparent;
+    content: "";
+    display: block;
+    height: 2px;
+    background: #d67940;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.user-pseudo:hover::after {
+    width: 100%; 
+    
 }

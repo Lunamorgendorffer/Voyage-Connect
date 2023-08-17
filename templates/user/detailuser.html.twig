@@ -1,51 +1,145 @@
-{% extends 'user.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}DetailUser{% endblock %}
 
 {% block body %}
-<div>
-    <div class="grix xs4 container">
-        {% for message in app.flashes('message') %}
-            <div class="col-xs4">
-                <div class="p-3 my-2 rounded-1 green light-4 text-green text-dark-4">{{message}}</div>
+
+<main class="flex-column cont">
+    <div class="header-container">
+        <div class="cover">
+        </div>
+        <div class="cover-content">
+            <div class="profile-user">
+                <div class="pseudo">
+                    <p>{{user.pseudo}}</p>
+                </div>
+                <figure>
+                    {% if user.avatar == null %}
+                        <img src="{{asset('img/user.png')}}">
+                    {% else %}
+                        <img src="{{asset('uploads/' ~ user.avatar)}}" > 
+                    {% endif %}
+                </figure>
             </div>
-        {% endfor %}
-        <div class="col-xs4">
-            <h1>Profil of {{user.pseudo}}</h1>
-            {% if user.avatar == null %}  
-                <img src="{{asset('img/avatars/user.png')}}">
-            {% else %}
-                <img src="{{asset('uploads/' ~ user.avatar)}}" > 
-            {% endif %}
+            <div class="button-profile">
+                
+                <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Cover Photo</a>  
+                <a class="btn btn-light" class href="{{path('edit_user')}}">Edit Profile</a>
+            </div>
+        </div>
+    </div>
 
+    <div class="main-contenaire">
+        <div class="post-user">
+            <div class="title">
+                <a href="#" data-target="about">About</a>
+                <a href="#" class="active" data-target="posts">Its Posts</a>
+                <a href="#" data-target="like">Its likes</a>
+            </div>
 
-        </div>
-        
-        <div class="col-xs1">Pseudo</div>
-        <div class="col-xs3">{{user.pseudo}}</div>
-        <div class="col-xs1">Email</div>
-        <div class="col-xs3">{{user.email}}</div>
-        
-        <div class="col-xs4">
-            <a href="{{path('edit_user')}}" class="btn blue">Edit Profile</a>
-            <a href="{{path('edit_password', {'id': user.id})}}" class="btn blue">Edit MDP</a>
+            <!-- Contenu de la section "About" -->
+            <div id="about" class="section">
+                <p class="text-center text-capitalize">pseudo: {{user.pseudo}}</p>
+                <p class="text-center text-capitalize">email: {{user.email}}</p>
+                <p class="text-center text-capitalize">register since: {{user.registerAt|date("m/d/Y")}}</p>
+            </div>
+            <!-- Contenu de la section "About" -->
+            <div id="posts" class="section active">
+                {% for post in user.posts %}
+                <div  class="post-profile">
+                    <div class="post-profile-info">
+                        <div class="detail">
+                            {% if post.user.avatar == null %}
+                                <img src="{{asset('img/user.png')}}">
+                            {% else %}
+                                <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                            {% endif %}
+                            <div class="name-date">
+                                <p class="v31_217">{{post.user.pseudo}}</p>
+                                <span class="v31_218">{{ post.creationTime }}</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="post-content ">
+                        <div class="post-text">
+                            <h5>
+                                <a class="link-title" href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+                            </h5>
+                            <p>{{post.description}}</p>
+                        </div>
+                        <figure>
+                            <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="image {{post.title}}">
+                        </figure>
+                    </div>
+                    <div class="post-profile-info">
+                        <div>{% include "components/_like.html.twig" %}</div>
+                        <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
+                        <div>{% include "components/_favoritepost.html.twig" %}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Contenu de la section "Like" -->
+            <div id="like" class="section">
+                <div class="mx-5 border" >
+                    {% for post in user.postlikes %}
+                        <div class="liked-post">
+                            <h4><li><a class="link-title2" href="{{ path('show_post', {'id': post.id})}}">{{ post.title }}</a></li></h4>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Contenu de la section "Like" -->
         </div>
 
-        <div class="col-xs4">
-            <h1>Post of {{user.pseudo}} ({{user.posts|length}})</h1>
+        <div class="right-side">
+            <div class="top-section">
+                <div class="side-title">
+                    <h4>Your might know</h4>
+                    
+                </div>
+                {% for user in like %}
+                <div class="suggestion-list">
+                    <div class="suggestion-user">
+                        {% if user.avatar == null %}
+                            <img src="{{asset('img/user.png')}}">
+                        {% else %}
+                            <img src="{{asset('uploads/' ~ user.avatar)}}" alt="picture of{{user.pseudo}}">
+                        {% endif %}
+                    </div>
+                    <p><a class="user-pseudo" href="{{ path('show_user', {'id':user.id}) }}">{{user.pseudo}}</a></p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="down-section">
+                <div class="side-title">
+                    <h4>Your Messages</h4>
+                </div>
+                <div class="box">
+                    <div class="div">
+                        <i class="fa-solid fa-envelope fa-xl"></i>
+                    </div>
+                    <p>Inbox</p>
+                </div>
+                <div class="box">
+                    <div class="div">
+                        <i class="fa-solid fa-message fa-xl"></i>
+                    </div>
+                    <p>Send a message</p>
+                </div>
+                <div class="box">
+                    <div class="div">
+                        <i class="fa-solid fa-inbox fa-xl"></i>
+                    </div>
+                    <p>draft</p>
+                </div>
+            </div>
         </div>
-        {% for post in user.posts %}
-            <div class="col-xs1">title</div>
-            <div class="col-xs3">{{post.title}}</div>
-        {% endfor %}
-        
-        <div class="col-xs4">
-            <h1>Comment of {{user.pseudo}} ({{user.posts|length}})</h1>
-        </div>
-        {% for comment in user.comments %}
-            <div class="col-xs1">comments</div>
-            <div class="col-xs3">{{comment.text}}</div>
-        {% endfor %}
 
     </div>
+</main>
+
 {% endblock %}
