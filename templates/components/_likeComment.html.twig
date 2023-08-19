@@ -1,11 +1,12 @@
 {% if app.user %}
-    <a  href="{{ path('comment_like', {id: comment.id}) }}" data-action="like">
+    <a  href="{{ path('comment_like', {id: comment.id}) }}" data-action="likeComment" data-nb={{ comment.commentLike|length }}>
     {% endif %}
 
     <button>
-        <i class="fa-regular fa-heart unfilled {{ app.user in comment.usersLike ? 'd-none' : '' }}"></i>
-        <i class="fa-solid fa-heart filled {{ app.user in comment.usersLike ? '' : 'd-none' }}"></i>
+        <i class="fa-regular fa-thumbs-up fillout {{ app.user in comment.commentLike ? 'd-none' : '' }}"></i>
+        <i class="fa-solid fa-thumbs-up fillin {{ app.user in comment.commentLike ? '' : 'd-none' }}"></i>
     </button>
+    <span class="ml-2">{{ comment.commentLike|length }}</span>
     
     {% if app.user %}
         </a>

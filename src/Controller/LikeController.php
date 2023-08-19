@@ -46,7 +46,7 @@ class LikeController extends AbstractController
         
         if ($comment->isLikedByUser($user)) {
 
-            $comment->removeUsersLike($user);
+            $comment->removeCommentLike($user);
             $entityManager->flush();
 
             return $this->json([
@@ -55,13 +55,13 @@ class LikeController extends AbstractController
             ]);
         }
 
-        $post->addUsersLike($user);
-        
+        $like = $comment->addCommentLike($user);
+        $entityManager->persist($like);
         $entityManager->flush();
         
         return $this->json([
             'message' => 'Like has been added',
-            'nbLike' => $post->howManyLikes()
+            'nbLike' => $comment->howManyLikes()
         ]);
     }
 

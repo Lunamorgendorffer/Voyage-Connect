@@ -32,7 +32,7 @@ class Comment
     private ?User $user = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likeComment')]
-    private Collection $usersLike;
+    private Collection $commentLike;
 
     public function __construct()
     {
@@ -113,43 +113,40 @@ class Comment
         return $this;
     }
 
-    /**
+   /**
      * @return Collection<int, User>
      */
-    public function getUsersLike(): Collection
+    public function getCommentLike(): Collection
     {
-        return $this->usersLike;
+        return $this->commentLike;
     }
 
-    public function addUsersLike(User $usersLike): self
+    public function addCommentLike(User $commentLike): self
     {
-        if (!$this->usersLike->contains($usersLike)) {
-            $this->usersLike->add($usersLike);
-            $usersLike->addLike($this);
+        if (!$this->commentLike->contains($commentLike)) {
+            $this->commentLike->add($commentLike);
         }
 
         return $this;
     }
 
-    public function removeUsersLike(User $usersLike): self
+    public function removeCommentLike(User $commentLike): self
     {
-        if ($this->usersLike->removeElement($usersLike)) {
-            $usersLike->removeLike($this);
-        }
-
+        $this->commentLike->removeElement($commentLike);
+        
         return $this;
     }
 
     public function isLikedByUser(User $user): bool
     {
 
-        return $this->likes->contains($user);
+        return $this->commentLike->contains($user);
 
     }
-
+    
     public function howManyLikes(): int 
     {
-        return count ($this->likes); 
+        return count ($this->commentLike); 
     }
 
     public function __toString(){

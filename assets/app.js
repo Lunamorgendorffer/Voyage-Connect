@@ -18,6 +18,7 @@ import './scripts/scrollreveal.min.js';
 import'./scripts/searchData.js';
 
 import Like from './scripts/like.js';
+import LikeComment from './scripts/likeComment.js';
 import Favorite from './scripts/favorite.js';
 import ScrollReveal from 'scrollreveal';
 
@@ -116,6 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (likeElements) {
       new Like(likeElements);
     }
+
+    // LikeComment system
+    const likeType = [].slice.call(document.querySelectorAll('a[data-action="likeComment"]'));
+    if (likeType) {
+      new LikeComment(likeType);
+    }
+
 
     const favoriteElements = [].slice.call(document.querySelectorAll('a[data-action="favorite"]'));
     if (favoriteElements) {
