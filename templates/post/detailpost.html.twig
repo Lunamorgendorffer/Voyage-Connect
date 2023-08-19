@@ -3,81 +3,98 @@
 {% block title %}DetailPost{% endblock %}
 
 {% block body %}
+<main class="container d-flex justify-content-center">
+    <div class="main-content">
+        <div class="post-container">
+            <div class="post-row">
+                <div class="user-profile">
+                    {% if post.user.avatar == null %}
+                        <img src="{{asset('img/user.png')}}">
+                    {% else %}
+                        <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
+                    {% endif %}
+                    <div>
+                        <p>{{post.user}}</p>
+                        <span>{{post.creationTime }}</span>
+                    </div>
+                </div>
+                <a href="{{ path('app_post') }}">Back</a>
+            </div>
+            <div class="post-text">
+                <h5>
+                    <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
+                </h5>
+                <p>{{post.description}}</p>
+            </div>
+            <figure>
+                <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="image {{post.title}}">
+            </figure>
 
-<div class="post-container">
-    <div class="post-row">
-        <div class="user-profile">
-            {% if post.user.avatar == null %}
-                <img src="{{asset('img/user.png')}}">
-            {% else %}
-                <img src="{{asset('uploads/' ~ post.user.avatar)}}" > 
-            {% endif %}
-            <div>
-                <p>{{post.user}}</p>
-                <span>{{post.creationTime }}</span>
+
+            <div class="post-row low">
+                <div class="activity-icons">
+                    <div>{% include "components/_like.html.twig" %}</div>
+                    <div>{% include "components/_comment.html.twig" %}</div>
+                    <div><a href="{{ path('app_api')}}" class="country btn btn-outline-secondary">{{post.country}}</a></div>
+
+                </div>
+                <div class="post-btn">
+                    {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
+                    <button class="btn btn-outline-secondary"><a href="{{ path('edit_post', {'id':post.id}) }}">Edit</a></button> 
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <button class="btn btn-outline-secondary" ><a href="{{ path('delete_post', {'id':post.id}) }}">Delete</a></button><br>
+                    {% endif %}
+                </div>
             </div>
         </div>
-        <a href="{{ path('app_post') }}">Back</a>
-    </div>
-    <div class="post-text">
-        <h5>
-            <a  href="{{ path('show_post', {'id': post.id})}}">{{post}}</a><br>
-        </h5>
-        <p>{{post.description}}</p>
-    </div>
-    <figure>
-        <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
-    </figure>
 
-
-    <div class="post-row">
-        <div class="activity-icons">
-            <div>{% include "components/_like.html.twig" %}</div>
-            <div><i class="fa-regular fa-message"></i> {{post.comments|length }}</div>
-            <div><a href="{{ path('app_api')}}" class="btn btn-outline-secondary">{{post.country}}</a></div>
-        </div>
-    </div>
-</div>
-
-{% for comment in post.comments %}
-<div class="comment-container">
-    <div class="comment-row">
-        <div class="user-profile">
-            {% if comment.user.avatar == null %}
-                <img src="{{asset('img/user.png')}}">
-            {% else %}
-                <img src="{{asset('uploads/' ~ comment.user.avatar)}}" > 
-            {% endif %}
-            <div class="user-profile-info">
-                <p>{{comment.user}}</p>
-                <span class="dot"></span>
-                <span>{{comment.creationTime}}</span>
+        {% for comment in post.comments %}
+        <div class="comment-container">
+            <div class="comment-row">
+                <div class="user-profile">
+                    {% if comment.user.avatar == null %}
+                        <img src="{{asset('img/user.png')}}">
+                    {% else %}
+                        <img src="{{asset('uploads/' ~ comment.user.avatar)}}" > 
+                    {% endif %}
+                    <div class="user-profile-info">
+                        <p>{{comment.user}}</p>
+                        <span class="dot"></span>
+                        <span>{{comment.creationTime}}</span>
+                    </div>
+                </div>
+            </div>
+            <p class="comment-text">
+                {{comment}} <br>
+            </p>
+            <div class="post-row low">
+                <div class="activity-icons">
+                    <div>{% include "components/_likeComment.html.twig" %}</div>
+                </div>
+                <div class="post-btn">
+                    {% if comment.user == app.user or is_granted('ROLE_ADMIN') %}
+                    <button class="btn btn-outline-secondary"><a href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a></button>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %} 
+                    <button class="btn btn-outline-secondary" ><a href="{{ path('delete_comment', {'id':comment.id}) }}">Delete</a></button><br>
+                    {% endif %}
+                </div>
             </div>
         </div>
-    </div>
-    <p class="comment-text">
-        {{comment}} <br>
-    </p>
-    <div class="post-btn">
-        {% if post.user == app.user or is_granted('ROLE_ADMIN') %}
-        <button class="btn-edit"><a href="{{ path('edit_comment', {'id':comment.id}) }}">Edit</a></button>
+        {% endfor %}
+        {% if post.locked %}
+            <div class="alert alert-secondary" role="alert">
+                <p class="text-center">
+                    <i class="fa-solid fa-circle-info"></i>Post is locked
+                </p>
+            </div>
+        {% else %}
+            <div class="addbtn">
+                <button class="btn-add"><a href="{{ path('add_comment', {'postId': post.id} ) }}">Add</a></button><br>
+            </div>
         {% endif %}
-        {% if is_granted('ROLE_ADMIN') %} 
-        <button class="btn-delete" ><a href="{{ path('delete_comment', {'id':comment.id}) }}">Delete</a></button><br>
-        {% endif %}
     </div>
-</div>
-{% endfor %}
-{% if post.locked %}
-    <div class="alert alert-secondary" role="alert">
-        <p class="text-center">
-            <i class="fa-solid fa-circle-info"></i>Post is locked
-        </p>
-    </div>
-{% else %}
-    <div class="addbtn">
-        <button class="btn-add"><a href="{{ path('add_comment', {'postId': post.id} ) }}">Add</a></button><br>
-    </div>
-{% endif %}
+</main>
 
 {% endblock %}
