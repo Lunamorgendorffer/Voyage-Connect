@@ -70,6 +70,7 @@
                     <div class="form-group">
                         <input type="password"  name="password" id="inputPassword" class= "input-field" placeholder="Password" autocomplete="off" required>
                     </div>
+                    <input type="hidden" id="honey_pot" name="honey_pot">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
                     {#
                         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
