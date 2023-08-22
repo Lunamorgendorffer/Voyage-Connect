@@ -35,9 +35,11 @@
                 </h5>
                 <p>{{post.description}}</p>
             </div>
+            {% if post.image is not null %}
             <figure>
-                <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="">
+                <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="image {{post.title}}">
             </figure>
+            {% endif %}
 
             <div class="post-row low">
                 <div class="activity-icons">
