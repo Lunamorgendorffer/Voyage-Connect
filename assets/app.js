@@ -40,10 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
 const burgerMenu = document.getElementById("burger-menu");
 const links = document.querySelector(".nav_links");
 
-burgerMenu.addEventListener("click", function () {
-    this.classList.toggle("close");
-    links.classList.toggle("show");
-});
+if(burgerMenu){
+    burgerMenu.addEventListener("click", function () {
+        this.classList.toggle("close");
+        links.classList.toggle("show");
+    });
+}
 
 
 /*=============== SHOW MENU ===============*/
