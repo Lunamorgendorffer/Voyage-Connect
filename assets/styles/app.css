@@ -303,6 +303,11 @@ header .fixed-nav {
         margin-top: 10px !important;
     }
 
+    .btn-add{
+        width: 50% !important;
+        margin: 10px 5rem !important;
+    }
+
 
 }
 
@@ -694,6 +699,8 @@ header .fixed-nav {
     color: #fff;
     margin: 0 auto;
 }
+
+
 
 .settings-menu{
     position: absolute;
