@@ -815,7 +815,7 @@ header .fixed-nav {
     grid-column-gap: 10px;
 }
 
-.card {
+.carde {
     padding-top: 100px;
     transform-style: preserve-3d;
     height: 300px;
@@ -825,7 +825,7 @@ header .fixed-nav {
     transition: all 0.5s ease-in-out;
     background-position: center center;
 }
-.card:hover {
+.carde:hover {
     background-position: 80% 20%;
     transform: rotate3d(0.5,1,0,30deg);
 }
