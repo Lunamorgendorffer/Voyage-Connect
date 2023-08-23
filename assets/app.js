@@ -95,21 +95,21 @@ window.addEventListener('scroll', blurHeader);
 // //////////////////////////Désactiver ScrollReveal en version mobile /////////////////////////
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
-var screenWidth = window.screen.width
-console.log (screenWidth)
-if (screenWidth > 768){
-    const sr = ScrollReveal({
-        origin:'top',
-        distance:'600px',
-        duration: 300,
-        delay:400,
-    })
+// var screenWidth = window.screen.width
+// console.log (screenWidth)
+// if (screenWidth > 768){
+//     const sr = ScrollReveal({
+//         origin:'top',
+//         distance:'600px',
+//         duration: 300,
+//         delay:400,
+//     })
     
-    sr.reveal ('.home_data', '.explore_data')
-    sr.reveal ('.home_card', {delay:600, distance: '100px', interval:500})
-    sr.reveal ('.post-card', {interval:800})
-    sr.reveal ('home_data', {origin:'right'})
-}
+//     sr.reveal ('.home_data', '.explore_data')
+//     sr.reveal ('.home_card', {delay:600, distance: '100px', interval:500})
+//     sr.reveal ('.post-card', {interval:800})
+//     sr.reveal ('home_data', {origin:'right'})
+// }
 
 
 document.addEventListener('DOMContentLoaded', () => {

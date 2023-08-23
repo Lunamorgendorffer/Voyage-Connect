@@ -68,9 +68,11 @@
                                 </h5>
                                 <p>{{post.description}}</p>
                             </div>
-                            <figure>
-                                <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="image {{post.title}}">
-                            </figure>
+                            {% if post.image is not null %}
+                                <figure>
+                                    <img src="{{asset('uploads/' ~ post.image)}}" class="post-img" alt="image {{post.title}}">
+                                </figure>
+                            {% endif %}
                         </div>
                         <div class="post-profile-info">
                             <div>{% include "components/_like.html.twig" %}</div>
