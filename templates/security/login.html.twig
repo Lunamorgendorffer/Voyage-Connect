@@ -1,54 +1,10 @@
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Login</title>
-    {% block stylesheet %}
-    {{ encore_entry_link_tags('log') }}
-    {% endblock %}
-</head>
-<body>
-    <header class="header" id="header">
-        <nav class="nav">
-            <a href="{{ path('app_home') }}" class="nav_logo">Voyage Connect</a>
-            <div class="nav_menu" id="nav-menu">
-                {% if app.user %}
-                <ul class="nav_list">
-                    <li class="nav_item">
-                        <a href="{{ path('app_home') }}" class="nav_link">Home</a>
-                    </li>
-                    
-                    <li class="nav_item">
-                        <a href="{{ path('app_api')}}" class="nav_link">Explore</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="#" class="nav_link">About Us</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="{{ path('app_post') }}" class="nav_link">Posts</a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="{{ path('app_logout') }}" class="login">Log Out</a>
-                    </li>
-                {% else %}
-                    <div class="navflex">
-                        <li class="nav_item">
-                            <a href="{{ path('app_register')}}" class="login">Sign In</a>
-                        </li>
-                        <li class="nav_item">
-                            <a href="{{ path('app_login')}}" class="login">Login</a>
-                        </li>
-                    </div>
-                </ul>
-                {% endif %}
-            </div>
-        </nav>
-    </header>
+{% extends 'base.html.twig' %}
 
+{% block title %}Inbox{% endblock %}
+
+{% block body %}
     <main class="main-login">
-        <form method="post">
+        <form method="post" >
             <div class="container d-flex align-items-center justify-content-center">
                 <div class="rform d-flex align-items-center flex-column w-50">
                     {% if error %}
@@ -65,10 +21,10 @@
                         <h1>Please sign in</h1>
                     </div>
                     <div class="form-group">
-                        <input type="email" value="{{ last_username }}" class= "input-field" name="email" id="inputEmail" placeholder="Email" autocomplete="off" required> 
+                        <input type="email" value="{{ last_username }}" class= "form-control mb-2" name="email" id="inputEmail" placeholder="Email" autocomplete="off" required> 
                     </div>
                     <div class="form-group">
-                        <input type="password"  name="password" id="inputPassword" class= "input-field" placeholder="Password" autocomplete="off" required>
+                        <input type="password"  name="password" id="inputPassword" class= "form-control" placeholder="Password" autocomplete="off" required>
                     </div>
                     <input type="hidden" id="honey_pot" name="honey_pot">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" >
@@ -97,5 +53,5 @@
             </div>   
         </form>  
     </main>
-</body>
+{% endblock %}
 
